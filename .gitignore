@@ -54,3 +54,4 @@ dkms.conf
 #other staffs
 .DS_Store
 .vscode
+out
