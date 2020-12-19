@@ -9,7 +9,7 @@ int main()
 {
     // cout << "Hello World" << endl;
 
-    vector<string> msg{"Hello", "C++", "World", "from", "VS Code", "and the C++ extension!"};
+    vector<string> msg{"Hello", "C++", "World"};
 
     for (const string& word : msg)
     {
