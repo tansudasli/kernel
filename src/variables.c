@@ -2,6 +2,15 @@
 #include "header/variables.h"
 
 
+void precisionThings() {
+    printf("TAX_STANDART = %f, %.3f, TAX_LUX_CONSUPTION = %.3f \n", 
+        TAX_STANDART, TAX_STANDART, 
+        TAX_LUX_CONSUPTION);      //0.180000, 8 precision digit | 0.180
+
+    //w/o casting it gives crazy something :)
+    printf("TAX_STANDART = %d \n", (int)TAX_STANDART); //0
+}
+
 void calculateTax() {
     double total = 200.50;
 
@@ -20,13 +29,8 @@ void calculateTax() {
  */
 int main(int argc, char const *argv[])
 {
-    /* code */
-    printf("TAX_STANDART = %f, %.3f, TAX_LUX_CONSUPTION = %.3f \n", 
-        TAX_STANDART, TAX_STANDART, 
-        TAX_LUX_CONSUPTION);      //0.180000, 8 precision digit | 0.180
-
-    //w/o casting it gives crazy something :)
-    printf("TAX_STANDART = %d \n", (int)TAX_STANDART); //0
+    //precision 
+    precisionThings();
 
     //double/int calculation variations
     calculateTax();
