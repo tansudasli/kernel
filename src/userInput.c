@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h> 
 
+
+
 //gcc -o out/userInput src/userInput.c  && out/userInput 12 
 void usingCommandLineParametersAndCasting(int argc, char const *argv[]) {
     int i;
@@ -48,11 +50,15 @@ void usingGetAndCasting() {
 //gcc -o out/userInput src/userInput.c  && out/userInput 
 void usingGet() {
     char name[5];
+    char lastname[5];
 
     printf("Enter name= ");
     gets(name);
 
-    printf("Got from screen= %s", name);
+    printf("Enter lastname= ");
+    gets(lastname);
+
+    printf("Got from screen= %s, %s", name, lastname);
 }
 
 //gcc -o out/userInput src/userInput.c  && out/userInput 
@@ -67,16 +73,17 @@ int main(int argc, char const *argv[])
     /**
      * Getting name as char*, and lastname as char[5].
      * name gets unlimited char, while lastname gets max 4 char.
-     * So what is the desired behaviour, is important. For relational dbs/tabbed files especially.
+     * So what is the desired behaviour, is important. For relational dbs/tabbed-files especially. In case of such, 
+     *    custom flushing the buffer and using fgets may be a better way. But it has own fallbacks :)!
      */
-    usingCommandLineParameters(argc, argv);
+    // usingCommandLineParameters(argc, argv);
 
     /**
      * if you enter more than 5 char, it still works!! not truncuate
      * futhermore, if you set [5] for name, and [5] for lastname, it gets more unreliable.
      *   treat as 10, if you enter more than 5 char in lastname, and deletes content in firstname even.
      */ 
-    // usingGet();
+    usingGet();
 
     return 0;
 }
