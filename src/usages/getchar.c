@@ -6,7 +6,7 @@ int main(int argc, char const *argv[])
     /* code */
     char string[5];
 
-    int ch = getchar();   //reads and returns numeric value of char,  10 for a
+    int ch = getchar();   //reads and returns numeric value of char,  97 for a
 
     //in a normal scenario, use for and increment string value makes it a word!
     string[0] = ch;       //sets as char, a
