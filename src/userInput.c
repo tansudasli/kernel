@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> 
 
 
-void usingCommandLineParameters(int argc, char const *argv[]) {
+void usingCommandLineParametersAndCasting(int argc, char const *argv[]) {
     int i;
 
     // get param from command line 
@@ -11,6 +12,23 @@ void usingCommandLineParameters(int argc, char const *argv[]) {
         /* code */
         i = atoi(argv[j]);
         i == 0 ? printf("Enter numeric value \n") : printf("Got from commandline= %d \n", i);
+    }
+}
+
+//gcc -o out/userInput src/userInput.c  && out/userInput tansuyyyyyyyyy manr
+void usingCommandLineParameters(int argc, char const *argv[]) {
+    const char *name;  //char[5] (array) is not assignable. so use,  const char *, or strcpy or memcopy
+    char lastname[5];
+
+    // get param from command line 
+    if (argc > 1)
+    {
+        /* code */
+        name = argv[1];
+        //todo: if value >4, then creates error.
+        strcpy(lastname, argv[2]);
+
+        printf("Got from commandline= %s, %s \n", name, lastname);
     }
 }
 
@@ -26,14 +44,30 @@ void usingGetAndCasting() {
     i == 0 ? printf("Enter numeric value \n") : printf("Got from screen= %d \n", i);
 }
 
+void usingGet() {
+    char name[5];
+
+    printf("Enter name= ");
+    gets(name);
+
+    printf("Got from screen= %s", name);
+}
+
 //gcc -o out/userInput src/userInput.c  && out/userInput 
 //gcc -o out/userInput src/userInput.c  && out/userInput 12 
 int main(int argc, char const *argv[])
 {
 
-    usingGetAndCasting();
+    // usingGetAndCasting();
+    // usingCommandLineParametersAndCasting(argc, argv);
     usingCommandLineParameters(argc, argv);
 
+    /**
+     * if you enter more than 5 char, it still works!! not truncuate
+     * futhermore, if you set [5] for name, and [5] for lastname, it gets more unreliable.
+     *   treat as 10, if you enter more than 5 char in lastname, and deletes content in firstname even.
+     */ 
+    // usingGet();
 
     return 0;
 }
