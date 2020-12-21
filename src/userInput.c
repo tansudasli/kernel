@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h> 
 
-
+//gcc -o out/userInput src/userInput.c  && out/userInput 12 
 void usingCommandLineParametersAndCasting(int argc, char const *argv[]) {
     int i;
 
@@ -32,6 +32,7 @@ void usingCommandLineParameters(int argc, char const *argv[]) {
     }
 }
 
+//gcc -o out/userInput src/userInput.c  && out/userInput 
 void usingGetAndCasting() {
     char iString[5];
     int i;
@@ -44,6 +45,7 @@ void usingGetAndCasting() {
     i == 0 ? printf("Enter numeric value \n") : printf("Got from screen= %d \n", i);
 }
 
+//gcc -o out/userInput src/userInput.c  && out/userInput 
 void usingGet() {
     char name[5];
 
@@ -55,11 +57,18 @@ void usingGet() {
 
 //gcc -o out/userInput src/userInput.c  && out/userInput 
 //gcc -o out/userInput src/userInput.c  && out/userInput 12 
+//gcc -o out/userInput src/userInput.c  && out/userInput tansuyyyyyyyyy manr
 int main(int argc, char const *argv[])
 {
 
     // usingGetAndCasting();
     // usingCommandLineParametersAndCasting(argc, argv);
+
+    /**
+     * Getting name as char*, and lastname as char[5].
+     * name gets unlimited char, while lastname gets max 4 char.
+     * So what is the desired behaviour, is important. For relational dbs/tabbed files especially.
+     */
     usingCommandLineParameters(argc, argv);
 
     /**
