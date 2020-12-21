@@ -1,11 +1,12 @@
 #include <stdio.h>
 
-//gcc -o out/getchar src/usages/getchar.c  && out/getchar
+//gcc -o out/readln src/test/readln.c  && out/readln
 int main(int argc, char const *argv[])
 {
     /* code */
     char string[5];
 
+    printf("Enter a char: ");
     int ch = getchar();   //reads and returns numeric value of char,  97 for a
 
     //in a normal scenario, use for and increment string value makes it a word!
