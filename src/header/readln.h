@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define STRLEN 5
 
@@ -16,4 +17,29 @@ int readln(char s[], int maxlen) {
 	// }
 	rewind(stdin); // This flushes the keyboard buffer (on Windows anyway!)
 	return len_s;
+}
+
+int readChar(char s[], int maxlen) {
+	char ch;
+	int len_s;
+    bool remainingChars = true;
+	
+	int counter = 0;
+	while (remainingChars) {
+		ch = getchar();
+
+		if ((ch == '\n') || (ch == EOF)) {
+			remainingChars = false;
+		} 
+		else if (counter < maxlen - 1)
+		{
+			//go on building string
+			s[counter] = ch;
+			counter++;
+		}
+
+		s[counter] = '\0';
+	}
+
+	return counter;
 }
