@@ -1,9 +1,7 @@
 # embedded-c 
 
-embedded C on on arm-cortex microprocessors
+embedded C on on STM32 Discovery board
 
 ## How to Start
-
-`cd embedded-c`, then
 
 - 
