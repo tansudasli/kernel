@@ -28,7 +28,7 @@ int readChar(char s[], int maxlen) {
 	while (remainingChars) {
 		ch = getchar();
 
-		if ((ch == '\n') || (ch == EOF)) {
+		if ((ch == '\n') || (ch == EO                     aF)) {
 			remainingChars = false;
 		} 
 		else if (counter < maxlen - 1)
