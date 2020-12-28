@@ -54,6 +54,7 @@ dkms.conf
 #other staffs
 .DS_Store
 .vscode
+.idea
 out
 .metadata
 Debug
