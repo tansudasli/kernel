@@ -34,15 +34,13 @@ int readChar(char s[], int maxlen) {
 		if ((ch == '\n') || (ch == EOF)) {
 			remainingChars = false;
 		} 
-		else if (counter < maxlen - 1)
+		else if (counter < maxlen)
 		{
 			//go on building string
 			s[counter] = ch;
 			counter++;
 		}
-
-		s[counter] = '\0';
 	}
-
+    s[counter] = '\0';
 	return counter;
 }

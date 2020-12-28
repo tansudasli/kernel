@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
 
     /* code */
     int result = readChar(name, STRLEN);
-    printf("trancuated (maxLen=%d, trancuatedString=%s)", STRLEN > result ? STRLEN-1 : result, name);
+    printf("trancuated (maxLen=%d, trancuatedString=%s)", STRLEN, name);
 
     return 0;
 }
