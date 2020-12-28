@@ -5,7 +5,7 @@
 #define STRLEN 5
 
 /**
- * to read more accurate and robust read from user (via stdin)
+ * to read more accurate and robust from user (via stdin)
  */ 
 int readln(char s[], int maxlen) {
 	int len_s;
@@ -19,6 +19,9 @@ int readln(char s[], int maxlen) {
 	return len_s;
 }
 
+/**
+ * to read accurate and robust from user (via stdin)
+ */
 int readChar(char s[], int maxlen) {
 	char ch;
 	int len_s;
@@ -28,7 +31,7 @@ int readChar(char s[], int maxlen) {
 	while (remainingChars) {
 		ch = getchar();
 
-		if ((ch == '\n') || (ch == EO                     aF)) {
+		if ((ch == '\n') || (ch == EOF)) {
 			remainingChars = false;
 		} 
 		else if (counter < maxlen - 1)
