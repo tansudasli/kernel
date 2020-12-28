@@ -9,3 +9,10 @@ add_executable(helloworld
         ansi-c/src/header/readln.h
         ansi-c/src/header/variables.h
         ansi-c/src/helloworld.c)
+
+#todo: add more executables
+add_executable(operators
+        ansi-c/src/operators.c)
+
+add_executable(operatorsLogical
+        ansi-c/src/operatorsLogical.c)
