@@ -8,8 +8,8 @@ int main(int argc, char const *argv[])
     char name[STRLEN];
 
     /* code */
-    int result = readChar(name, STRLEN);
-    printf("trancuated (maxLen=%d, trancuatedString=%s)", STRLEN, name);
+    readChar(name, STRLEN);
+    printf("truncated (maxLen=%d, truncatedString=%s)", STRLEN, name);
 
     return 0;
 }
