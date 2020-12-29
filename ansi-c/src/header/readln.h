@@ -22,7 +22,7 @@ int readln(char s[], int maxlen) {
 /**
  * to read accurate and robust from user (via stdin)
  */
-int readChar(char s[], int maxlen) {
+int readChar(char s[], int maxLength) {
 	char ch;
 	int len_s;
     bool remainingChars = true;
@@ -34,7 +34,7 @@ int readChar(char s[], int maxlen) {
 		if ((ch == '\n') || (ch == EOF)) {
 			remainingChars = false;
 		} 
-		else if (counter < maxlen)
+		else if (counter < maxLength)
 		{
 			//go on building string
 			s[counter] = ch;
