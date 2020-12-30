@@ -16,14 +16,25 @@ int main(int argc, char const *argv[])
 //    e7a3b6b0      |81c7f52         | Hello
 
 // string2 = string1; is the same result. Because, string1 is the actual address!
-    string2 = &string1;
-    printf("hexOfPointer  |variableNameOfHex| value\n");
-    printf("%x      |%x        | %s\n", &string1, string1, string1);
-    printf("%x      |%x        | %s\n", &string2, string2, string2);
+//    string2 = &string1;
+//    printf("hexOfPointer  |variableNameOfHex| value\n");
+//    printf("%x      |%x        | %s\n", &string1, string1, string1);
+//    printf("%x      |%x        | %s\n", &string2, string2, string2);
 
 //    hexOfPointer  |variableNameOfHex| value
 //    eb0016ba      |eb0016ba        | Hello
 //    eb0016b0      |eb0016ba        | Hello
+
+// char arrays or string in C is immutable.
+//    string1 = "Goodbye";     //new assignment and it fails. Immutable
+    string2 = "Goodbye";   //but no problem for a pointer itself !
+    printf("%x      |%x         | %s\n", &string2, string2, string2);
+
+//    hexOfPointer  |variableNameOfHex| value
+//    eb3256aa      |eb3256aa        | Hello
+//    eb3256a0      |48ddf4a         | Hello
+//    eb3256a0      |48ddfac         | Goodbye
+
 
     return 0;
 }
