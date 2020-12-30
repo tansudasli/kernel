@@ -8,16 +8,17 @@
 // we can not reassign like (message = message + name; ) to a char[], or any string :)
 // also, we cannot reassign a char[].
 char* stringOpsWithCharArray(char name[]) {
-    char message[MAXLENGTH] = "Hi, ";
+    char m[MAXLENGTH] = "Hi, "; //native or mandatory initialization
 
-    strcat(message, name);
+    strcat(m, name);
 
-    return message;
+    return m;
 }
 
 //char*, we need to malloc to use strcat()
 char* stringOpsWithCharPointer(char *name) {
-    char *r = malloc(MAXLENGTH);
+    char *r = malloc(MAXLENGTH);  //we had to initialize
+    //r[0] = '\0';    //do we really need this?
 
     strcat(r, "Hi, ");
     strcat(r, name);
