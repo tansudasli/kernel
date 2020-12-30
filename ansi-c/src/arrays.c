@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 //define and initialize. length is automatically set
 int intArray[] = {1,2,3,4,5};                          //no need to set explicitly intArray[5]
@@ -26,7 +27,7 @@ int main(int argc, char const *argv[]) {
     }
 
     //
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < strlen(string); i++) {
         printf("%c \t", string[i]);
     }
 
