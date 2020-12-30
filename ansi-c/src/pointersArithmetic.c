@@ -3,7 +3,7 @@
 //gcc -o out/pointersArithmetic src/pointersArithmetic.c  && out/pointersArithmetic
 int main(int argc, char const *argv[])
 {
-    char string1[] = "Hello";      //hexOfPointer=variableNameOfHex, string1 is the pointer addres !
+    char string1[] = "Hello";      //hexOfPointer=variableNameOfHex, string1 is the pointer address !
     char *string2 = "Hello";       //pointing addr of string pointer, in reality.
 
     printf("hexOfPointer  |variableNameOfHex| value\n");

@@ -19,8 +19,9 @@ void usingCommandLineParametersAndCasting(int argc, char const *argv[]) {
 
 //gcc -o out/userInput src/userInput.c  && out/userInput tansuyyyyyyyyy manr
 void usingCommandLineParameters(int argc, char const *argv[]) {
-    const char *name;  //char[5] (array) is not assignable. so use,  const char *, or strcpy or memcopy
-    char lastname[5];
+    const char *name;
+    char lastname[5]; //char[5] (array) is not re-assignable (immutable).
+                      // so use,  const char *, or strcpy or memcopy
 
     // get param from command line 
     if (argc > 1)
