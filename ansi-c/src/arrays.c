@@ -37,5 +37,13 @@ int main(int argc, char const *argv[]) {
         printf("%s \t", stringArray[i]);
     }
 
+    //3x5 array/matrix
+    for (int i = 0; i < 3; i++) {
+        printf("\n");
+        for (int j = 0; j < 5; ++j) {
+            printf("%d\t", grid[i][j]);
+        }
+    }
+
     return 0;
 }
