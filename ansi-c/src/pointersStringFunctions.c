@@ -26,10 +26,11 @@ char* stringOpsWithCharPointer(char *name) {
 }
 
 //gcc -o out/pointersStringFunctions src/pointersStringFunctions.c  && out/pointersStringFunctions
-int main(int argc, char const *argv[]) {
+//gcc -o out/pointersStringFunctions src/pointersStringFunctions.c  && out/pointersStringFunctions abidindenyo
+int main(int argc, char *argv[]) {
 
-    printf("%s\n", stringOpsWithCharArray("Ali"));
-    printf("%s\n", stringOpsWithCharPointer("Veli"));
+    printf("%s\n", stringOpsWithCharArray( "Ali"));
+    printf("%s\n", stringOpsWithCharPointer(argc > 1 ? argv[1] : "Veli"));
 
     return 0;
 }
