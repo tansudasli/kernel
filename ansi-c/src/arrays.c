@@ -6,11 +6,16 @@ int intArray[] = {1,2,3,4,5};                          //no need to set explicit
 double doubleArray[] = {2.1, 2.3, 2.4, 2.5};
 
 //[] has * implicitly! so *[] == **
-char charArray[] = {'h', 'e', 'l', 'l', 'o', '\0' };   //no need to define /0
-char charArray2[] = "world";    //string in fact
-char *string = "Hello";         //string or char array.
-char *stringArray[] = {"Abidin", "Denyo", "Veli", "Deli"};             //string Array, **string =  char *string[];
-//char **stringArray2 = stringArray;
+char charArray[] = {'h', 'e', 'l', 'l', 'o' };   //no need to define /0. This is same as below line !!!
+char charArray2[] = "world where";    //string, and char array!
+                                      // do not think it is a string array due to SPACE
+                                      // immutable
+char *string = "Hello";               //string or char array.
+                                      //mostly same, but minor diff. b/w *string and char[] !!!!!
+                                      //mutable
+char *stringArray[] = {"Abidin", "Denyo", "Veli", "Deli"};    //string Array, **string =  char *string[];
+//todo: initialize **string
+char **stringArray2 = ;
 
 //multi dimension
 int grid [3][5] = {
@@ -45,6 +50,25 @@ int main(int argc, char const *argv[]) {
             printf("%d\t", grid[i][j]);
         }
     }
+
+    printf("\n--------char[] vs *string------------\n");
+    int i = 0;
+    do {
+//        printf("%s", charArray2[i]);   not works. it is a char array, not a string array
+        printf("%c", charArray2[i]);
+        i++;
+    } while (charArray2[i] != '\0');
+
+    printf("\n--------*string[] vs **string------------\n");
+    i = 0;
+    do {
+        printf("%s \t", stringArray[i]);
+        i++;
+    } while (i < 4);
+
+    //todo: add more elements to *string[]
+
+    printf("\n--------*string[] vs **string------------\n");
 
     return 0;
 }
