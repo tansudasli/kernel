@@ -94,8 +94,8 @@ int main(int argc, char const *argv[]) {
     } while (i < 4);
 
     //todo: add more elements to *string[]
-
-    printf("\n--------*string[] vs **string------------\n");
+    //todo: print **string elements
+    //todo: add more elements to **string
 
     return 0;
 }
