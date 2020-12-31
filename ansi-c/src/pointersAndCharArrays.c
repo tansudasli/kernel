@@ -4,15 +4,15 @@
 int main(int argc, char const *argv[])
 {
     //minor diff is the memory address value. hexOfPointer=valueOfHex
-    char string1[] = "Hello";      //hexOfPointer=variableNameOfHex
-    char *string2 = "Hello";       //pointing addr, of string pointer, in reality
+    char string1[] = "Hello";      //value of string1 is the address of start of char array Hello
+    char *string2 = "Hello";       //pointing a char at a memory address
 
     printf("hexOfPointer  |variableNameOfHex| value\n");
     printf("%x      |%x        | %s\n", &string1, string1, string1);
     printf("%x      |%x         | %s\n", &string2, string2, string2);
 
 //    hexOfPointer  |variableNameOfHex| value
-//    e7a3b6ba      |e7a3b6ba        | Hello
+//    e7a3b6ba      |e7a3b6ba        | Hello       hexOfPointer=variableNameOfHex
 //    e7a3b6b0      |81c7f52         | Hello
 
 // string2 = string1; is the same result. Because, string1 is the actual address!
