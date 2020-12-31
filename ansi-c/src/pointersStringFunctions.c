@@ -4,11 +4,11 @@
 
 #define MAXLENGTH 100
 
+char m[MAXLENGTH] = "Hi, "; //native or mandatory initialization
 
 // we can not reassign like (message = message + name; ) to a char[], or any string :)
 // also, we cannot reassign a char[].
 char* stringOpsWithCharArray(char name[]) {
-    char m[MAXLENGTH] = "Hi, "; //native or mandatory initialization
 
     strcat(m, name);
 
