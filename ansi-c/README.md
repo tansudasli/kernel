@@ -1,4 +1,4 @@
-# c-sandbox
+# ansi-c
 
 core C concepts 
 
