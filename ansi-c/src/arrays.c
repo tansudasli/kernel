@@ -2,7 +2,7 @@
 #include <string.h>
 
 //
-int intArray[] = {1,2,3,4,5};                          //no need to set explicitly intArray[5].
+int intArray[] = {1,2,3,4,5};         //no need to set explicitly intArray[5].
 double doubleArray[] = {2.1, 2.3, 2.4, 2.5};
 
 //char arrays
