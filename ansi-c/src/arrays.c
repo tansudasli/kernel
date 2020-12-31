@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
-//define and initialize. length is automatically set
-int intArray[] = {1,2,3,4,5};                          //no need to set explicitly intArray[5]
+//
+int intArray[] = {1,2,3,4,5};                          //no need to set explicitly intArray[5].
 double doubleArray[] = {2.1, 2.3, 2.4, 2.5};
 
-//[] has * implicitly! so *[] == **
+//char arrays
 char charArray[] = {'h', 'e', 'l', 'l', 'o' };   //no need to define /0. This is same as below line !!!
 char charArray2[] = "world where";    //string, and char array!
                                       // do not think it is a string array due to SPACE
@@ -13,15 +13,27 @@ char charArray2[] = "world where";    //string, and char array!
 char *string = "Hello";               //string or char array.
                                       //mostly same, but minor diff. b/w *string and char[] !!!!!
                                       //mutable
-char *stringArray[] = {"Abidin", "Denyo", "Veli", "Deli"};    //string Array, **string =  char *string[];
-//todo: initialize **string
-char **stringArray2 = ;
 
-//multi dimension
+//string arrays
+char *stringArray[] = {"Abidin", "Denyo", "Veli", "Deli"};    //string Array, **string =  char *string[];
+//char **stringArray2 = ; //todo: initialize **string
+
+//multi dimension arrays
 int grid [3][5] = {
         {1,   2,   3,   4,   5 },
         {6,   7,   8,   9,   10},
         {11,  12,  13,  14,  15}
+};
+
+char xrid [3][5] = {
+        {'h',  'e',  'l',  'l',  'o' },
+        {'a',  'b',  'i',  'd',  'o'},
+        {'h',  'o',  'w',  'y',  'd'}
+};
+
+char *srid [2][3] = {
+        {"hello",  "agent",  "007"},
+        {"how",  "you",  "doing"}
 };
 
 //gcc -o out/arrays src/arrays.c  && out/arrays
@@ -43,11 +55,26 @@ int main(int argc, char const *argv[]) {
         printf("%s \t", stringArray[i]);
     }
 
+    printf("\n--------char[][] and int[][] and *string[][]------------\n");
     //3x5 array/matrix
     for (int i = 0; i < 3; i++) {
         printf("\n");
         for (int j = 0; j < 5; ++j) {
             printf("%d\t", grid[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        printf("\n");
+        for (int j = 0; j < 5; ++j) {
+            printf("%c\t", xrid[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        printf("\n");
+        for (int j = 0; j < 3; ++j) {
+            printf("%s\t", srid[i][j]);
         }
     }
 
