@@ -3,7 +3,9 @@
 
 #define NUMBER_OF_CDS 2
 
-typedef enum score {  TERRIBLE, BAD, AVERAGE, GOOD, EXCELLENT } SCORE;
+typedef enum score {
+    TERRIBLE, BAD, AVERAGE, GOOD, EXCELLENT
+} SCORE;
 
 typedef struct cd {
     char title[50];
@@ -21,7 +23,7 @@ void initializeDataset() {
     cdDataset->rating = TERRIBLE;
 
     strcpy(cdDataset[1].title, "Just run forest");
-    strcpy(cdDataset[1].artist, "Mali Zali");
+    strcpy(cdDataset[1].artist, "Mali Dali");
     cdDataset[1].trackCount = 1;
     cdDataset->rating = AVERAGE;
 }
