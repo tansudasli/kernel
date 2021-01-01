@@ -2,7 +2,6 @@
 
 #ifndef NUMBER_OF_CDS
 #define NUMBER_OF_CDS 2
-
 #endif //NUMBER_OF_CDS
 
 typedef enum score {
