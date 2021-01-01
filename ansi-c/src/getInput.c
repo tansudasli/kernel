@@ -1,16 +1,19 @@
 #include <stdio.h>
-#include "header/readln.h"
+#include "header/interaction.h"
 
-//todo: override if you want.
-//#define STRLEN 10
 
+//gcc src/getInput.c src/utility/interaction.c -o out/getInput  && out/getInput
 int main(int argc, char const *argv[])
 {
     /* code */
 	char m[STRLEN];
 
-	readln(m, STRLEN);
-	printf("lengthOfInput=%d, truncatedInput=%s", STRLEN, m);
+	printf("Enter a string: ");
+
+//	readLn(m, STRLEN);
+	readChar(m, STRLEN);  //more accurate
+
+	printf("lengthOfInput=%d, maxLength=%d => truncatedInput=%s", STRLEN, STRLEN, m);
     
     return 0;
 }
