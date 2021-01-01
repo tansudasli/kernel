@@ -8,17 +8,23 @@ char sentence[] = "On the dark night, Fallow the light and Embrace the shadow wh
 char tens[]     = "        10        20        30        40        50        60   65";
 char nums[]     = "123456789012345678901234567890123456789012345678901234567890123456";
 
-void printString() {
-    printf("%s\n%s \n%s", sentence, tens, nums);
-}
 
-void searchString(char source[], char searchString[]) {
+/**
+ * Returns index (zero based). If not found, return -1
+ *
+ * @param source
+ * @param searchString
+ * @return -1 or index
+ */
+int searchString(char source[], char searchString[]) {
 
     char *foundAt = strstr(source, searchString);
     int index = (int)(foundAt - source);
 
-    foundAt != NULL ? printf("%s, %d ... %d => %d\n", foundAt, source, foundAt, index) : printf("Not found");
+    if (foundAt == NULL)
+        index = -1;
 
+    return index;
 }
 
 // gcc -o out/manipulationsString src/manipulationsString.c  && out/manipulationsString
@@ -26,13 +32,13 @@ int main(int argc, char const *argv[]) {
 
     printf("%lu \t%lu\n", strlen(sentence), strlen(tens));
 
-    printString(); printf("\n");
+    //print string and indexes
+    printf("%s\n%s \n%s\n", sentence, tens, nums);
 
-    printf("%c\n", sentence[65]);
-    searchString(sentence, "will");
+    //or calculate pointer addr. => sentence + searchString(sentence, "night")
+    printf("%s\n", &sentence[searchString(sentence, "night")]);
+    printf("%s\n", &sentence[searchString(sentence, "will")]);
 
-    printf("%c\n", sentence[12]);
-    searchString(sentence, "night");
 
     return 0;
 }
