@@ -5,7 +5,7 @@
 #define MAX_STRING_LENGTH 200
 
 //    char *string;
-char sentence[] = "On the dark night, Fallow the light and Embrace the shadow which will lead you the way.";
+char sentence[] = "On the dark night, Follow the light and Embrace the shadow which will lead you the way.";
 char tens[]     = "        10        20        30        40        50        60   65";
 char nums[]     = "123456789012345678901234567890123456789012345678901234567890123456";
 
