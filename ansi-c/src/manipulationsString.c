@@ -50,8 +50,12 @@ int main(int argc, char const *argv[]) {
     strncpy(subSentence2, sentence, 6);
     printf("subSentence2=%s\n", subSentence2);
 
-    //
+    //concat
+    strncat(subSentence, "#####", 5);
+    printf("subSentence=%s\n", subSentence);
 
+    strncat(subSentence2, "#####", 5);
+    printf("subSentence2=%s\n", subSentence2);
 
     return 0;
 }
