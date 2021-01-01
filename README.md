@@ -8,7 +8,7 @@ core C and embedded C concepts
 - `brew install cmake` to compile w/ cmake
 - then, 
     - `cd ansi-c`,
-    - `cmake --build cmake-build-debug --target getInput -- -j 3`, `./cmake-build-debug/getInput`
+    - `cmake --build cmake-build-debug --target all -- -j 3`, `./cmake-build-debug/getInput`
 
 2nd way
 - `brew install gcc` or `xcode-select --install` for compiler
