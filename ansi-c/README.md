@@ -4,7 +4,7 @@ core C concepts
 
 ## How to Run
 
-`git clone ...`, then `cd ansi-c`
+`git clone ...`,
 
 - `brew install gcc` or `xcode-select --install` for compiler
 - `brew install cmake` to compile w/ cmake
