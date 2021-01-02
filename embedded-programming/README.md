@@ -1,6 +1,6 @@
-# embedded-c 
+# embedded-programming 
 
-embedded C on STM32 Discovery board
+embedded programming in C on STM32 Discovery board
 
 ## How to Start
 
