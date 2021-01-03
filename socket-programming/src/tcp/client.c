@@ -10,7 +10,7 @@
 #define BUFFER_SIZE 256
 
 char requestMessage[BUFFER_SIZE] = TEST;
-char receiveMessage[BUFFER_SIZE];
+char buffer[BUFFER_SIZE];
 
 /**
  * Basically, It creates a socket(), and connect() to server's master.
@@ -38,9 +38,9 @@ int main(int argc, char const *argv[]) {
     connect(clientSocket, (struct sockaddr *) &serverAddress, sizeof(serverAddress));
 
     //
-    recv(clientSocket, receiveMessage, sizeof(receiveMessage), 0);
+    recv(clientSocket, buffer, sizeof(buffer), 0);
 
-    printf("received=%s", receiveMessage);
+    printf("received=%s", buffer);
 
 }
 
