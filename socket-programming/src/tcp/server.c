@@ -9,8 +9,9 @@
 #define PORT 9000
 #define MAX_QUEUE_LENGTH 2
 #define WELCOME "Welcome"
+#define BUFFER_SIZE 256
 
-char serverMessage[256] = WELCOME;
+char serverMessage[BUFFER_SIZE] = WELCOME;
 
 /**
  * Basically, It creates a socket(), bind(), listen(), and accept().

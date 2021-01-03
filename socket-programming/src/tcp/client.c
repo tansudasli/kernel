@@ -8,9 +8,10 @@
 #define PORT 9000
 #define MAX_QUEUE_LENGTH 2
 #define TEST "Test"
+#define BUFFER_SIZE 256
 
-char requestMessage[256] = TEST;
-char receiveMessage[256];
+char requestMessage[BUFFER_SIZE] = TEST;
+char receiveMessage[BUFFER_SIZE];
 
 /**
  * Basically, It creates a socket(), and connect() to server's master.
