@@ -26,6 +26,7 @@ int main(int argc, char const *argv[]) {
     //create the socket
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);  //domain, type, protocol
 
+    //todo: Replace better error handling w/ perror and exit
     if (serverSocket == -1)
         printf("Server Socket not created: %d", serverSocket);
 
@@ -40,6 +41,7 @@ int main(int argc, char const *argv[]) {
     if (status == -1)
         printf("Bind is not successful: %d", status);
 
+    //todo: set MAX_QUEUE_LENGTH if argv[2] is valid
     //listen
     status = listen(serverSocket, MAX_QUEUE_LENGTH);
 

@@ -6,7 +6,6 @@
 #include <netinet/in.h>
 
 #define PORT 9000
-#define MAX_QUEUE_LENGTH 2
 #define TEST "Test"
 #define BUFFER_SIZE 256
 
@@ -18,7 +17,7 @@ char receiveMessage[BUFFER_SIZE];
  * Then starts receive() and send() data to the client handle created by master.
  *
  * @param argc
- * @param argv
+ * @param argv = PORT (default=9000)
  * @return
  */
 int main(int argc, char const *argv[]) {
@@ -26,6 +25,7 @@ int main(int argc, char const *argv[]) {
     //create the socket
     int clientSocket = socket(AF_INET, SOCK_STREAM, 0);  //domain, type, protocol
 
+    //todo: Replace better error handling w/ perror and exit
     if (clientSocket == -1)
         printf("Socket not created: %d", clientSocket);
 
