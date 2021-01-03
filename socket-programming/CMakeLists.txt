@@ -12,3 +12,9 @@ add_executable(tcp_client
 
 add_executable(tcp_server
         src/tcp/server.c)
+
+add_executable(internal_client
+        src/internal/client.c)
+
+add_executable(internal_server
+        src/internal/server.c)
