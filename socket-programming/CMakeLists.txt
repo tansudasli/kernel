@@ -8,7 +8,7 @@ include_directories(src/header)
 #run w/
 # cmake --build cmake-build-debug --target all -- -j 9
 add_executable(tcp_client
-        src/tcpClient.c)
+        src/tcp/client.c)
 
 add_executable(tcp_server
-        src/tcpServer.c)
+        src/tcp/server.c)
