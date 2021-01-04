@@ -33,7 +33,12 @@ int sum(char buf[]) {
 }
 
 /**
- * Basically, It creates a socket(), bind(), listen(), and accept().
+ * Basically, It creates a socket(), bind(), listen(), and accept() (master blocking).
+ * Waits client's connect() at accept phase.
+ * Then read() data (client blocking), and process request then write() (client non-blocking) to client.
+ *
+ * Supported Operations
+ *  - sum() : gets numeric chars, and calculate total value. If gets 0, then returns total result.
  *
  * @param argc
  * @param argv
@@ -113,7 +118,8 @@ int main(int argc, char const *argv[]) {
         memset(buffer, 0, BUFFER_SIZE);
         sprintf(buffer, "Result = %d", result);
 
-        printf("Sendin data to client...\n");
+        printf("Sendin data [%s] to client...\n", buffer);
+        //non-blocking operation !!
         status = write(dataSocket, buffer, BUFFER_SIZE);
         if (status == -1) {
             perror("write");
@@ -124,7 +130,7 @@ int main(int argc, char const *argv[]) {
         close(dataSocket);
     }
 
-    //close socket
+    //close socket. so master can get another connection
     close(masterSocket);
     printf("Master socket closed..\n");
 
