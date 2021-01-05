@@ -13,3 +13,9 @@ sudo insmod helloworld.ko
 
 #be sure that u see at top your new module
 lsmod | less
+
+#check init and exit
+dmesg
+
+#remove module
+rmmod helloworld.ko
