@@ -1,5 +1,5 @@
-obj-m := helloworld.o
-linux-objs := helloworld.o other.o
+obj-m := hello.o
+hello-objs := helloworld.o other.o
 
 all:
 	make -C /lib/modules/`uname -r`/build M=$(PWD) modules

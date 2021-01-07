@@ -1,2 +1,2 @@
 
-void hi();
+void hi(void);
