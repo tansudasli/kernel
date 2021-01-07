@@ -2,9 +2,9 @@
 
 core socket programming in C
 
-- `/tcp` - IP and Port based network socketing 
-- `/internal` - Domain based socketing (Internal, linux file based)
-- `/http` - Http based socketing
+- `/tcp` - IP and Port based network socket
+- `/internal` - Domain based socket (Internal, linux file based)
+- `/http` - Http based socket
 
 ## How to Run
 
