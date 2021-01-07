@@ -4,8 +4,12 @@ core kernel module development
 
 ## How to Run
 
-on a linux machine, `git clone ...`,
+on a linux machine, 
 
 - to check loaded modules `lsmod`, and `modinfo ..` for more detail
 - to list module folder `ls /lib/modules/$(uname -r)`
-- check  `cat /boot/config-$(uname -r) | grep CONFIG_MODULES` with `=y` value.
+- check `cat /boot/config-$(uname -r) | grep CONFIG_MODULES` with `=y` value.
+
+then, to build w/
+- `git clone ...`, `cd c-sandbox/kernel-programming` and 
+- Run `./compile.sh` to compile into .ko files, and to install kernel.
