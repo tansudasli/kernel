@@ -1,9 +1,13 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include "other.h"
 
 MODULE_LICENSE("GPL");
+
+
 static int test_hello_init(void) {
     printk(KERN_INFO"%s: In init\n", __func__);
+    hi();
     return 0;
 }
 
