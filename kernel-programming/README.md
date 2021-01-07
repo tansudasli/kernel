@@ -12,7 +12,8 @@ on a linux machine,
 
 then, to build w/
 - `git clone ...`, `cd c-sandbox/kernel-programming` and 
-- Run `./compile.sh` to compile into .ko files
-- to install kernel module `sudo insmod helloworld.ko`
-- to see kernel messages `dmesg`
-- to remove kernel module `sudo rmmod helloworld.ko`
+- Run `make all` to compile into .ko files,
+    - to install kernel module `sudo insmod helloworld.ko`
+    - to see kernel messages `dmesg`
+    - to remove kernel module `sudo rmmod helloworld.ko`
+- Run `make clean` to clean .ko files
