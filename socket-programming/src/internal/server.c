@@ -12,24 +12,35 @@
 
 char buffer[BUFFER_SIZE];
 
+
+int total = 0;
 /**
  * Logic implementation sample
- * Server gets numeric values, then keep adding to calculate results
- * If gets 0, then return total!
+ * Server gets numeric values one-by-one from client, then keep adding to calculate results
+ * If gets 0, then returns the total!
  *
- * @param buffer = input char[], but contains integers
+ * @param dataSocket
+ * @return
  */
-int total = 0;
-int sum(char buf[]) {
+int processOneByOne(int dataSocket) {
+    int status;
     int data;
 
+    //read - blocking operation !!
+    status = read(dataSocket, buffer, BUFFER_SIZE);
+    if (status == -1) {
+        perror("read");
+        exit(EXIT_FAILURE);
+    }
+
+    //process - implementation point of client-server command logic
     memcpy(&data, buffer, sizeof(int));
+    if(data == 0) return 0;
 
     total += data;
 
-    if (data == 0) return 0;
+    return 1;
 
-    return -1;
 }
 
 /**
@@ -93,7 +104,7 @@ int main(int argc, char const *argv[]) {
             exit(EXIT_FAILURE);
         }
 
-        printf("Data socket created. Accepting...\n");
+        printf("Data socket created. Accepting client connection...\n");
 
         //receive
         int result = 0;
@@ -102,23 +113,18 @@ int main(int argc, char const *argv[]) {
 
             printf("Waiting data from client...\n");
 
-            //blocking operation !!
-            status = read(dataSocket, buffer, BUFFER_SIZE);
-            if (status == -1) {
-                perror("read");
-                exit(EXIT_FAILURE);
-            }
-
-            //todo: implementation point of client-server command logic
-            result = sum(buffer);
-            if (result == 0) break;
+            status = processOneByOne(dataSocket);
+            if (status == 0)
+                break;
         }
+        result = total;
 
         //send back to client
         memset(buffer, 0, BUFFER_SIZE);
         sprintf(buffer, "Result = %d", result);
 
-        printf("Sendin data [%s] to client...\n", buffer);
+        printf("Sending data [%s] to client...\n", buffer);
+
         //non-blocking operation !!
         status = write(dataSocket, buffer, BUFFER_SIZE);
         if (status == -1) {
