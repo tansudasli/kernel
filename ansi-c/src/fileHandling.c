@@ -62,6 +62,12 @@ int appendLines() {
     return MAX_ROW;
 }
 
+/**
+ * Search in file to print count of found.
+ *
+ * @param fileName - path
+ * @param needle - keyword to be searched
+ */
 void searchInFile(char fileName[], char *needle) {
 
     int searchCount = 0;
