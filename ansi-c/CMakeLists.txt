@@ -11,9 +11,12 @@ add_executable(arrays
         src/arrays.c)
 
 add_executable(fileHandling
-        src/fileHandling.c)
+        src/header/search.h
+        src/fileHandling.c
+        src/utility/search.c)
 
-FILE(COPY src/resources/dummy.txt DESTINATION "${CMAKE_BINARY_DIR}/resources")
+FILE(COPY src/resources/dummy.txt
+        DESTINATION "${CMAKE_BINARY_DIR}/resources")
 
 #set(RESOURCE_FILES
 #        src/resources/dummy.txt)

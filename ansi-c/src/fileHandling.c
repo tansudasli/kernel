@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include "header/search.h"
 
 #define MAX_LINE 255
 #define MAX_ROW 3
@@ -62,11 +62,37 @@ int appendLines() {
     return MAX_ROW;
 }
 
+void searchInFile(char fileName[], char *needle) {
+
+    int searchCount = 0;
+    char line[MAX_LINE];
+
+    //read file line by line
+    FILE *file = fopen(fileName, "r");
+
+    if (file != NULL) {
+
+        while (fgets(line, MAX_LINE, file) != 0) {
+            //we have line - search
+            if (searchString(needle, line) != -1)
+                searchCount++;
+        }
+
+        printf("needle=%s, found %d times\n", needle, searchCount);
+
+        fclose(file);
+    } else {
+        printf( "File %s cannot be opened!", FILE_NAME );
+    }
+}
+
 int main(int argc, char const *argv[]) {
 
     readLines();
-    appendLines();
-    readLines();
+//    appendLines();
+
+    searchInFile(FILE_NAME, "the");
+    searchInFile(FILE_NAME, "The");
 
     return 0;
 

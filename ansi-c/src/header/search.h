@@ -1,0 +1,2 @@
+
+int searchString(char [], char []);
