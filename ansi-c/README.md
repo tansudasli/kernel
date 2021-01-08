@@ -10,6 +10,8 @@ core C concepts
 - `brew install cmake` to compile w/ cmake
 - then,
     - `cd ansi-c`,
-    - `cmake --build cmake-build-debug --target all -- -j 3`, and Run w/ `./cmake-build-debug/getInput`
+    - `cmake --build cmake-build-debug --target all -- -j 3`, and 
+    - First `cd ./cmake-build-debug/`,
+      then Run as `./getInput`
 
-if you want, you can run w/ `gcc src/xxx.c -o xxx && ./xxx`.
+Or, if you want, you can run w/ `gcc src/xxx.c -o xxx && ./xxx`.

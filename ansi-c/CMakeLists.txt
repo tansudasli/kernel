@@ -11,7 +11,18 @@ add_executable(arrays
         src/arrays.c)
 
 add_executable(fileHandling
-        src/fileHandling.c)
+        src/fileHandling.c
+        src/resources/dummy.txt)
+
+FILE(COPY src/resources/dummy.txt DESTINATION "${CMAKE_BINARY_DIR}/resources")
+
+#set(RESOURCE_FILES
+#        src/resources/dummy.txt)
+#
+#set_target_properties(fileHandling PROPERTIES
+#        MACOSX_BUNDLE TRUE
+#        MACOSX_FRAMEWORK_IDENTIFIER org.cmake.ExecutableTarget
+#        RESOURCE "${RESOURCE_FILES}")
 
 add_executable(getInput
         src/header/interaction.h
