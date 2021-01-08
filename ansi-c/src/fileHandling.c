@@ -49,7 +49,7 @@ int appendLines() {
     FILE *file = fopen(FILE_NAME, "a+");
 
     if (file != NULL) {
-        for (int i = 0; i < ROW; i++)
+        for (int i = 0; i < MAX_ROW; i++)
             fputs(lines[i], file);
 
         fclose(file);
