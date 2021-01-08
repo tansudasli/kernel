@@ -31,6 +31,12 @@ char xrid [3][5] = {
         {'h',  'o',  'w',  'y',  'd'}
 };
 
+char lines[3][255] = {
+        {"We are what we repeatedly do. Excellence, then, is not an act, but a habit.\n"},
+        {"The whole is more than the sum of its parts.\n"},
+        {"Man is by nature a political animal.\n"}
+};
+
 char *srid [2][3] = {
         {"hello",  "agent",  "007"},
         {"how",  "you",  "doing"}
