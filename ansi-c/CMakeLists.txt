@@ -11,8 +11,7 @@ add_executable(arrays
         src/arrays.c)
 
 add_executable(fileHandling
-        src/fileHandling.c
-        src/resources/dummy.txt)
+        src/fileHandling.c)
 
 FILE(COPY src/resources/dummy.txt DESTINATION "${CMAKE_BINARY_DIR}/resources")
 
