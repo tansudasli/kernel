@@ -29,6 +29,8 @@ int main(int argc, char **argv) {
      *
      * In char[], you have chance to use %c and %s . In int[] , you can only use %d, So
      * There is one diff. while accessing to value. %s waits char*, while %c waits char.
+     *
+     * Array is pointer and has value, But pointer has addr, not value. Value' addr is somewhere in memory.
      */
 
     //array
