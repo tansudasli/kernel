@@ -67,3 +67,7 @@ add_executable(userInput
 
 add_executable(variables
         src/variables.c)
+
+#advanced C
+add_executable(pointerBasics
+        src/pointerBasics.c)
