@@ -31,16 +31,19 @@ int main(int argc, char **argv) {
     pi = data;     //data is array, cause it is the pointer & the address !! no need to use &data
     ppi = &pi;     // pi's address and data's address are different !! cause it is not an array !! but acts as array :)
 
+    //data[1] = 5; //it changes both data, pi, and ppi values. they all look at the same address
+
     printf("\ndata\t\t pi\t\t ppi\n");
     for (int j = 0; j < SIZE; j++) {
 
-        printf("%d(%p)\t %d(%p)\t %d(%p)  \n", j   , &data[j]
-                                             ,*pi  , pi
-                                             ,**ppi, ppi);
+        printf("%d(%p)\t %d(%p)\t %d(%p)  \n",data[j], &data[j]
+                                             ,*pi    , pi
+                                             ,**ppi  , ppi);
 
         pi++;
     }
     //for now, ppi is not a list of array. that's why we don't use ppi++
+
 
     return 0;
 }
