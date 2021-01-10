@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
     printf("\ndata\t\t pi\t\t ppi\n");
     for (int j = 0; j < SIZE; j++) {
 
-        printf("%d(%p)\t %d(%p)\t %d(%p)  \n", j   ,  &data[j]
+        printf("%d(%p)\t %d(%p)\t %d(%p)  \n", j   , &data[j]
                                              ,*pi  , pi
                                              ,**ppi, ppi);
 
