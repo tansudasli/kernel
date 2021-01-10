@@ -8,8 +8,8 @@ int main(int argc, char const *argv[])
     char *string2 = "Hello";       //pointing a char at a memory address
 
     printf("hexOfPointer  |variableNameOfHex| value\n");
-    printf("%x      |%x        | %s\n", &string1, string1, string1);
-    printf("%x      |%x         | %s\n", &string2, string2, string2);
+    printf("%p      |%p        | %s\n", &string1, string1, string1);
+    printf("%p      |%p         | %s\n", &string2, string2, string2);
 
 //    hexOfPointer  |variableNameOfHex| value
 //    e7a3b6ba      |e7a3b6ba        | Hello       hexOfPointer=variableNameOfHex
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 // char arrays or string in C is immutable.
 //    string1 = "Goodbye";     //new assignment and it fails. Immutable
     string2 = "Goodbye";   //but no problem for a pointer itself !
-    printf("%x      |%x         | %s\n", &string2, string2, string2);
+    printf("%p      |%p         | %s\n", &string2, string2, string2);
 
 //    hexOfPointer  |variableNameOfHex| value
 //    eb3256aa      |eb3256aa        | Hello
