@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 
         pi++;
     }
-    //for now, ppi is not a list of array. that's why we don't increase pointer
+    //for now, ppi is not a list of array. that's why we don't use ppi++
 
     return 0;
 }
