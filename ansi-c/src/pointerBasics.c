@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
     //char
     char ch = 'H';
     char *chPtr = &ch;
+    char *k = "abc"; //valid
 
     printf("ch=%c, address of ch=%p\n", ch, &ch);
     printf("chPtr=%p, value inside ptr=%c\n\n", chPtr, *chPtr);
@@ -36,6 +37,9 @@ int main(int argc, char **argv) {
     //array
     int m[] = {1,2,3,4,5};
     int *mPtr = m;    //m is same as &d. cause it is array!!!
+    //int *z = {1,2,3,4,5}; //not valid
+    //int *ho = 12345; //not valid and not meaningful as char* !!!
+
 
     printf("%d %d %p == %p == %p\n", m[0], *m, &m, m, &m[0]);       //array is the address of itself
     printf("%d %p != %p\n\n", *mPtr, &mPtr, mPtr);
