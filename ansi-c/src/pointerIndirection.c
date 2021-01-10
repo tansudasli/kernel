@@ -10,6 +10,8 @@ void initialize() {
 
     for (int j = 0; j < SIZE; j++)
         printf("%d\t", data[j]);
+
+    printf("\n");
 }
 
 int main(int argc, char **argv) {
@@ -33,7 +35,7 @@ int main(int argc, char **argv) {
 
     //data[1] = 5; //it changes both data, pi, and ppi values. they all look at the same address
 
-    printf("\ndata\t\t pi\t\t ppi\n");
+    printf("data\t\t pi\t\t ppi\n");
     for (int j = 0; j < SIZE; j++) {
 
         printf("%d(%p)\t %d(%p)\t %d(%p)  \n",data[j], &data[j]
