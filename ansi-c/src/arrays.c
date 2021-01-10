@@ -9,10 +9,8 @@ double doubleArray[] = {2.1, 2.3, 2.4, 2.5};
 char charArray[] = {'h', 'e', 'l', 'l', 'o' };   //no need to define /0. This is same as below line !!!
 char charArray2[] = "world where";    //string, and char array!
                                       // do not think it is a string array due to SPACE
-                                      // immutable
 char *string = "Hello";               //string or char array.
                                       //mostly same, but minor diff. b/w *string and char[] !!!!!
-                                      //mutable
 
 //string arrays
 char *stringArray[] = {"Abidin", "Denyo", "Veli", "Deli"};    //string Array, **string =  char *string[];
@@ -37,13 +35,18 @@ char lines[3][255] = {
         {"Man is by nature a political animal.\n"}
 };
 
-char *srid [2][3] = {
+char *srid[2][3] = {
         {"hello",  "agent",  "007"},
         {"how",  "you",  "doing"}
 };
 
+
 //gcc -o out/arrays src/arrays.c  && out/arrays
 int main(int argc, char const *argv[]) {
+    //
+    char **sridX = srid[0];
+    sridX++;
+    sridX = srid[1];
 
     for (int i = 0; i < 5; i++) {
         printf("%d \n", intArray[i]);
