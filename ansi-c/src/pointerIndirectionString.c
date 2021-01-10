@@ -11,6 +11,8 @@ void initialize() {
 
     for (int j = 0; j < SIZE; j++)
         printf("%s\t", words[j]);
+
+    printf("\n");
 }
 
 int main(int argc, char **argv) {
@@ -20,6 +22,41 @@ int main(int argc, char **argv) {
     char **ppc;      //pointer to pointer      char *pc[] or  char pc[][] or  a kind of word list
 
     initialize();
+
+    //accessing w/ arrays
+    ppc = words;  //words is an array so it is an address also
+
+    printf("words\t\t\t ppc\t\t\t pc\n");
+    for (int j = 0; j < SIZE; j++) {
+        pc = *ppc;
+
+        printf("%s(%p)\t %s(%p)\t %s(%p)\n",words[j], &words[j]
+                                  ,*ppc    , ppc
+                                  ,pc      , pc);
+        ppc++;
+    }
+
+    //accessing w/ pointers
+    ppc = words;
+    for (int j = 0; j < SIZE; j++) {
+        pc = *ppc;
+
+        //1st way
+//        while ( *pc != 0) {
+//            printf("%c\t", *pc);
+//            pc++;
+//        }
+
+        //2nd way
+        while ( **ppc != 0) {
+            printf("%c\t", **ppc);
+            (*ppc)++;
+        }
+
+        printf("\n");
+
+        ppc++;
+    }
 
     return 0;
 }
