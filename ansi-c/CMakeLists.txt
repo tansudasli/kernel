@@ -71,3 +71,6 @@ add_executable(variables
 #advanced C
 add_executable(pointerBasics
         src/pointerBasics.c)
+
+add_executable(pointerIndirection
+        src/pointerIndirection.c)
