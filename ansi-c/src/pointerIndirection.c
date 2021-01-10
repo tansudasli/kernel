@@ -25,7 +25,6 @@ int main(int argc, char **argv) {
     int *pi;      //pointer                 int pi[]
     int **ppi;    //pointer to pointer      int *pi[] or  int pi[][] or  a kind of list
 
-    //initialize
     initialize();
 
     //
@@ -35,13 +34,13 @@ int main(int argc, char **argv) {
     printf("\ndata\t\t pi\t\t ppi\n");
     for (int j = 0; j < SIZE; j++) {
 
-        printf("%d(%p)\t %d(%p)\t %d(%p)  \n", j,  &data[j]
-                                     ,*pi, pi
-                                     ,**ppi, ppi);
+        printf("%d(%p)\t %d(%p)\t %d(%p)  \n", j   ,  &data[j]
+                                             ,*pi  , pi
+                                             ,**ppi, ppi);
 
         pi++;
     }
-    //for now, ppi is not a list of array.
+    //for now, ppi is not a list of array. that's why we don't increase pointer
 
     return 0;
 }
