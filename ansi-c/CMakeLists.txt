@@ -74,3 +74,6 @@ add_executable(pointerBasics
 
 add_executable(pointerIndirection
         src/pointerIndirection.c)
+
+add_executable(pointerIndirectionString
+        src/pointerIndirectionString.c)
