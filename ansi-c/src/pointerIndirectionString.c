@@ -33,15 +33,17 @@ int main(int argc, char **argv) {
         printf("%s(%p)\t %s(%p)\t %s(%p)\n",words[j], &words[j]
                                   ,*ppc    , ppc
                                   ,pc      , pc);
+    // we can also treat **ppc as an array. ppc[j] also works !!
         ppc++;
     }
+
 
     //accessing w/ pointers
     ppc = words;
     for (int j = 0; j < SIZE; j++) {
         pc = *ppc;
 
-        //1st way
+        //1st way -
 //        while ( *pc != 0) {
 //            printf("%c\t", *pc);
 //            pc++;
