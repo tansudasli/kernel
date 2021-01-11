@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 
 // build & run with, 
 //     gcc -o out/helloworld src/helloworld.c 
@@ -14,7 +14,7 @@ int main(int argc, char const **argv)
 
     //access 2 parameters
     for (int i = 0; i < argc; i++) {
-        printf("%d, argc=%d, %s \n", i, argc, *argv);
+        printf("%d, %s \n", i, *argv);
         argv++;
     }
     
