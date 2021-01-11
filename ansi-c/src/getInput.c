@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "header/interaction.h"
 
 
@@ -6,7 +7,7 @@
 int main(int argc, char const *argv[])
 {
     /* code */
-	char m[STRLEN];
+	char *m = malloc(STRLEN);
 
 	printf("Enter a string: ");
 
