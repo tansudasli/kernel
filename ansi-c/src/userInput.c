@@ -27,9 +27,8 @@ void usingCommandLineParameters(int argc, char const *argv[]) {
     if (argc > 1)
     {
         /* code */
-        name = argv[1];
-        //todo: if value >4, then creates error.
-        strcpy(lastname, argv[2]);
+        name = argv[1];  //gets unlimited char
+        strcpy(lastname, argv[2]); //todo: if value >4, then creates error. so use char* and malloc
 
         printf("Got from commandline= %s, %s \n", name, lastname);
     }
