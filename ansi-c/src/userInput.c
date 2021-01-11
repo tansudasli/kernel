@@ -20,8 +20,8 @@ void usingCommandLineParametersAndCasting(int argc, char const *argv[]) {
 //gcc -o out/userInput src/userInput.c  && out/userInput tansuyyyyyyyyy manr
 void usingCommandLineParameters(int argc, char const *argv[]) {
     const char *name;
-    char lastname[5]; //char[5] (array) is not re-assignable (immutable).
-                      // so use,  const char *, or strcpy or memcopy
+    char lastname[5]; //char[5] (array). we can initialize, but we can not assign later.
+                              // so use,  const char *, or strcpy or memcopy
 
     // get param from command line 
     if (argc > 1)
@@ -40,7 +40,7 @@ void usingGetAndCasting() {
     char iString[5];
     int i;
 
-    //get something from user, unsafe and definitly string!!, and cast it to a int
+    //get something from user, unsafe and definitely string!!, and cast it to a int
     printf("Enter a number: "); 
 
     gets(iString);
@@ -77,14 +77,14 @@ int main(int argc, char const *argv[])
      * So what is the desired behaviour, is important. For relational dbs/tabbed-files especially. In case of such, 
      *    custom flushing the buffer and using fgets may be a better way. But it has own fallbacks :)!
      */
-    // usingCommandLineParameters(argc, argv);
+     usingCommandLineParameters(argc, argv);
 
     /**
-     * if you enter more than 5 char, it still works!! not truncuate
-     * futhermore, if you set [5] for name, and [5] for lastname, it gets more unreliable.
+     * if you enter more than 5 char, it still works!! not truncate
+     * furthermore, if you set [5] for name, and [5] for lastname, it gets more unreliable.
      *   treat as 10, if you enter more than 5 char in lastname, and deletes content in firstname even.
      */ 
-    usingGet();
+//    usingGet();
 
     return 0;
 }
