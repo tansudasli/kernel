@@ -17,18 +17,17 @@ int readLines() {
 
     FILE *file = fopen(FILE_NAME, "r");
 
-    if (file != NULL) {
-
-        printf("line \tcontent \n");
-        while (fgets(line, MAX_LINE, file) != 0)
-            printf("%d \t%s", ++lineCount, line);       // fputs(line, stdout);
-
-        fclose(file);
-    } else {
+    if (!file) {  //if fp is NULL
         printf( "File %s cannot be opened!", FILE_NAME );
 
         return -1;
     }
+
+    printf("line \tcontent \n");
+    while (fgets(line, MAX_LINE, file) != 0)
+        printf("%d \t%s", ++lineCount, line);       // fputs(line, stdout);
+
+    fclose(file);
 
     return lineCount;
 }
@@ -48,16 +47,16 @@ int appendLines() {
 
     FILE *file = fopen(FILE_NAME, "a+");
 
-    if (file != NULL) {
-        for (int i = 0; i < MAX_ROW; i++)
-            fputs(lines[i], file);
-
-        fclose(file);
-    } else {
+    if (!file) {  //if fp is NULL
         printf( "File %s cannot be opened!", FILE_NAME );
 
         return -1;
     }
+
+    for (int i = 0; i < MAX_ROW; i++)
+        fputs(lines[i], file);
+
+    fclose(file);
 
     return MAX_ROW;
 }
@@ -95,7 +94,7 @@ void searchInFile(char fileName[], char *needle) {
 int main(int argc, char const *argv[]) {
 
     readLines();
-//    appendLines();
+    appendLines();
 
     searchInFile(FILE_NAME, "the");
     searchInFile(FILE_NAME, "The");
