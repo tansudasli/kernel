@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <mm_malloc.h>
+#include <stdlib.h>
 
 #define MAX_STRING_LENGTH 200
 
