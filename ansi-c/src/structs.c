@@ -8,12 +8,16 @@ int main(int argc, char **argv) {
 
     //print dataset
     CD this;
-    printf("Title  | Rating\n");
+    printf("Title \t\t\t| Rating\n");
     for (int i = 0; i < NUMBER_OF_CDS; i++) {
         this = cdDataset[i];
 
-        printf("%s | %u \n", this.title, this.rating);
+        printf("%s \t| %u  \t| %p \n", this.title, this.rating, (struct CD *)&cdDataset[i]);
+
     }
+
+    printf("size of CD=%lu\n", sizeof(cdDataset));
+    printf("size for first pointer CD=%lu", sizeof(cdDataset)/NUMBER_OF_CDS);
 
     return 0;
 }
