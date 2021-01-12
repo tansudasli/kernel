@@ -7,13 +7,13 @@ int main (int argc, char **argv) {
     int i;
     int n = !argv[1] ?  3 : atoi(argv[1]);
     int *a = (int*)calloc(n, sizeof(int));  //to initialize a pointer, use either &int[], or malloc/calloc !!
-                                                  //count is not important in mac maybe but critical for portability :)
+                                                  //count is not important in IDE (somehow) but It is critical on shell :)
                                                   //initialize w/ 0
 
-//    printf("Enter %d numbers:\n",n);
-//    for( i=0 ; i < n ; i++ ) {
-//        scanf("%d", &a[i]);
-//    }
+    printf("Enter %d numbers:\n",n);
+    for( i=0 ; i < n ; i++ ) {
+        scanf("%d", &a[i]);
+    }
 
     printf("The numbers entered are: ");
     for( i=0 ; i < n ; i++ ) {
