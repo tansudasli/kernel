@@ -14,6 +14,7 @@ core socket programming in C
 - `brew install cmake` to compile w/ cmake
 - then,
     - `cd socket-programming`,
-    - `cmake --build cmake-build-debug --target all -- -j 3`, and 
-    - Run w/ `./cmake-build-debug/tcp_client` and `./cmake-build-debug/tcp_server`
+    - `./cmake.sh`, and
+    - First `cd out/`,
+      then Run as `./tcp_client` and `./tcp_server`
   
