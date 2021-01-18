@@ -6,17 +6,19 @@ int main(int argc, char **argv) {
 
     initializeDataset();
 
-    //print dataset
+    printf("-------Access w/ values--------\n");
     printf("Title \t\t\t| Rating\n");
 
     CD this;
     for (int i = 0; i < NUMBER_OF_CDS; i++) {
         this = cdDataset[i];
 
-        printf("%s \t| %u  \t| %p \n", this.title, this.rating, (CD *)&cdDataset[i]);
+        printf("%s \t| %u  \t| %p \n", this.title, this.rating, (CD *) &cdDataset[i]);
     }
 
     printf("-------Access w/ pointer--------\n");
+    printf("Title \t\t\t| Rating\n");
+
     CD *that = cdDataset;
     for (int i = 0; i < NUMBER_OF_CDS; i++) {
 
@@ -26,7 +28,7 @@ int main(int argc, char **argv) {
 
     printf("------------------\n");
     printf("size of CD=%lu\n", sizeof(cdDataset));
-    printf("size for first pointer CD=%lu\n", sizeof(cdDataset)/NUMBER_OF_CDS);
+    printf("size for first record CD=%lu\n", sizeof(cdDataset)/NUMBER_OF_CDS);
 
     return 0;
 }
