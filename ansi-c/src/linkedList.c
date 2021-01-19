@@ -20,8 +20,11 @@ int main (int argc, char **argv) {
     display(getFirst());
 
     printf("\n%d %p", getFirst()->info, getFirst()->link);
-    printf("\n%d %p", getLast()->info, getLast()->link);
+    printf("\n%d %p\n", getLast()->info, getLast()->link);
 
+    printf("\nindex=%d", search(NULL, 1));
+    printf("\nindex=%d", search(NULL, 2));
+    printf("\nindex=%d", search(NULL, 5));
 
 
     return 0;

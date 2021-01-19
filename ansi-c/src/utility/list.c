@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "list.h"
 
@@ -78,7 +79,29 @@ NODE * append(int data) {
     return tmp;
 }
 
+int search(NODE *node, int t) {
+    if (!start) {
+        perror("not initialized");
+        printf("errr");
+        return -1;
+    }
 
+    NODE *first = getFirst();
+    int index = 0;
+    bool found = false;
+
+    do {
+        if (first->info == t) {
+            found = true;
+            break;
+        }
+
+        index++;
+        first = first->link;
+    } while (first);
+
+    return found ? index : -1;
+}
 
 /**
  * Access all nodes from *start to the end.
