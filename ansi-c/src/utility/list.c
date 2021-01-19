@@ -5,27 +5,46 @@
 
 NODE *start = NULL;
 
-
-NODE * create() {
-    start = (NODE *)calloc(1, sizeof(NODE));
-
-    if (!start) {
-        perror("no allocation");
-
-        return NULL;
-    }
-
-    start->info = 0;
-    start->link = start;
+NODE * getFirst() {
 
     return start;
 }
 
-void display(NODE *data) {
+NODE * create() {
+    start = (NODE *)calloc(1, sizeof(NODE));
 
+    start->info = -1;
+    start->link = NULL;
+
+    return start;
+}
+
+/**
+ * Creates and adds first node.
+ *
+ * @param data
+ * @return start node
+ */
+NODE * initialize(int data) {
+    create();
+
+    start->info = data;
+    start->link = NULL;
+
+    return start;
+}
+
+/**
+ * Access all nodes from *start to the end.
+ *
+ * @param start addr
+ */
+void display(NODE *k) {
+
+    NODE *tmp = k;
     do {
-        printf("info=%d, addr=%p", data->info, data->link);
+        printf("info=%d, addr=%p\n", tmp->info, tmp->link);
 
-        data++;
-    } while (!data);    //means data == NULL
+        tmp = tmp->link;
+    } while (tmp != NULL);    //means data != NULL
 }

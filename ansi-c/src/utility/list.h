@@ -12,10 +12,12 @@ typedef struct node {
 } NODE;
 
 
-//interfaces
-NODE * create();
 
-NODE * insert(NODE *, int);         //at the end
+//interfaces
+NODE * create();                //creates start node,
+NODE * getFirst();
+
+NODE * initialize(int);         //in the beginning, creates start node and adds first node
 NODE * insertAt(NODE *, int, int);
 NODE * insertAtStart(NODE *, int);  //at the beginning
 NODE * insertAfter(NODE *, int, int);
