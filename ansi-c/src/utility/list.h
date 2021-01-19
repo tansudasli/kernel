@@ -15,18 +15,20 @@ typedef struct node {
 
 //interfaces
 NODE * create();                //creates start node,
-NODE * getFirst();
-
 NODE * initialize(int);         //in the beginning, creates start node and adds first node
+NODE * append(int);             //appends to the last element
+
+NODE * getFirst();              //returns start node
+NODE * getLast();               //returns last node
+
 NODE * insertAt(NODE *, int, int);
-NODE * insertAtStart(NODE *, int);  //at the beginning
 NODE * insertAfter(NODE *, int, int);
 
 NODE * delete(NODE *, int);
 
 NODE * reverse(NODE *);
 
-void search(NODE *, int);
+int search(NODE *, int);
 void display(NODE *);
 void count(NODE *);
 

@@ -11,9 +11,16 @@ int main (int argc, char **argv) {
 //    start = create();
 //    display(start);
 
+
     //create and add 1 node
-    data = initialize(1);
-    display(data);
+    initialize(1);
+    append(2);
+    append(3);
+
+    display(getFirst());
+
+    printf("\n%d %p", getFirst()->info, getFirst()->link);
+    printf("\n%d %p", getLast()->info, getLast()->link);
 
 
 

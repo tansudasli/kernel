@@ -10,6 +10,24 @@ NODE * getFirst() {
     return start;
 }
 
+NODE * getLast() {
+
+    NODE *last = NULL;
+    NODE *first = start;
+
+    do {
+
+        if (first->link == NULL) {
+            last = first;
+            break;
+        }
+
+        first = first->link;
+    } while (last == NULL);
+
+    return last;
+}
+
 NODE * create() {
     start = (NODE *)calloc(1, sizeof(NODE));
 
@@ -35,16 +53,43 @@ NODE * initialize(int data) {
 }
 
 /**
+ * Appends new node to the end.
+ *
+ * @param data
+ * @return
+ */
+NODE * append(int data) {
+
+    if (!start) {
+        perror("not initialized");
+        printf("errr");
+        return NULL;
+    }
+
+    //create new node
+    NODE *tmp = (NODE *)calloc(1, sizeof(NODE));
+
+    tmp->info = data;
+    tmp->link = NULL;
+
+    //find last node, and add
+    getLast()->link = tmp;
+
+    return tmp;
+}
+
+
+
+/**
  * Access all nodes from *start to the end.
  *
- * @param start addr
+ * @param node: start node
  */
-void display(NODE *k) {
+void display(NODE *node) {
 
-    NODE *tmp = k;
     do {
-        printf("info=%d, addr=%p\n", tmp->info, tmp->link);
+        printf("info=%d, addr=%p\n", node->info, node->link);
 
-        tmp = tmp->link;
-    } while (tmp != NULL);    //means data != NULL
+        node = node->link;
+    } while (node);    //means node != NULL
 }
