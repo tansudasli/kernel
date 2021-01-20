@@ -82,6 +82,6 @@ add_executable(memory
         src/memory.c)
 
 add_executable(linkedList
-        src/utility/list.h
+        src/header/list.h
         src/utility/list.c
         src/linkedList.c)
