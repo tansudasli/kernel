@@ -22,8 +22,8 @@ int main (int argc, char **argv) {
     printf("\nNth => %d %p", getLast()->info, getLast()->link);
     printf("\nnodes (display)= %d \n", count());
 
-    printf("\nindex=%d", search(1));  //index=0
-    printf("\nindex=%d", search(2));
+    printf("\nindex=%d \t %d \t %d", search(1), search2(1)->info, searchByIndex(search(1))->info);  //index=0 value=1
+    printf("\nindex=%d \t %d \t %d", search(2), search2(2)->info, searchByIndex(search(2))->info);
     printf("\nindex=%d", search(3));
     printf("\nindex=%d", search(5));   //-1 not found
 

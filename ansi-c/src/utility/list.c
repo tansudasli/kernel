@@ -128,12 +128,41 @@ NODE * append(int data) {
  * -> Not updates nodes.
  *
  * @param t search data
- * @return if not found, -1 or node index (zero-based)
+ * @return if not found, -1 or (zero-based) node-index
  */
 int search(int t) {
     if (!start) {
         perror("not initialized");
         return -1;
+    }
+
+    NODE *first = getFirst();
+    int index = 0;
+    bool found = false;
+
+    do {
+        if (first->info == t) {    //todo: compare function
+            found = true;
+            break;
+        }
+
+        index++;
+        first = first->link;
+    } while (first);
+
+    return found ? index : -1;
+}
+
+/**
+ * Finds t in nodes while looping all nodes. O(n)
+ *
+ * @param t search data
+ * @return if not found, NULL or node
+ */
+NODE * search2(int t) {
+    if (!start) {
+        perror("not initialized");
+        return NULL;
     }
 
     NODE *first = getFirst();
@@ -150,7 +179,36 @@ int search(int t) {
         first = first->link;
     } while (first);
 
-    return found ? index : -1;
+    return found ? first : NULL;
+
+}
+
+/**
+ * Finds the node at index
+ *
+ * @param i (zero-based) node-index
+ * @return if not found, NULL or the node
+ */
+NODE * searchByIndex(int i) {
+    if (!start) {
+        perror("not initialized");
+        return NULL;
+    }
+
+    NODE *first = getFirst();
+    int index = 0;
+
+    do {
+
+        if (index == i) {
+            break;
+        }
+
+        index++;
+        first = first->link;
+    } while (first);
+
+    return first;
 }
 
 /**
