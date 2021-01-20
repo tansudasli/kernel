@@ -116,6 +116,8 @@ NODE * append(int data) {
 /**
  * Finds t in nodes while looping all nodes. O(n)
  *
+ * -> Not updates nodes.
+ *
  * @param t search data
  * @return if not found, -1 or node index (zero-based)
  */
