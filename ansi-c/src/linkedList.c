@@ -7,20 +7,20 @@ NODE *data = NULL;
 
 int main (int argc, char **argv) {
 
-    //create
-//    start = create();
-//    display(start);
 
+    //create and add 1 node, w/ data 1
+    append(1);  //initialize. then
+    append(2);  //  + 1 node
+    append(3);  //  + 1 node
 
-    //create and add 1 node
-    initialize(1);
-    append(2);
-    append(3);
+    printf("\nnodes (append)= %d \n", count());
 
+    //list all nodes, from 1st node
     display(getFirst());
 
-    printf("\n%d %p", getFirst()->info, getFirst()->link);
-    printf("\n%d %p\n", getLast()->info, getLast()->link);
+    printf("\n1st => %d %p", getFirst()->info, getFirst()->link);
+    printf("\nNth => %d %p", getLast()->info, getLast()->link);
+    printf("\nnodes (display)= %d \n", count());
 
     printf("\nindex=%d", search(NULL, 1));
     printf("\nindex=%d", search(NULL, 2));

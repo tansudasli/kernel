@@ -14,9 +14,9 @@ typedef struct node {
 
 
 //interfaces
-NODE * create();                //creates start node,
-NODE * initialize(int);         //in the beginning, creates start node and adds first node
-NODE * append(int);             //appends to the last element
+static NODE * create();                //creates start node,
+static NODE * initialize(int);         //creates start node and adds to 1st node
+NODE * append(int);                    //creates 1st node, or appends to the last node
 
 NODE * getFirst();              //returns start node
 NODE * getLast();               //returns last node
@@ -30,7 +30,7 @@ NODE * reverse(NODE *);
 
 int search(NODE *, int);
 void display(NODE *);
-void count(NODE *);
+int count();
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H
