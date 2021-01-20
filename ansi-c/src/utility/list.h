@@ -28,9 +28,9 @@ NODE * delete(NODE *, int);
 
 NODE * reverse(NODE *);
 
-int search(NODE *, int);
-void display(NODE *);
-int count();
+int search(NODE *, int);       //
+void display(NODE *);          //prints all nodes
+int count();                   //Node count
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H
