@@ -17,20 +17,17 @@ typedef struct node {
 static NODE * create();                //creates start node,
 static NODE * initialize(int);         //creates start node and adds to 1st node
 
-NODE * getFirst();              //returns start node
+NODE * getFirst();              //returns 1st node
 NODE * getLast();               //returns last node
-NODE * getByIndex(int);         //return node by node-index
-NODE * getByData(int);          //return node by data,
+NODE * getByIndex(int);         //return Nth node by node-index
+NODE * getByData(int);          //return Nth node by data,
 
-NODE * append(int);             //creates initial node, or appends to the last node
+NODE * append(int);             //creates 1st node, or appends to the last node
 /**
  * insert at index (random)
  * search w/ data, and append to it (before/after). kinda sorting
  */
-NODE * insertAt(NODE *, int, int);
-NODE * insertAfter(NODE *, int, int);
-NODE * insertBefore(NODE *, int, int);
-
+NODE * insertAt(int, int);      //insert at 1st, middle, end
 NODE * delete(NODE *, int);
 
 NODE * reverse(NODE *);

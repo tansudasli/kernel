@@ -123,7 +123,6 @@ NODE * getByData(int t) {
  */
 static NODE * create() {
     start = (NODE *)calloc(1, sizeof(NODE));
-
     if (!start) {
         perror("no allocation");
         return NULL;
@@ -180,6 +179,62 @@ NODE * append(int data) {
     //find last node, and attach
     getLast()->link = tmp;
     nodes++;
+
+    return tmp;
+}
+
+/**
+ * Insert at the node-index
+ *
+ * @param k node-index to insert
+ * If,
+ *    k = 0, replace 1st
+ *    k > 0 & k < nodes, replace kth node
+ *    k < 0 | k > nodes, error
+ * @param data new data
+ * @return if error , return NULL or return inserted node
+ */
+NODE * insertAt(int k, int data) {
+
+    //k = 0, replace 1st                     OK
+    //k > 0 & k < nodes, replace kth node    OK
+    //k < 0 | k > nodes => error             OK
+    //k = nodes, append                      todo:
+
+    if (k < 0 || k > count()) {
+        perror("invalid index");
+        return NULL;
+    }
+
+    //searchByIndex
+    NODE *at = getByIndex(k);
+    if (!at) {
+        perror("not found");
+        return NULL;
+    }
+
+    NODE *previousAt = getByIndex(k-1);
+    if (!previousAt && k != 0) {
+        perror("not found");
+        return NULL;
+    }
+
+    //create tmp data
+    NODE *tmp = (NODE *) calloc(1, sizeof(NODE));
+    if (!tmp) {
+        perror("no allocation");
+        return NULL;
+    }
+
+    tmp->info = data;
+    tmp->link = at;
+
+    if (k == 0)
+        start = tmp;
+    else
+        previousAt->link = tmp;
+
+    nodes++;                    //injected count update
 
     return tmp;
 }

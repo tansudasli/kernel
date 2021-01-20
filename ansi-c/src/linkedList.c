@@ -12,6 +12,10 @@ int main (int argc, char **argv) {
     append(1);  //initialize. then
     append(2);  //  + 1 node
     append(3);  //  + 1 node
+    insertAt(1, 5);  //  + 1 node
+//    insertAt(-3, 5);  //  invalid index
+
+    insertAt(0, 7);
 
     printf("\nnodes (append)= %d \n", count());
 
