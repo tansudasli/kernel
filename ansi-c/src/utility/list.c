@@ -4,6 +4,15 @@
 
 #include "list.h"
 
+#ifndef ANSI_C_LIST_H
+    typedef struct node {
+        int info;
+
+        struct node *link;
+    } NODE;
+#endif //ANSI_C_LIST_H
+
+
 NODE *start = NULL;
 NODE *last = NULL;
 int nodes = 0;
