@@ -106,21 +106,21 @@ NODE * getByData(int t) {
         return NULL;
     }
 
-    NODE *first = getFirst();
+    NODE *p = getFirst();
     bool found = false;
     int index = 0;
 
     do {
-        if (first->info == t) {    //todo: compare function
+        if (p->info == t) {    //todo: compare function
             found = true;
             break;
         }
 
         index++;
-        first = first->link;
-    } while (first);
+        p = p->link;
+    } while (p);
 
-    return found ? first : NULL;
+    return found ? p : NULL;
 
 }
 
@@ -200,7 +200,7 @@ NODE * append(int data) {
  *
  * @param k node-index to insert
  * If,
- *    k = 0, replace 1st
+ *    k = 0, replace 1st, adjust start
  *    k = nodes-1, append last
  *    k > 0 & k < nodes, replace kth node
  *    k < 0 | k > nodes, error
@@ -268,19 +268,19 @@ int search(int t) {
         return -1;
     }
 
-    NODE *first = getFirst();
+    NODE *p = getFirst();
     int index = 0;
     bool found = false;
 
     do {
-        if (first->info == t) {    //todo: compare function
+        if (p->info == t) {    //todo: compare function
             found = true;
             break;
         }
 
         index++;
-        first = first->link;
-    } while (first);
+        p = p->link;
+    } while (p);
 
     return found ? index : -1;
 }
