@@ -22,9 +22,10 @@ int main (int argc, char **argv) {
     printf("\nNth => %d %p", getLast()->info, getLast()->link);
     printf("\nnodes (display)= %d \n", count());
 
-    printf("\nindex=%d", search(NULL, 1));
-    printf("\nindex=%d", search(NULL, 2));
-    printf("\nindex=%d", search(NULL, 5));
+    printf("\nindex=%d", search(1));  //index=0
+    printf("\nindex=%d", search(2));
+    printf("\nindex=%d", search(3));
+    printf("\nindex=%d", search(5));   //-1 not found
 
 
     return 0;

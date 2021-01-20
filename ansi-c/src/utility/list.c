@@ -113,18 +113,24 @@ NODE * append(int data) {
     return tmp;
 }
 
-int search(NODE *node, int t) {
+/**
+ * Finds t in nodes while looping all nodes. O(n)
+ *
+ * @param t search data
+ * @return if not found, -1 or node index (zero-based)
+ */
+int search(int t) {
     if (!start) {
         perror("not initialized");
         return -1;
     }
 
     NODE *first = getFirst();
-    int index = 0;
     bool found = false;
+    int index = 0;
 
     do {
-        if (first->info == t) {
+        if (first->info == t) {    //todo: compare function
             found = true;
             break;
         }
