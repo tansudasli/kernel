@@ -15,7 +15,8 @@ int main (int argc, char **argv) {
     insertAt(1, 5);  //  + 1 node
 //    insertAt(-3, 5);  //  invalid index
 
-    insertAt(0, 7);
+    insertAt(0, 7);  //at the beginning
+    insertAt(4, 17); //at the last
 
     printf("\nnodes (append)= %d \n", count());
 

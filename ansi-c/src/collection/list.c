@@ -189,21 +189,27 @@ NODE * append(int data) {
  * @param k node-index to insert
  * If,
  *    k = 0, replace 1st
+ *    k = nodes-1, append last
  *    k > 0 & k < nodes, replace kth node
  *    k < 0 | k > nodes, error
+ *
  * @param data new data
  * @return if error , return NULL or return inserted node
  */
 NODE * insertAt(int k, int data) {
 
     //k = 0, replace 1st                     OK
+    //k = nodes-1, append                    OK
     //k > 0 & k < nodes, replace kth node    OK
     //k < 0 | k > nodes => error             OK
-    //k = nodes, append                      todo:
 
     if (k < 0 || k > count()) {
         perror("invalid index");
         return NULL;
+    }
+
+    if (k == count() - 1) {
+        return append(data);
     }
 
     //searchByIndex
