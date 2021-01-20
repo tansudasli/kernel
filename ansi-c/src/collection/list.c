@@ -56,6 +56,10 @@ NODE * getLast() {
  * -> Not updates nodes.
  *
  * @param i (zero-based) node-index
+ * If,
+ *    i = 0, start               O(1)
+ *    i = nodes, last            O(1)
+ *    i >0 & i < nodes, loop     O(n)
  * @return if not found, NULL or the node
  */
 NODE * getByIndex(int i) {
@@ -64,20 +68,28 @@ NODE * getByIndex(int i) {
         return NULL;
     }
 
-    NODE *first = getFirst();
+    //1st node
+    if (i == 0)
+        return start;
+
+    //last
+    if (i == count()-1)
+        return last;
+
+    //loop to find
+    NODE *p = getFirst();
     int index = 0;
 
     do {
-
         if (index == i) {
             break;
         }
 
         index++;
-        first = first->link;
-    } while (first);
+        p = p->link;
+    } while (p);
 
-    return first;
+    return p;
 }
 
 /**
