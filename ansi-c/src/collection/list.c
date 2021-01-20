@@ -51,6 +51,68 @@ NODE * getLast() {
 }
 
 /**
+ * Finds the node at node-index
+ *
+ * -> Not updates nodes.
+ *
+ * @param i (zero-based) node-index
+ * @return if not found, NULL or the node
+ */
+NODE * getByIndex(int i) {
+    if (!start) {
+        perror("not initialized");
+        return NULL;
+    }
+
+    NODE *first = getFirst();
+    int index = 0;
+
+    do {
+
+        if (index == i) {
+            break;
+        }
+
+        index++;
+        first = first->link;
+    } while (first);
+
+    return first;
+}
+
+/**
+ * Finds t in nodes while looping all nodes. O(n)
+ *
+ * -> Not updates nodes.
+ *
+ * @param t search data
+ * @return if not found, NULL or node
+ */
+NODE * getByData(int t) {
+    if (!start) {
+        perror("not initialized");
+        return NULL;
+    }
+
+    NODE *first = getFirst();
+    bool found = false;
+    int index = 0;
+
+    do {
+        if (first->info == t) {    //todo: compare function
+            found = true;
+            break;
+        }
+
+        index++;
+        first = first->link;
+    } while (first);
+
+    return found ? first : NULL;
+
+}
+
+/**
  * Creates 1st start node.
  * .. To initialize, use initialize()
  * .. To get start, use getFirst()
@@ -151,68 +213,6 @@ int search(int t) {
     } while (first);
 
     return found ? index : -1;
-}
-
-/**
- * Finds t in nodes while looping all nodes. O(n)
- *
- * -> Not updates nodes.
- *
- * @param t search data
- * @return if not found, NULL or node
- */
-NODE * search2(int t) {
-    if (!start) {
-        perror("not initialized");
-        return NULL;
-    }
-
-    NODE *first = getFirst();
-    bool found = false;
-    int index = 0;
-
-    do {
-        if (first->info == t) {    //todo: compare function
-            found = true;
-            break;
-        }
-
-        index++;
-        first = first->link;
-    } while (first);
-
-    return found ? first : NULL;
-
-}
-
-/**
- * Finds the node at index
- *
- * -> Not updates nodes.
- *
- * @param i (zero-based) node-index
- * @return if not found, NULL or the node
- */
-NODE * searchByIndex(int i) {
-    if (!start) {
-        perror("not initialized");
-        return NULL;
-    }
-
-    NODE *first = getFirst();
-    int index = 0;
-
-    do {
-
-        if (index == i) {
-            break;
-        }
-
-        index++;
-        first = first->link;
-    } while (first);
-
-    return first;
 }
 
 /**

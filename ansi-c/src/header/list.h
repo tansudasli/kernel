@@ -19,8 +19,10 @@ static NODE * initialize(int);         //creates start node and adds to 1st node
 
 NODE * getFirst();              //returns start node
 NODE * getLast();               //returns last node
+NODE * getByIndex(int);         //return node by node-index
+NODE * getByData(int);          //return node by data,
 
-NODE * append(int);                    //creates 1st node, or appends to the last node
+NODE * append(int);             //creates initial node, or appends to the last node
 /**
  * insert at index (random)
  * search w/ data, and append to it (before/after). kinda sorting
@@ -36,9 +38,7 @@ NODE * reverse(NODE *);
 void display(NODE *);          //prints
 int count();                   //node count
 
-int search(int);               //search in nodes by data, returns the node-index
-NODE * search2(int);           //search in nodes by data, return the node
-NODE * searchByIndex(int);     //return by given node-index
+int search(int);               //return node-index by data
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H
