@@ -34,10 +34,11 @@ NODE * delete(NODE *, int);
 NODE * reverse(NODE *);
 
 void display(NODE *);          //prints
-int search(int);               //search in nodes by data, returns the node-index
-NODE * search2(int);        //search in nodes by data, return the node
-NODE * searchByIndex(int);       //return by given node-index
 int count();                   //node count
+
+int search(int);               //search in nodes by data, returns the node-index
+NODE * search2(int);           //search in nodes by data, return the node
+NODE * searchByIndex(int);     //return by given node-index
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H

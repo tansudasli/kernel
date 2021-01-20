@@ -156,6 +156,8 @@ int search(int t) {
 /**
  * Finds t in nodes while looping all nodes. O(n)
  *
+ * -> Not updates nodes.
+ *
  * @param t search data
  * @return if not found, NULL or node
  */
@@ -185,6 +187,8 @@ NODE * search2(int t) {
 
 /**
  * Finds the node at index
+ *
+ * -> Not updates nodes.
  *
  * @param i (zero-based) node-index
  * @return if not found, NULL or the node
