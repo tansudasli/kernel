@@ -193,15 +193,12 @@ NODE * append(int data) {
  *    k > 0 & k < nodes, replace kth node
  *    k < 0 | k > nodes, error
  *
+ * -> Set nodes++
+ *
  * @param data new data
  * @return if error , return NULL or return inserted node
  */
 NODE * insertAt(int k, int data) {
-
-    //k = 0, replace 1st                     OK
-    //k = nodes-1, append                    OK
-    //k > 0 & k < nodes, replace kth node    OK
-    //k < 0 | k > nodes => error             OK
 
     if (k < 0 || k > count()) {
         perror("invalid index");
