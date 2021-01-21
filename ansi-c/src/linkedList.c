@@ -10,8 +10,8 @@ int main (int argc, char **argv) {
 
     //create and add 1 node, w/ data 1
     append(1);  //initialize. then
-//    append(2);  //  + 1 node
-//    append(3);  //  + 1 node
+    append(2);  //  + 1 node
+    append(3);  //  + 1 node
 //    insertAt(1, 5);  //  + 1 node
 //    insertAt(0, 7);  //at the beginning
 //    insertAt(4, 17); //at the last
@@ -29,7 +29,8 @@ int main (int argc, char **argv) {
 
     //delete
 //    deleteAt(-1); //invalid index
-    deleteAt(0);
+//    deleteAt(0);    //1st and only
+    deleteAt(0);    //1st and not last
 
     display(getFirst());
 

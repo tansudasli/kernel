@@ -286,11 +286,6 @@ int deleteAt(int k) {
         return -1;
     }
 
-    NODE *tmp = getByIndex(k);
-    if (!tmp) {
-        return -1;
-    }
-
     //only
     if (k == 0 && count() == 1) {
         free(start);
@@ -299,9 +294,17 @@ int deleteAt(int k) {
         return 0;
     }
 
-    //1st
-    if (k == 0) {
+    NODE *tmp = getByIndex(k);
+    if (!tmp) {
+        return -1;
+    }
 
+    //1st but not last
+    if (k == 0) {
+       start = tmp->link;
+       nodes--;           //injected count update
+
+       tmp = NULL;
     }
 
     //last
