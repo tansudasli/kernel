@@ -292,9 +292,9 @@ int deleteAt(int k) {
     }
 
     //only
-    if (k == 0 && count()-1 == 1) {
-        free(tmp);
+    if (k == 0 && count() == 1) {
         free(start);
+        nodes = 0;         //injected count update
 
         return 0;
     }
