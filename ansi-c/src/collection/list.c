@@ -329,7 +329,7 @@ int deleteAt(int k) {
     //between
     tmp = getByIndex(k);
     tmpPrevious = getByIndex(k-1);
-    if (!tmp) {
+    if (!tmp || !tmpPrevious) {
         return -1;
     }
 
