@@ -12,9 +12,9 @@ int main (int argc, char **argv) {
     append(1);  //initialize. then
     append(2);  //  + 1 node
     append(3);  //  + 1 node
-//    insertAt(1, 5);  //  + 1 node
-//    insertAt(0, 7);  //at the beginning
-//    insertAt(4, 17); //at the last
+    insertAt(1, 5);  //  + 1 node
+    insertAt(0, 7);  //at the beginning
+    insertAt(4, 17); //at the last
 //    insertAt(-3, 5);  //  invalid index
 
     printf("\nnodes= %d \n", count());
@@ -28,10 +28,13 @@ int main (int argc, char **argv) {
     printf("\n150 is at index=%d\n", search(150));   //-1 not found
 
     //delete
-//    deleteAt(-1); //invalid index
-//    deleteAt(0);    //1st and only
+//      deleteAt(-1);   //invalid index
+//      deleteAt(0);    //1st and only
     deleteAt(0);    //1st and not last
+    deleteAt(4);    //last
+    deleteAt(2);   //between
 
+    printf("\nnodes= %d \n", count());
     display(getFirst());
 
 

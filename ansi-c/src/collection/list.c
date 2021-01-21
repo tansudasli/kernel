@@ -294,26 +294,47 @@ int deleteAt(int k) {
         return 0;
     }
 
-    NODE *tmp = getByIndex(k);
-    if (!tmp) {
-        return -1;
-    }
+    NODE *tmp;
+    NODE *tmpPrevious;
 
     //1st but not last
     if (k == 0) {
-       start = tmp->link;
-       nodes--;           //injected count update
+        tmp = getByIndex(k);
+        if (!tmp) {
+            return -1;
+        }
 
-       tmp = NULL;
+        start = tmp->link;
+        nodes--;           //injected count update
+
+        tmp = NULL;
+
+        return 0;
     }
 
     //last
     if (k == count()-1) {
 
+        tmp = getByIndex(k-1);   //before last
+        if (!tmp) {
+            return -1;
+        }
+
+        tmp->link = NULL;
+        nodes--;         //injected count update
+
+        return 0;
     }
 
+    //between
+    tmp = getByIndex(k);
+    tmpPrevious = getByIndex(k-1);
+    if (!tmp) {
+        return -1;
+    }
 
-    //searchByIndex
+    tmpPrevious->link = tmp->link;
+    nodes--;        //injected count update
 
 
     return 0;
