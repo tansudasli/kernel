@@ -55,11 +55,12 @@ NODE * getLast() {
  *
  * -> Not updates nodes.
  *
- * @param i (zero-based) node-index
- * If,
- *    i = 0, start               O(1)
- *    i = nodes, last            O(1)
- *    i >0 & i < nodes, loop     O(n)
+ * @param i (zero-based) node-index<br>
+ * If,<br>
+ *    i = 0, start                 O(1)<br>
+ *    i = nodes-1, last            O(1)<br>
+ *    i > 0 & i < nodes-1, loop    O(n)<br>
+ *    i < 0 | i > nodes-1, error
  * @return if not found, NULL or the node
  */
 NODE * getByIndex(int i) {
@@ -68,13 +69,21 @@ NODE * getByIndex(int i) {
         return NULL;
     }
 
+    //error
+    if (i < 0 || i > count()-1) {
+        perror("invalid node-index");
+        return NULL;
+    }
+
     //1st node
-    if (i == 0)
+    if (i == 0) {
         return start;
+    }
 
     //last
-    if (i == count()-1)
+    if (i == count()-1) {
         return last;
+    }
 
     //loop to find
     NODE *p = getFirst();
@@ -207,13 +216,14 @@ NODE * append(int data) {
  *
  * -> Set nodes++
  *
+ * @param k node-index
  * @param data new data
- * @return if error , return NULL or return inserted node
+ * @return if error, return NULL or return inserted node
  */
 NODE * insertAt(int k, int data) {
 
-    if (k < 0 || k > count()) {
-        perror("invalid index");
+    if (k < 0 || k > count()-1) {
+        perror("invalid node-index");
         return NULL;
     }
 
@@ -252,6 +262,55 @@ NODE * insertAt(int k, int data) {
     nodes++;                    //injected count update
 
     return tmp;
+}
+
+/**
+ * Delete at the node-index <br>
+ * If,<br>
+ *    k = 0, delete 1st, adjust start<br>
+ *    k = 0 & nodes-1=1, delete only and free<br>
+ *    k = nodes-1, delete last<br>
+ *    k > 0 & k < nodes, delete kth node<br>
+ *    k < 0 | k > nodes, error<br>
+ *
+ * Set nodes++
+ *
+ * @param k node-index
+ * @return if error, return -1 or return 0
+ */
+int deleteAt(int k) {
+
+    //error
+    if (k < 0 || k > count()-1) {
+        perror("invalid node-index");
+        return -1;
+    }
+
+    NODE *tmp = getByIndex(k);
+    if (!tmp) {
+        return -1;
+    }
+
+    //only
+    if (k == 0 && count()-1 == 1) {
+
+    }
+
+    //1st
+    if (k == 0) {
+
+    }
+
+    //last
+    if (k == count()-1) {
+
+    }
+
+
+    //searchByIndex
+
+
+    return 0;
 }
 
 /**

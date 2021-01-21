@@ -28,7 +28,7 @@ NODE * append(int);             //creates 1st node, or appends to the last node
  * search w/ data, and append to it (before/after). kinda sorting
  */
 NODE * insertAt(int, int);      //insert at 1st, middle, end
-NODE * delete(NODE *, int);
+int deleteAt(int);              //delete at 1st, middle, last, only
 
 NODE * reverse(NODE *);
 
