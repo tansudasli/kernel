@@ -13,24 +13,20 @@ int main (int argc, char **argv) {
     append(2);  //  + 1 node
     append(3);  //  + 1 node
     insertAt(1, 5);  //  + 1 node
-//    insertAt(-3, 5);  //  invalid index
-
     insertAt(0, 7);  //at the beginning
     insertAt(4, 17); //at the last
+//    insertAt(-3, 5);  //  invalid index
 
-    printf("\nnodes (append)= %d \n", count());
+    printf("\nnodes= %d \n", count());
 
-    //list all nodes, from 1st node
+    //show
     display(getFirst());
 
-    printf("\n1st  => %d %p", getFirst()->info, getFirst()->link);
-    printf("\nlast => %d %p", getLast()->info, getLast()->link);
-    printf("\nnodes (display)= %d \n", count());
-
-    printf("\nindex=%d \t %d \t %d", search(1), getByData(1)->info, getByIndex(search(1))->info);  //index=0 value=1
-    printf("\nindex=%d \t %d \t %d", search(2), getByData(2)->info, getByIndex(search(2))->info);
-    printf("\nindex=%d", search(3));
+    //search
+    printf("\n2 is at index=%d 's value is, %d, %d", search(2), getByData(2)->info, getByIndex(search(2))->info);
     printf("\n150 is at index=%d", search(150));   //-1 not found
+
+    //delete
 
 
     return 0;
