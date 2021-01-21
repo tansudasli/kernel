@@ -238,7 +238,7 @@ NODE * insertAt(int k, int data) {
         return NULL;
     }
 
-    NODE *previousAt = getByIndex(k-1);
+    NODE *previousAt = k == 0 ? NULL : getByIndex(k-1);
     if (!previousAt && k != 0) {
         perror("not found");
         return NULL;
@@ -293,7 +293,10 @@ int deleteAt(int k) {
 
     //only
     if (k == 0 && count()-1 == 1) {
+        free(tmp);
+        free(start);
 
+        return 0;
     }
 
     //1st
