@@ -81,7 +81,3 @@ add_executable(pointerIndirectionString
 add_executable(memory
         src/memory.c)
 
-add_executable(linkedList
-        src/header/list.h
-        src/collection/list.c
-        src/linkedList.c)

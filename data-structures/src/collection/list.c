@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "list.h"
+#include "../header/list.h"
 
 #ifndef ANSI_C_LIST_H
     typedef struct node {

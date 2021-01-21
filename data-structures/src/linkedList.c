@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "list.h"
+#include "header/list.h"
 
 NODE *data = NULL;
 
@@ -32,7 +32,7 @@ int main (int argc, char **argv) {
 //      deleteAt(0);    //1st and only
     deleteAt(0);    //1st and not last
     deleteAt(4);    //last
-    deleteAt(2);   //between
+    deleteAt(2);    //between
 
     printf("\nnodes= %d \n", count());
     display(getFirst());
