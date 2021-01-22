@@ -343,6 +343,8 @@ int deleteAt(int k) {
 /**
  * Reverses the list from start node.
  *
+ * --> updates start
+ *
  * @return if error, returns old start, or new start node
  */
 NODE * reverse() {
