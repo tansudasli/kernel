@@ -402,22 +402,22 @@ int search(int t) {
  *
  * -> Set 0, then nodes++.
  *
- * @param node: start node
  */
-void display(NODE *node) {
+void display() {
 
-    if (!node) {
+    if (!getFirst()) {
         perror("not initialized");
         return;
     }
 
+    NODE *p = getFirst();
     nodes = 0;
     do {
         nodes++;                                               //injected count update
-        printf("info=%d, addr=%p\n", node->info, node->link);
+        printf("info=%d, addr=%p\n", p->info, p->link);
 
-        node = node->link;
-    } while (node);    //means node != NULL
+        p = p->link;
+    } while (p);    //means node != NULL
 }
 
 /**

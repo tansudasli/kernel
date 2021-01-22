@@ -28,7 +28,7 @@ int deleteAt(int);              //delete at 1st, middle, last, only
 
 NODE * reverse();               //reverse (1st becomes last etc..)
 
-void display(NODE *);           //prints
+void display();                 //prints
 int count();                    //node count
 
 int search(int);                //return node-index by data
