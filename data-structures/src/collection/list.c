@@ -363,7 +363,6 @@ NODE * reverse() {
     start = previous;            //injected start
 
     return start;
-
 }
 
 /**
