@@ -26,7 +26,7 @@ NODE * append(int);             //creates 1st node, or appends to the last node
 NODE * insertAt(int, int);      //insert at 1st, middle, end
 int deleteAt(int);              //delete at 1st, middle, last, only
 
-NODE * reverse(NODE *);
+NODE * reverse();               //reverse (1st becomes last etc..)
 
 void display(NODE *);           //prints
 int count();                    //node count

@@ -341,6 +341,30 @@ int deleteAt(int k) {
 }
 
 /**
+ * Reverses the list from start node.
+ *
+ * @return if error, returns old start, or new start node
+ */
+NODE * reverse() {
+    NODE *previous, *next, *p;
+
+    previous = NULL;
+    p = getFirst();
+    do {
+       next = p->link;
+       p->link = previous;
+       previous = p;
+
+       p = next;
+    } while (p);
+
+    start = previous;            //injected start
+
+    return start;
+
+}
+
+/**
  * Finds t in nodes while looping all nodes. O(n)
  *
  * -> Not updates nodes.

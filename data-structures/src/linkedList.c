@@ -22,14 +22,21 @@ int main (int argc, char **argv) {
     //show
     display(getFirst());
 
+    printf("\n-------reverse--------\n");
+
+    reverse(); display(getFirst());
+
+
+    printf("\n-------end of reverse--------\n");
+
     //search
     printf("\n1 is at index=%d 's value is, %d, %d", search(1), getByData(1)->info, getByIndex(search(1))->info);
     printf("\n2 is at index=%d", search(2));
     printf("\n150 is at index=%d\n", search(150));   //-1 not found
 
     //delete
-//      deleteAt(-1);   //invalid index
-//      deleteAt(0);    //1st and only
+////      deleteAt(-1);   //invalid index
+////      deleteAt(0);    //1st and only
     deleteAt(0);    //1st and not last
     deleteAt(4);    //last
     deleteAt(2);    //between
