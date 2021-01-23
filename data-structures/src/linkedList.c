@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "header/list.h"
+#include "header/ArrayList.h"
 
 NODE *data = NULL;
 

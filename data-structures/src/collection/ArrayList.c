@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "../header/list.h"
+#include "../header/ArrayList.h"
 
 #ifndef ANSI_C_LIST_H
     typedef struct node {
