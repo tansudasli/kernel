@@ -3,8 +3,8 @@
  *
  * Basic logic behind queue.
  *
- *        front                              rear
- *     info|(addr1) ...  info|(addr2) ...  info|add3
+ *        front            addr2           addr3|rear
+ *     info|(addr2) ...  info|(addr3) ...  info|NULL
  *
  * @details Insert (enqueue) to end, Remove (dequeue) from start. Insert/Delete between nodes not allowed.
  * @author tansudasli

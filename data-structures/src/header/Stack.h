@@ -4,9 +4,9 @@
  * Basic logic behind stack.
  *
  *      top             addr2             addr3
- *     (addr2) ...  info|(addr3) ...  info|add3
+ *     (addr2) ...  info|(addr3) ...  info|NULL
  *
- * @details Only insert or remove the 1st node. Insert/Delete between nodes not allowed.
+ * @details Only insert or remove the (top) 1st node. Insert/Delete between nodes not allowed.
  * @author tansudasli
  */
 

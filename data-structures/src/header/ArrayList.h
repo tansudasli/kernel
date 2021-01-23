@@ -3,10 +3,10 @@
  *
  * Basic logic behind linked list.
  *
- *                    addr2             addr3
- * start (addr2) ...  info|(addr3) ...  info|add3
+ *      start             addr2             addr3
+ *     (addr2)   ...   info|(addr3) ...  info|NULL
  *
- * @details Implementation of ArrayList.
+ * @details Implementation of ArrayList. Insert/Remove to end/beginning/between possible.
  * @author tansudasli
  */
 
