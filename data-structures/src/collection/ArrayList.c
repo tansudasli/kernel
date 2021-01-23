@@ -1,4 +1,9 @@
 #include <stdio.h>
+/**
+ * @details Implementation of ArrayList.
+ * @author tansudasli
+ */
+
 #include <stdlib.h>
 #include <stdbool.h>
 

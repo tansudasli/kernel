@@ -1,3 +1,8 @@
+/**
+ * @details Implementation of Collection (utility functions). Such as merging a two ArrayList
+ * @author tansudasli
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

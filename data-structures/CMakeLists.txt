@@ -11,7 +11,7 @@ add_executable(linkedList
         src/linkedList.c)
 
 add_executable(collection
-#        src/header/ArrayList.h
+        src/header/ArrayList.h
         src/collection/ArrayList.c
         src/header/Collection.h
         src/collection/Collection.c
