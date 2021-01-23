@@ -1,4 +1,6 @@
 /**
+ * Collection utility functions
+ *
  * @details Implementation of Collection (utility functions). Such as merging a two ArrayList
  * @author tansudasli
  */

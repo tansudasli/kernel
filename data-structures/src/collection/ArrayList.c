@@ -1,5 +1,7 @@
 #include <stdio.h>
 /**
+ * Dynamic array
+ *
  * @details Implementation of ArrayList.
  * @author tansudasli
  */
