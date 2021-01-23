@@ -1,16 +1,24 @@
-
 /**
+ * Dynamic array
+ *
  * Basic logic behind linked list.
  *
  *                    addr2             addr3
  * start (addr2) ...  info|(addr3) ...  info|add3
+ *
+ * @details Implementation of ArrayList.
+ * @author tansudasli
  */
-typedef struct node {
+
+
+typedef struct node NODE;
+struct node {
     int info;
 
-    struct node *link;
-} NODE;
+    NODE *link;
+};
 
+NODE *start, *last;
 
 
 //interfaces
@@ -29,7 +37,7 @@ int deleteAt(int);              //delete at 1st, middle, last, only
 NODE * reverse();               //reverse (1st becomes last etc..)
 
 void display();                 //prints
-int count();                    //node count
+int count();                    //node count //todo: rename as size()
 
 int search(int);                //return node-index by data
 

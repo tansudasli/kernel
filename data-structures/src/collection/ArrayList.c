@@ -1,27 +1,21 @@
 #include <stdio.h>
-/**
- * Dynamic array
- *
- * @details Implementation of ArrayList.
- * @author tansudasli
- */
-
 #include <stdlib.h>
 #include <stdbool.h>
 
 #include "../header/ArrayList.h"
 
 #ifndef ANSI_C_LIST_H
-    typedef struct node {
+    typedef struct node NODE;
+
+    struct node {
         int info;
 
-        struct node *link;
-    } NODE;
+        NODE *link;
+    };
+
+    NODE *start, *last;
 #endif //ANSI_C_LIST_H
 
-
-NODE *start = NULL;
-NODE *last = NULL;
 int nodes = 0;
 
 /**
@@ -55,6 +49,16 @@ NODE * getLast() {
     };
 
     return last;
+}
+
+/**
+ * Nodes count. Injected into code, so calculates fast O(1).
+ *
+ * @return nodes
+ */
+int count() {
+
+    return nodes;                                             //return injected node.
 }
 
 /**
@@ -171,6 +175,9 @@ static NODE * create() {
  * @return start node
  */
 static NODE * initialize(int data) {
+    //init
+    start = NULL;
+    last = NULL;
 
     create();
 
@@ -427,12 +434,3 @@ void display() {
     } while (p);    //means node != NULL
 }
 
-/**
- * Nodes count. Injected into code, so calculates fast O(1).
- *
- * @return nodes
- */
-int count() {
-
-    return nodes;                                             //return injected node.
-}
