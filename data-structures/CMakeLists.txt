@@ -17,3 +17,8 @@ add_executable(collection
         src/collection/Collection.c
         src/linkedList.c)
 
+add_executable(selectionSort
+        src/header/Sort.h
+        src/collection/Sort.c
+        src/selectionSort.c)
+
