@@ -3,8 +3,6 @@
 #include <string.h>
 #include "header/Sort.h"
 
-//#define SIZE 10
-
 
 void printArr(void *c) {
     int i = 0;
@@ -23,7 +21,7 @@ int main(int argc, char **argv) {
 
     //init
     int x[] = {1, 5, 8, 3, 2, 9, 7, 6, 11, 10};
-    int *a = (int *)calloc(1, sizeof(x));
+    int *a = (int *) calloc(1, sizeof(x));
     memcpy(a, x, sizeof(x));
 
     printArr(&a[0]);
@@ -34,7 +32,7 @@ int main(int argc, char **argv) {
     sort(&a[0]);
     printArr(&a[0]);
 
-    sort2(&a[0], sizeof(x)/sizeof(int));
+    sort2(&a[0], sizeof(x)/sizeof(int), DESC);
     printArr(&a[0]);
 
     return 0;
