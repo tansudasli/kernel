@@ -3,8 +3,8 @@
 
 
 /**
- * Selection Sort in ascending order
- * O(n^2)
+ * Selection Sort
+ * O(n^2), in-place O(n), not data-sensitive, unstable,
  *
  * @param s: addr of int[], and updates the input in place
  * @param length: size of s
@@ -31,14 +31,14 @@ void sort2 (int *s, int length, DIRECTION direction) {    //todo: add descending
 }
 
 /**
- * Selection Sort in ascending order
+ * Selection Sort
  * O(n^2), in-place O(n), not data-sensitive, unstable,
  *
  * @param s: addr of int[], and updates the input in place. Waits NULL at the end of array so
  * it can calculate min values. Use calloc() and memcpy().
  * @param direction: DESC (default) or ASC flavor.
  */
-void sort (int *s, DIRECTION direction) {
+void sort1 (int *s, DIRECTION direction) {
     int index, tmp;
 
     int i = 0;
@@ -62,4 +62,16 @@ void sort (int *s, DIRECTION direction) {
 
         i++;
     } while(s[i]);
+}
+
+/**
+ * Bubble Sort
+ * O(n^2), in-place O(n), data-sensitive O(n) or O(n^2), unstable,
+ *
+ * @param s: addr of int[], and updates the input in place. Waits NULL at the end of array so
+ * it can calculate min values. Use calloc() and memcpy().
+ * @param direction: DESC (default) or ASC flavor.
+ */
+void sort3 (int *s, DIRECTION direction) {
+
 }
