@@ -8,7 +8,7 @@
  *
  * @param s: addr of int[], and updates the input in place
  * @param length: size of s
- * @param direction: asc is default, either desc
+ * @param direction: DESC (default) or ASC flavor.
  */
 void sort2 (int *s, int length, DIRECTION direction) {    //todo: add descending flavor
     int index, tmp;
@@ -36,6 +36,7 @@ void sort2 (int *s, int length, DIRECTION direction) {    //todo: add descending
  *
  * @param s: addr of int[], and updates the input in place. Waits NULL at the end of array so
  * it can calculate min values. Use calloc() and memcpy().
+ * @param direction: DESC (default) or ASC flavor.
  */
 void sort (int *s, DIRECTION direction) {
     int index, tmp;
