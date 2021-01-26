@@ -20,7 +20,8 @@ void printArr(void *c) {
 int main(int argc, char **argv) {
 
     //init
-    int x[] = {1, 5, 8, 3, 2, 9, 7, 6, 11, 10};
+    int x[] = {1, 5, 8, 3, 2, 9, 7, 6, 11, 10, '\0'}; //adding NULL at last element is important in some cases.!
+                                                      // or use calloc.
     int *a = (int *) calloc(1, sizeof(x));
     memcpy(a, x, sizeof(x));
 
@@ -32,8 +33,8 @@ int main(int argc, char **argv) {
     sort(&a[0], DESC);
     printArr(&a[0]);
 
-    sort2(&a[0], sizeof(x)/sizeof(int), DESC);
-    printArr(&a[0]);
+    sort2(&x[0], sizeof(x)/sizeof(int), DESC);
+    printArr(&x[0]);
 
     return 0;
 }

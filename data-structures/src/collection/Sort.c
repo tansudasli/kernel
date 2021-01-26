@@ -32,7 +32,7 @@ void sort2 (int *s, int length, DIRECTION direction) {    //todo: add descending
 
 /**
  * Selection Sort in ascending order
- * O(n^2)
+ * O(n^2), in-place O(n), not data-sensitive, unstable,
  *
  * @param s: addr of int[], and updates the input in place. Waits NULL at the end of array so
  * it can calculate min values. Use calloc() and memcpy().
