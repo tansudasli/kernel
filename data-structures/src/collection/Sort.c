@@ -17,7 +17,8 @@ void sort2 (int *s, int length, DIRECTION direction) {    //todo: add descending
         index = i;
 
         for (int j = i + 1; j < length; j++)
-            index = direction ? (s[j] < s[index] ? j : index) : (s[j] > s[index] ? j : index);
+            index = (direction == ASC ? (s[j] < s[index] ? j : index) :
+                                        (s[j] > s[index] ? j : index));
 
         //swap
         if ( i != index) {
@@ -36,24 +37,25 @@ void sort2 (int *s, int length, DIRECTION direction) {    //todo: add descending
  * @param s: addr of int[], and updates the input in place. Waits NULL at the end of array so
  * it can calculate min values. Use calloc() and memcpy().
  */
-void sort (int *s) {              //todo: add descending flavor
-    int minIndex, tmp;
+void sort (int *s, DIRECTION direction) {
+    int index, tmp;
 
     int i = 0;
     do {
-        minIndex = i;
+        index = i;
 
         //find min in the remaining
         int j = i;
         do {
-            minIndex = s[j] < s[minIndex] ? j : minIndex;
+            index = (direction == ASC ? (s[j] < s[index] ? j : index) :
+                                        (s[j] > s[index] ? j : index));
             j++;
         } while(s[j]);
 
         //swap
-        if ( i != minIndex) {
-            tmp = s[minIndex];
-            s[minIndex] = s[i];
+        if ( i != index) {
+            tmp = s[index];
+            s[index] = s[i];
             s[i] = tmp;
         }
 

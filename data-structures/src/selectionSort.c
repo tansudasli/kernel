@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
 //    printf("%lu\n", sizeof(x));   //10 * 4(int) = 40
 //    printf("%d %d %d\n", a[10], a[11], a[12]);  //we are sure that >length are null
 
-    sort(&a[0]);
+    sort(&a[0], DESC);
     printArr(&a[0]);
 
     sort2(&a[0], sizeof(x)/sizeof(int), DESC);
