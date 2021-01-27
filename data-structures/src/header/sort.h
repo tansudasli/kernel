@@ -1,11 +1,21 @@
 
-#ifndef x
+#ifndef d
     typedef
     enum direction {DESC, ASC} DIRECTION;
 #endif
 
-void sort (int *, DIRECTION);                    //selection-sort
-void sort2(int *, int, DIRECTION);
+#ifndef f
+    typedef
+    enum flavor {SELECTION_SORT, BUBBLE_SORT, INSERT_SORT} FLAVOR;
+#endif
+
+void sort(int *, DIRECTION, FLAVOR);
+
+void sort1(int *, DIRECTION);                     //selection-sort
+void sort2(int *, int, DIRECTION);                //selection-sort
+void sort3(int *, DIRECTION);                     //bubble-sort
+void sort4(int *, DIRECTION);                     //insert-sort
+
 
 
 

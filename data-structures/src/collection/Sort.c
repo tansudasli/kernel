@@ -66,12 +66,23 @@ void sort1 (int *s, DIRECTION direction) {
 
 /**
  * Bubble Sort
- * O(n^2), in-place O(n), data-sensitive O(n) or O(n^2), unstable,
+ * O(n^2), in-place O(n), data-sensitive O(n) or O(n^2), stable,
  *
- * @param s: addr of int[], and updates the input in place. Waits NULL at the end of array so
- * it can calculate min values. Use calloc() and memcpy().
+ * @param s: addr of int[],
  * @param direction: DESC (default) or ASC flavor.
  */
 void sort3 (int *s, DIRECTION direction) {
+
+}
+
+/**
+ * Insert Sort
+ * O(n^2), in-place O(n), data-sensitive O(n) or O(n^2), stable,
+ * Mostly suitable, if the array is already/mostly sorted! shell-sort is enhancement of insert-sort
+ *
+ * @param s: addr of int[],
+ * @param direction: DESC (default) or ASC flavor.
+ */
+void sort4 (int *s, DIRECTION direction) {
 
 }
