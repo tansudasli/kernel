@@ -18,6 +18,8 @@
 
 int nodes = 0;
 
+//todo: optimize code, such as faster getLast() ..
+
 /**
  * Returns *start pointer (1st node)
  *
@@ -36,16 +38,16 @@ NODE * getFirst() {
 NODE * getLast() {
 
     last = NULL;
-    NODE *first = start;
+    NODE *p = start;
 
     while (!last) {
 
-        if (!first->link) {
-            last = first;
+        if (!p->link) {
+            last = p;
             break;
         }
 
-        first = first->link;
+        p = p->link;
     };
 
     return last;
@@ -101,9 +103,8 @@ NODE * getByIndex(int i) {
     int index = 0;
 
     do {
-        if (index == i) {
+        if (index == i)
             break;
-        }
 
         index++;
         p = p->link;
@@ -198,10 +199,14 @@ static NODE * initialize(int data) {
  * -> Set nodes++.
  *
  * @param data
+ *  If,
+ *    start = NULL, initialize 1st, adjust start
+ *    start != NULL, find last, then attach to the last
  * @return node that created
  */
 NODE * append(int data) {
 
+    //null
     if (!start)               //not initialized
         return initialize(data);
 
@@ -221,29 +226,26 @@ NODE * append(int data) {
 /**
  * Insert at the node-index
  *
- * @param k node-index to insert
+ * -> Set nodes++
+ *
+ * @param k node-index
  * If,
  *    k = 0, replace 1st, adjust start
  *    k = nodes-1, append last
  *    k > 0 & k < nodes, replace kth node
  *    k < 0 | k > nodes, error
- *
- * -> Set nodes++
- *
- * @param k node-index
  * @param data new data
  * @return if error, return NULL or return inserted node
  */
 NODE * insertAt(int k, int data) {
 
-    if (k < 0 || k > count()-1) {
+    if (k < 0 || k > count() - 1) {
         perror("invalid node-index");
         return NULL;
     }
 
-    if (k == count() - 1) {
+    if (k == count() - 1)
         return append(data);
-    }
 
     //searchByIndex
     NODE *at = getByIndex(k);
