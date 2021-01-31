@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 /**
  * Dynamic array
  *
@@ -10,37 +12,51 @@
  * @author tansudasli
  */
 
-//todo: generics in C: info can be void* to handle any type of data
 typedef struct node NODE;
-struct node {
+typedef enum {BEFORE, AFTER} POSITION;
+
+typedef struct header {
+
+} HEADER;
+typedef struct data {
     int info;
 
-    NODE *link;
+} DATA;
+struct node {
+    HEADER header;
+    DATA data;            //todo: anytype data: info can be void* to handle any type of data
+
+    NODE *next;
+    NODE *previous;
 };
 
 NODE *start, *last;
+int nodeCount;
+bool sorted;
 
 //interfaces
-static NODE * create();                //creates start node,
-static NODE * initialize(int);         //creates start node and adds to 1st node
+static void init();             //init defaults
+NODE * create();                //creates start node
 
-NODE * getFirst();              //returns 1st node
-NODE * getLast();               //returns last node   //todo: optimize
-NODE * getByIndex(int);         //return Nth node by node-index
-NODE * getByData(int);          //return Nth node by data,
+NODE * getFirst();              //returns first node
+NODE * getLast();               //returns last node
 
-NODE * append(int);             //creates 1st node, or appends to the last node
-NODE * insertAt(int, int);      //insert at 1st, middle, end (append)   //todo: add insert sorted flavor
-int deleteAt(int);              //delete at 1st, middle, last, only
+NODE * search(DATA s);          //search node by data,    //todo: data dependent comparison!
+
+void append(DATA d);                              //appends to the last
+void attach(DATA d);                              //inserts at the beginning
+void insert(DATA s, POSITION pos, DATA d);        //insert between first and last   //todo: add insert sorted flavor
+void replace(DATA s, DATA r);                     //todo: replace s with r
+
+int delete(DATA s);             //delete at 1st, middle, last, only
+int clean();                    //deletes all records (free heap)    //todo: add a method to delete all records
 
 NODE * reverse();               //reverse (1st becomes last etc..)
 
-void display();                 //prints
-int count();                    //node count //todo: rename as size()
-
-int search(int);                //return node-index by data
-
-bool isSorted();                //todo: implement
+void display();                 //prints                  //todo: data dependent printf!
+void stats();                   //print some stat data
+int size();                     //node count
+bool isSorted();                //default not sorted
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H

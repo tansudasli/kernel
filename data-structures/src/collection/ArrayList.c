@@ -4,26 +4,230 @@
 
 #include "../header/ArrayList.h"
 
-#ifndef ANSI_C_LIST_H
-    typedef struct node NODE;
-
-    struct node {
-        int info;
-
-        NODE *link;
-    };
-
-    NODE *start, *last;
-#endif //ANSI_C_LIST_H
-
-int nodes = 0;
-
-//todo: optimize code, such as faster getLast() ..
 
 /**
- * Returns *start pointer (1st node)
+ * Inits variables
+ */
+static void init() {
+    start = NULL;
+    last = NULL;
+
+    nodeCount = 0;
+    sorted = false;
+}
+
+/**
+ * Initializes and creates empty ArrayList.
  *
- * @return start
+ * @return start node
+ */
+NODE * create() {
+
+    init();
+
+    start = (NODE *) calloc(1, sizeof(NODE));
+    if (!start) {
+        perror("no-allocation");
+        return NULL;
+    }
+
+    //init rest
+    start->next = NULL;
+    start->previous = NULL;
+    start->data.info = -1;
+
+    //inject
+    last = start;
+
+    return start;
+}
+
+/**
+ * Appends to the last.
+ * After create(), always use append() for the first node. Then use attach() or insert().
+ * If,
+ *   - start is NULL, error occurs
+ *   - otherwise,
+ *       - if empty, appends to start.
+ *       - or, appends to last
+ *
+ * @param d: DATA to append
+ */
+void append(DATA d) {
+    if (!start) {
+        perror("not created");
+        return;
+    }
+
+    NODE *p = (NODE *) calloc(1, sizeof(NODE));
+    if (!p) {
+        perror("no-allocation");
+        return;
+    }
+
+    //init new node
+    p->data = d;
+    p->next = NULL;
+    p->previous = last;
+
+    //append
+    last->next = p;
+
+    //injections
+    last = p;
+    nodeCount++;
+}
+
+/**
+ * Inserts between start and first node.
+ * If,
+ *   - start is NULL or empty, error occurs
+ *   - otherwise, appends to the last.
+ *
+ * @param d : DATA to attach
+ */
+void attach(DATA d) {
+    if (!start) {
+        perror("not created");
+        return;
+    }
+    if (nodeCount == 0) {
+        perror("not initialized");
+        return;
+    }
+
+    NODE *p = (NODE *) calloc(1, sizeof(NODE));
+    if (!p) {
+        perror("no-allocation");
+        return;
+    }
+
+    //init new node
+    p->data = d;
+    p->next = start->next;
+    p->previous = start;
+    start->next->previous = p;
+
+    //attach
+    start->next = p;
+
+    //injections
+    nodeCount++;
+
+}
+
+/**
+ * Insert between first and last nodes.
+ * If,
+ *   - start is NULL or empty, error occurs
+ *   - s is start, then inserting BEFORE triggers attach()
+ *   - s is last, then inserting AFTER triggers append()
+ *   - otherwise, search() s, then inserts regarding pos.
+ *
+ * @param s: DATA to find
+ * @param pos: BEFORE or AFTER position to insert
+ * @param d: DATA to insert
+ */
+void insert(DATA s, POSITION pos, DATA d) {
+    if (!start) {
+        perror("not created");
+        return;
+    }
+    if (nodeCount == 0) {
+        perror("not initialized");
+        return;
+    }
+
+    //search
+    NODE *p = search(s);
+    if (!p) {
+        perror("not found");
+        return;
+    }
+
+    //p is first node (after start), so inserting before means attaching!
+    if (p == start->next && pos == BEFORE) {
+        printf("...trigger attach()");
+        attach(d);
+
+        return;
+    }
+    //p is last node, so inserting after means appending!
+    if (p == last && pos == AFTER) {
+        printf("...trigger append()");
+        append(d);
+
+        return;
+    }
+
+    //init
+    NODE *tmp = (NODE *) calloc(1, sizeof(NODE));
+    if(!tmp) {
+        perror("no-allocation");
+        return;
+    }
+
+    //insert: between which means no touch to start or last
+    if (pos == BEFORE) {
+
+        tmp->data = d;
+        tmp->next = p;
+        tmp->previous = p->previous;
+        p->previous->next = tmp;
+        p->previous = tmp;
+
+        //injections
+        nodeCount++;
+
+    } else {
+
+        tmp->data = d;
+        tmp->next = p->next;
+        tmp->previous = p;
+        p->next->previous = tmp;
+        p->next = tmp;
+
+        //injections
+        nodeCount++;
+    }
+
+}
+
+/**
+ * Insert between first and last nodes.
+ * If,
+ *   - start is NULL or empty, error occurs
+ *   - otherwise, loops all nodes till found
+ *
+ * @param s : DATA to search in nodes
+ * @return : found node or NULL if not found or error occurred.
+ */
+NODE * search(DATA s) {
+    if (!start) {
+        perror("not created");
+        return NULL;
+    }
+    if (nodeCount == 0) {
+        perror("not initialized");
+        return NULL;
+    }
+
+    //loop all
+    NODE *p = start;
+    do {
+        if (p->data.info == s.info)
+            break;
+
+        p = p->next;
+    } while (p);
+
+    return p;
+}
+
+/**
+ * Start node
+ *
+ * @return : start
  */
 NODE * getFirst() {
 
@@ -31,408 +235,80 @@ NODE * getFirst() {
 }
 
 /**
- * Returns *last pointer (Nth node). Loops all nodes, performs as O(n)
+ * Last node
  *
- * @return last
+ * @return : last
  */
 NODE * getLast() {
-
-    last = NULL;
-    NODE *p = start;
-
-    while (!last) {
-
-        if (!p->link) {
-            last = p;
-            break;
-        }
-
-        p = p->link;
-    };
 
     return last;
 }
 
 /**
- * Nodes count. Injected into code, so calculates fast O(1).
+ * Node count
+ * - except start node
  *
- * @return nodes
+ * @return : node count
  */
-int count() {
+int size() {
 
-    return nodes;                                             //return injected node.
+    return nodeCount;
 }
 
 /**
- * Finds the node at node-index
+ * Default not sorted.
  *
- * -> Not updates nodes.
- *
- * @param i (zero-based) node-index<br>
- * If,<br>
- *    i = 0, start                 O(1)<br>
- *    i = nodes-1, last            O(1)<br>
- *    i > 0 & i < nodes-1, loop    O(n)<br>
- *    i < 0 | i > nodes-1, error
- * @return if not found, NULL or the node
+ * @return : bool
  */
-NODE * getByIndex(int i) {
+bool isSorted() {
+    return sorted;
+}
+
+/**
+ * some internal stats , pointer's addr etc...
+ */
+void stats() {
+
     if (!start) {
-        perror("not initialized");
-        return NULL;
+        perror("not created");
+        return;
     }
 
-    //error
-    if (i < 0 || i > count()-1) {
-        perror("invalid node-index");
-        return NULL;
-    }
+    printf("\n\n---------------stats----------------\n");
 
-    //1st node
-    if (i == 0) {
-        return start;
-    }
-
-    //last
-    if (i == count()-1) {
-        return last;
-    }
-
-    //loop to find
-    NODE *p = getFirst();
-    int index = 0;
-
+    NODE *p = start;
+    printf("seq data prev\t\t p\t\t next\n");
+    int i = 0;
     do {
-        if (index == i)
-            break;
+        printf("%d   %d\t %p\t %p\t %p\n", i, p->data.info, p->previous, p, p->next);
 
-        index++;
-        p = p->link;
+        i++;
+        p = p->next;
     } while (p);
 
-    return p;
-}
-
-/**
- * Finds t in nodes while looping all nodes. O(n)
- *
- * -> Not updates nodes.
- *
- * @param t search data
- * @return if not found, NULL or node
- */
-NODE * getByData(int t) {
-    if (!start) {
-        perror("not initialized");
-        return NULL;
-    }
-
-    NODE *p = getFirst();
-    bool found = false;
-    int index = 0;
-
-    do {
-        if (p->info == t) {    //todo: compare function
-            found = true;
-            break;
-        }
-
-        index++;
-        p = p->link;
-    } while (p);
-
-    return found ? p : NULL;
+    printf("------------end of stats------------\n");
 
 }
 
 /**
- * Creates 1st start node.
- * .. To initialize, use initialize()
- * .. To get start, use getFirst()
- *
- * -> Not updates nodes.
- *
- * @return start
- */
-static NODE * create() {
-    start = (NODE *)calloc(1, sizeof(NODE));
-    if (!start) {
-        perror("no allocation");
-        return NULL;
-    }
-
-    start->info = -1;
-    start->link = NULL;
-
-    return start;
-}
-
-/**
- * Creates and adds first node.
- *
- * -> Set nodes=1.
- *
- * @param data for new node
- * @return start node
- */
-static NODE * initialize(int data) {
-    //init
-    start = NULL;
-    last = NULL;
-
-    create();
-
-    if (!start) {
-        return NULL;
-    }
-
-    start->info = data;
-    start->link = NULL;
-    nodes = 1;
-
-    return start;
-}
-
-/**
- * Appends new node to the end. If not initialized, then creates 1st node.
- *
- * -> Set nodes++.
- *
- * @param data
- *  If,
- *    start = NULL, initialize 1st, adjust start
- *    start != NULL, find last, then attach to the last
- * @return node that created
- */
-NODE * append(int data) {
-
-    //null
-    if (!start)               //not initialized
-        return initialize(data);
-
-    //create new node
-    NODE *tmp = (NODE *)calloc(1, sizeof(NODE));
-
-    tmp->info = data;
-    tmp->link = NULL;
-
-    //find last node, and attach
-    getLast()->link = tmp;
-    nodes++;
-
-    return tmp;
-}
-
-/**
- * Insert at the node-index
- *
- * -> Set nodes++
- *
- * @param k node-index
- * If,
- *    k = 0, replace 1st, adjust start
- *    k = nodes-1, append last
- *    k > 0 & k < nodes, replace kth node
- *    k < 0 | k > nodes, error
- * @param data new data
- * @return if error, return NULL or return inserted node
- */
-NODE * insertAt(int k, int data) {
-
-    if (k < 0 || k > count() - 1) {
-        perror("invalid node-index");
-        return NULL;
-    }
-
-    if (k == count() - 1)
-        return append(data);
-
-    //searchByIndex
-    NODE *at = getByIndex(k);
-    if (!at) {
-        perror("not found");
-        return NULL;
-    }
-
-    NODE *previousAt = k == 0 ? NULL : getByIndex(k-1);
-    if (!previousAt && k != 0) {
-        perror("not found");
-        return NULL;
-    }
-
-    //create tmp data
-    NODE *tmp = (NODE *) calloc(1, sizeof(NODE));
-    if (!tmp) {
-        perror("no allocation");
-        return NULL;
-    }
-
-    tmp->info = data;
-    tmp->link = at;
-
-    if (k == 0)
-        start = tmp;
-    else
-        previousAt->link = tmp;
-
-    nodes++;                    //injected count update
-
-    return tmp;
-}
-
-/**
- * Delete at the node-index <br>
- * If,<br>
- *    k = 0, delete 1st, adjust start<br>
- *    k = 0 & nodes-1=1, delete only and free<br>
- *    k = nodes-1, delete last<br>
- *    k > 0 & k < nodes, delete kth node<br>
- *    k < 0 | k > nodes, error<br>
- *
- * Set nodes++
- *
- * @param k node-index
- * @return if error, return -1 or return 0
- */
-int deleteAt(int k) {
-
-    //error
-    if (k < 0 || k > count()-1) {
-        perror("invalid node-index");
-        return -1;
-    }
-
-    //only
-    if (k == 0 && count() == 1) {
-        free(start);
-        nodes = 0;         //injected count update
-
-        return 0;
-    }
-
-    NODE *tmp;
-    NODE *tmpPrevious;
-
-    //1st but not last
-    if (k == 0) {
-        tmp = getByIndex(k);
-        if (!tmp) {
-            return -1;
-        }
-
-        start = tmp->link;
-        nodes--;           //injected count update
-
-        tmp = NULL;
-
-        return 0;
-    }
-
-    //last
-    if (k == count()-1) {
-
-        tmp = getByIndex(k-1);   //before last
-        if (!tmp) {
-            return -1;
-        }
-
-        tmp->link = NULL;
-        nodes--;         //injected count update
-
-        return 0;
-    }
-
-    //between
-    tmp = getByIndex(k);
-    tmpPrevious = getByIndex(k-1);
-    if (!tmp || !tmpPrevious) {
-        return -1;
-    }
-
-    tmpPrevious->link = tmp->link;
-    nodes--;        //injected count update
-
-
-    return 0;
-}
-
-/**
- * Reverses the list from start node.
- *
- * --> updates start
- *
- * @return if error, returns old start, or new start node
- */
-NODE * reverse() {
-    NODE *previous, *next, *p;
-
-    previous = NULL;
-    p = getFirst();
-    do {
-       next = p->link;
-       p->link = previous;
-       previous = p;
-
-       p = next;
-    } while (p);
-
-    start = previous;            //injected start
-
-    return start;
-}
-
-/**
- * Finds t in nodes while looping all nodes. O(n)
- *
- * -> Not updates nodes.
- *
- * @param t search data
- * @return if not found, -1 or (zero-based) node-index
- */
-int search(int t) {
-    if (!start) {
-        perror("not initialized");
-        return -1;
-    }
-
-    NODE *p = getFirst();
-    int index = 0;
-    bool found = false;
-
-    do {
-        if (p->info == t) {    //todo: compare function
-            found = true;
-            break;
-        }
-
-        index++;
-        p = p->link;
-    } while (p);
-
-    return found ? index : -1;
-}
-
-/**
- * Access all nodes from *start to the end. Performs O(n).
- * Also, updates the node count.
- *
- * -> Set 0, then nodes++.
- *
+ * Prints
  */
 void display() {
 
-    if (!getFirst()) {
+    if (!start) {
+        perror("not created");
+        return;
+    }
+    if (nodeCount == 0) {
         perror("not initialized");
         return;
     }
 
-    NODE *p = getFirst();
-    nodes = 0;
+    NODE *p = start;
     do {
-        nodes++;                                               //injected count update
-        printf("info=%d, addr=%p\n", p->info, p->link);
+        printf("%d  ", p->data.info);
 
-        p = p->link;
-    } while (p);    //means node != NULL
+        p = p->next;
+    } while (p);
+
 }
-
