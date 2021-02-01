@@ -242,6 +242,12 @@ NODE * search(DATA s) {
     return p;
 }
 
+/**
+ * Finds middle node and makes comparison.
+ *
+ * @param s : search data
+ * @return : if not found NULL, otherwise matching node
+ */
 NODE * binarySearch(DATA s) {
     if (!start) {
         perror("not created");
@@ -252,12 +258,20 @@ NODE * binarySearch(DATA s) {
         return NULL;
     }
 
-    NODE *b, *e, *m;
-    do {
-//        m =
-    } while ( 1==1);
+    NODE *b = start, *e = last, *m;
+    while (e || b) {
+        //find middle node
+        m = getMiddle(b, e);
+        if (!m) return NULL;
 
-    //find middle node
+        if (s.info == m->data.info) return m;
+        if (s.info > m->data.info) b = m->next;
+        if (s.info < m->data.info) e = m->previous;
+
+    };
+
+    return NULL;
+
     //compare middle, then divide again, till it found
 }
 
@@ -300,13 +314,16 @@ NODE * getMiddle(NODE *b, NODE *e) {
     }
 
     //if count is even (count/2)+1, otherwise (count/2)
-    NODE *slow = start, *fast = start;
-
-    do {
+    NODE *slow = b, *fast = b, *end = e;
+    while (fast != e) {
+        if (fast->next == e) {
+            slow = slow->next;
+            break;
+        }
         slow = slow->next;
         fast = fast->next->next;
 
-    } while (fast != last || !fast);
+    };
 
     return slow;
 }
