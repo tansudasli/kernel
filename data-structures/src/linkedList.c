@@ -14,7 +14,6 @@ int main (int argc, char **argv) {
     //add to last
     DATA n[] = {5, 3, 10, 2, 1, 17};
 
-
     for (int i = 0; i < 6; i++)
        append(n[i]);
 
@@ -38,6 +37,9 @@ int main (int argc, char **argv) {
 //
 //        p = p->next;
 //    }
+
+    NODE *middle = getMiddle(p, getLast());
+    printf("\nmiddle= %d\n", middle->data.info);
 
     //search
     printf("\nseeking %d..", n[5].info);
@@ -65,6 +67,11 @@ int main (int argc, char **argv) {
     printf("\n");
 
     display();
+
+    //test middle for binary search
+    middle = getMiddle(p, getLast());
+    printf("middle= %d\n", middle->data.info);
+
 
     //
 

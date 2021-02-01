@@ -194,6 +194,24 @@ void insert(DATA s, POSITION pos, DATA d) {
 }
 
 /**
+ * Delete a node
+ * If,<br>
+ *    s is 1st node, delete 1st, adjust start<br>
+ *    s is 1st and only node, delete and free()<br>
+ *    s is last, delete last<br>
+ *    s is between 1st and last, delete<br>
+ *    s is not found, error<br>
+ *
+ * @param s : DATA to search and delete
+ * @return : if error or not found, return -1 or return 0
+ */
+int delete(DATA s) {
+   //
+
+   return 0;
+}
+
+/**
  * Insert between first and last nodes.
  * If,
  *   - start is NULL or empty, error occurs
@@ -224,6 +242,25 @@ NODE * search(DATA s) {
     return p;
 }
 
+NODE * binarySearch(DATA s) {
+    if (!start) {
+        perror("not created");
+        return NULL;
+    }
+    if (nodeCount == 0) {
+        perror("not initialized");
+        return NULL;
+    }
+
+    NODE *b, *e, *m;
+    do {
+//        m =
+    } while ( 1==1);
+
+    //find middle node
+    //compare middle, then divide again, till it found
+}
+
 /**
  * Start node
  *
@@ -242,6 +279,19 @@ NODE * getFirst() {
 NODE * getLast() {
 
     return last;
+}
+
+NODE * getMiddle(NODE *b, NODE *e) {
+    //if count is even (count/2)+1, otherwise (count/2)
+    NODE *slow = start, *fast = start;
+
+    do {
+        slow = slow->next;
+        fast = fast->next->next;
+
+    } while (fast != last || !fast);
+
+    return slow;
 }
 
 /**

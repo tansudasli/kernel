@@ -38,25 +38,29 @@ bool sorted;
 static void init();             //init defaults
 NODE * create();                //creates start node
 
-NODE * getFirst();              //returns first node
-NODE * getLast();               //returns last node
+NODE * getFirst();                   //O(1) - returns first node
+NODE * getLast();                    //O(1) - returns last node
+NODE * getMiddle(NODE *b, NODE *e);  //O(logn) - returns in the middle node       //todo: impl.
 
-NODE * search(DATA s);          //search node by data,    //todo: data dependent comparison!
+NODE * search(DATA s);          //O(n) - search node by data                      //todo: data dependent comparison!
+NODE * search2(int s);          //search node by int data in DATA struct          //todo: impl.
+NODE * search3(char* s);        //search node by string data in DATA struct       //todo: impl.
+NODE * binarySearch(DATA s);    //O(logn) - search node by data
 
-void append(DATA d);                              //appends to the last
-void attach(DATA d);                              //inserts at the beginning
-void insert(DATA s, POSITION pos, DATA d);        //insert between first and last   //todo: add insert sorted flavor
-void replace(DATA s, DATA r);                     //todo: replace s with r
+void append(DATA d);                            //O(1) - appends to the last
+void attach(DATA d);                            //O(1) -  inserts at the beginning
+void insert(DATA s, POSITION pos, DATA d);      //O(n) - insert between first and last   //todo: add insert sorted flavor
+void replace(DATA s, DATA r);                   //O(n) - replace s with r          //todo: impl.
 
-int delete(DATA s);             //delete at 1st, middle, last, only
+int delete(DATA s);             //O(n) - delete at 1st, middle, last, only  //todo: impl.
 int clean();                    //deletes all records (free heap)    //todo: add a method to delete all records
 
-NODE * reverse();               //reverse (1st becomes last etc..)
+NODE * reverse();               //O(n) - reverse (1st becomes last etc..)   //todo: impl.
 
-void display();                 //prints                  //todo: data dependent printf!
-void stats();                   //print some stat data
-int size();                     //node count
-bool isSorted();                //default not sorted
+void display();                 //O(n) - prints                  //todo: data dependent printf!
+void stats();                   //O(n) - print some stat data
+int size();                     //O(1) - node count
+bool isSorted();                //O(1) - default not sorted      //todo: impl.
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H
