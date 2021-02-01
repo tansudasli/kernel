@@ -15,4 +15,8 @@
 
 
 //todo: implement merge or other utility functions
+NODE * merge(NODE *m, NODE *o) {
+    //if unsorted, then add o to m - O(1)
+    //if sorted, then compare and merge O(n|m)
 
+}
