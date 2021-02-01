@@ -3,7 +3,6 @@
 
 #include "header/ArrayList.h"
 
-
 NODE *p = NULL;
 
 int main (int argc, char **argv) {
@@ -12,7 +11,8 @@ int main (int argc, char **argv) {
     p = create();
 
     //add to last
-    DATA n[] = {5, 3, 10, 2, 1, 17};
+    //creates sorted intentionally!
+    DATA n[] = {5, 8, 10, 20, 31, 57};
 
     for (int i = 0; i < 6; i++)
        append(n[i]);
@@ -21,59 +21,44 @@ int main (int argc, char **argv) {
     printf("------------original------------\n");
     for (int i = 0; i < 6; i++)
         printf("%d  ", n[i].info);
-    printf("\n------------original------------\n");
+    printf("\n------------------------------\n");
 
 
     //attach to beginning
-    printf("attach %d\n", n[3].info); attach(n[3]);
-    printf("attach %d\n", n[3].info); attach(n[3]);
-
+    DATA d1, d2; d1.info = 3; d2.info = 2;
+    printf("attach %d\n", d1.info); attach(d1);
+    printf("attach %d\n", d2.info); attach(d2);
 
     //
     display();
-//    p = getFirst();
-//    while (p) {
-//        printf("%d ", p->data.info);
-//
-//        p = p->next;
-//    }
+    /**
+    p = getFirst();
+    while (p) {
+        printf("%d ", p->data.info);
 
-    NODE *middle = getMiddle(p, getLast());
-    printf("\nmiddle= %d\n", middle->data.info);
-
-    //search
-    printf("\nseeking %d..", n[5].info);
-    NODE *f = search(n[5]);
-    f == NULL ? printf("not found") : printf("found on %p as %d", f, f->data.info);
-
-    printf("\nseeking %d..", n[0].info);
-    f = search(n[0]);
-    f == NULL ? printf("not found") : printf("found on %p as %d", f, f->data.info);
+        p = p->next;
+    }
+     */
 
     //insert (before)
-    DATA d; d.info = 51;
-    printf("\ninserting %d before %d..", d.info, n[0].info);
-    insert(n[0], BEFORE, d);
+    d1.info = 4; d2.info = 6;
+    printf("\ninserting %d before %d..", d1.info, n[0].info);
+    insert(n[0], BEFORE, d1);
 
-    printf("\ninserting %d after %d..", d.info, n[0].info);
-    insert(n[0], AFTER, d);
+    printf("\ninserting %d after %d..", d2.info, n[0].info);
+    insert(n[0], AFTER, d2);
 
-    printf("\ninserting %d after last..", d.info);
-    insert(n[5], AFTER, d);
+    d2.info = 60;
+    printf("\ninserting %d after last..", d2.info);
+    insert(n[5], AFTER, d2);
 
-    printf("\ninserting %d before start..", d.info);
-    insert(n[3], BEFORE, d);
+    d1.info = 2; d2.info = 1;
+    printf("\ninserting %d before start..", d2.info);
+    insert(d1, BEFORE, d2);
 
     printf("\n");
 
     display();
-
-    //test middle for binary search
-    middle = getMiddle(p, getLast());
-    printf("\nmiddle= %d\n", middle->data.info);
-
-
-    //
 
 
     //
