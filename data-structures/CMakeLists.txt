@@ -10,6 +10,16 @@ add_executable(linkedList
         src/collection/ArrayList.c
         src/linkedList.c)
 
+add_executable(linkedList.Middle
+        src/header/ArrayList.h
+        src/collection/ArrayList.c
+        src/linkedList.middle.c)
+
+add_executable(linkedList.Search
+        src/header/ArrayList.h
+        src/collection/ArrayList.c
+        src/linkedList.search.c)
+
 #add_executable(collection
 #        src/header/ArrayList.h
 #        src/collection/ArrayList.c
