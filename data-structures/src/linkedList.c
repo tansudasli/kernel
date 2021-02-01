@@ -70,7 +70,7 @@ int main (int argc, char **argv) {
 
     //test middle for binary search
     middle = getMiddle(p, getLast());
-    printf("middle= %d\n", middle->data.info);
+    printf("\nmiddle= %d\n", middle->data.info);
 
 
     //

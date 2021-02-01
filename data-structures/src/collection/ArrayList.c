@@ -281,7 +281,24 @@ NODE * getLast() {
     return last;
 }
 
+/**
+ * Locate middle node.
+ * Useful for binarySearch() methods.
+ *
+ * @param b : beginning node
+ * @param e : end node
+ * @return : middle node
+ */
 NODE * getMiddle(NODE *b, NODE *e) {
+    if (!b) {
+        perror("not valid");
+        return NULL;
+    }
+    if (!e) {
+        perror("not valid");
+        return NULL;
+    }
+
     //if count is even (count/2)+1, otherwise (count/2)
     NODE *slow = start, *fast = start;
 
