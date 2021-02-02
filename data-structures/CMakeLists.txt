@@ -20,6 +20,11 @@ add_executable(linkedList.Search
         src/collection/ArrayList.c
         src/linkedList.search.c)
 
+add_executable(linkedList.BinarySearch
+        src/header/ArrayList.h
+        src/collection/ArrayList.c
+        src/linkedList.binarySearch.c)
+
 #add_executable(collection
 #        src/header/ArrayList.h
 #        src/collection/ArrayList.c
