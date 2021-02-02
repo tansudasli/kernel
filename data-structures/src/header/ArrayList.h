@@ -30,7 +30,7 @@ struct node {
     NODE *previous;
 };
 
-NODE *start, *last;
+NODE *start, *last;        //todo: think about (start as node vs start)
 int nodeCount;
 bool sorted;
 
@@ -40,12 +40,12 @@ NODE * create();                //creates start node
 
 NODE * getFirst();                   //O(1) - returns first node
 NODE * getLast();                    //O(1) - returns last node
-NODE * getMiddle(NODE *b, NODE *e);  //O(logn) - returns in the middle node       //todo: impl.
+NODE * getMiddle(NODE *b, NODE *e);  //O(logn) - returns in the middle node
 
-NODE * search(DATA s);          //O(n) - search node by data                      //todo: data dependent comparison!
-NODE * search2(int s);          //search node by int data in DATA struct          //todo: impl.
-NODE * search3(char* s);        //search node by string data in DATA struct       //todo: impl.
-NODE * binarySearch(DATA s);    //O(logn) - search node by data
+NODE * search(DATA s);          //O(n) - search                                //todo: data dependent comparison!
+NODE * search2(int s);          //search by int in DATA struct                 //todo: impl.
+NODE * search3(char* s);        //search by string in DATA struct              //todo: impl.
+NODE * binarySearch(DATA s);    //O(logn) - search by splitting into middles   //todo: data dependent comparison!
 
 void append(DATA d);                            //O(1) - appends to the last
 void attach(DATA d);                            //O(1) -  inserts at the beginning

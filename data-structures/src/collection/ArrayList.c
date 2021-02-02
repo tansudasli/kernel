@@ -243,7 +243,9 @@ NODE * search(DATA s) {
 }
 
 /**
- * Finds middle node and makes comparison.
+ * Finds middle node and then, makes comparison.
+ * Focuses always middle, and compare with middle. Otherwise, b or e will be null, at last.
+ * Works on sorted data.
  *
  * @param s : search data
  * @return : if not found NULL, otherwise matching node
@@ -296,8 +298,10 @@ NODE * getLast() {
 }
 
 /**
- * Locate middle node.
- * Useful for binarySearch() methods.
+ * Locates middle node, using start end end node approach. So it can be called recursively.
+ * Uses 2 pointers, one moves 1-step, second moves 2-steps. When faster reaches the end, slow shows the middle.
+ * Better than mathematical (n/2) approach, if you can not have (or not meaningful) index-based reach.
+ * Useful for binarySearch() method.
  *
  * @param b : beginning node
  * @param e : end node
@@ -314,15 +318,16 @@ NODE * getMiddle(NODE *b, NODE *e) {
     }
 
     //if count is even (count/2)+1, otherwise (count/2)
-    NODE *slow = b, *fast = b, *end = e;
+    NODE *slow = b, *fast = b;
     while (fast != e) {
+        //moving fast 2-steps cause missing end point.
         if (fast->next == e) {
             slow = slow->next;
             break;
         }
+
         slow = slow->next;
         fast = fast->next->next;
-
     };
 
     return slow;
