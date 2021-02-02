@@ -9,52 +9,54 @@
  * Inits variables
  */
 static void init() {
-    start = NULL;
-    last = NULL;
+    head = NULL;
+    tail = NULL;
 
     nodeCount = 0;
     sorted = false;
 }
 
 /**
- * Initializes and creates empty ArrayList.
+ * Initializes and creates 1st node of ArrayList.
+ * Sets Tail and Head pointers to the 1st node.
  *
- * @return start node
+ * @param d : 1st node's Data
+ * @return : head node which points to (1st node)
  */
-NODE * create() {
+NODE * create(DATA d) {
 
     init();
 
-    start = (NODE *) calloc(1, sizeof(NODE));
-    if (!start) {
+    NODE *p = (NODE *) calloc(1, sizeof(NODE));
+    if (!p) {
         perror("no-allocation");
         return NULL;
     }
 
     //init rest
-    start->next = NULL;
-    start->previous = NULL;
-    start->data.info = -1;
+    p->next = NULL;
+    p->previous = NULL;
+    p->data.info = d.info;
 
     //inject
-    last = start;
+    head = p;
+    tail = head;
+    nodeCount++;
 
-    return start;
+    return head;
 }
 
 /**
  * Appends to the last.
- * After create(), always use append() for the first node. Then use attach() or insert().
+ *
  * If,
- *   - start is NULL, error occurs
- *   - otherwise,
- *       - if empty, appends to start.
- *       - or, appends to last
+ *   - head is NULL, error occurs
+ *   - otherwise, appends to tail
  *
  * @param d: DATA to append
  */
 void append(DATA d) {
-    if (!start) {
+    if (!head) {
         perror("not created");
         return;
     }
@@ -68,26 +70,26 @@ void append(DATA d) {
     //init new node
     p->data = d;
     p->next = NULL;
-    p->previous = last;
+    p->previous = tail;
 
     //append
-    last->next = p;
+    tail->next = p;
 
     //injections
-    last = p;
+    tail = p;
     nodeCount++;
 }
 
 /**
- * Inserts between start and first node.
+ * Inserts between 1st and 2nd node.
  * If,
- *   - start is NULL or empty, error occurs
- *   - otherwise, appends to the last.
+ *   - head is NULL or (size = 0), error occurs
+ *   - otherwise, inserts  to the last.
  *
  * @param d : DATA to attach
  */
 void attach(DATA d) {
-    if (!start) {
+    if (!head) {
         perror("not created");
         return;
     }
@@ -104,32 +106,31 @@ void attach(DATA d) {
 
     //init new node
     p->data = d;
-    p->next = start->next;
-    p->previous = start;
-    start->next->previous = p;
+    p->next = head;
+    p->previous = NULL;
+    head->previous = p;
 
     //attach
-    start->next = p;
+    head = p;
 
     //injections
     nodeCount++;
-
 }
 
 /**
- * Insert between first and last nodes.
+ * Insert between head and tail nodes.
  * If,
- *   - start is NULL or empty, error occurs
- *   - s is start, then inserting BEFORE triggers attach()
- *   - s is last, then inserting AFTER triggers append()
- *   - otherwise, search() s, then inserts regarding pos.
+ *   - head is NULL or (size = 0), error occurs
+ *   - s is head, then inserting BEFORE triggers attach()
+ *   - s is tail, then inserting AFTER triggers append()
+ *   - otherwise, search() s, then inserts regarding pos (BEFORE or AFTER).
  *
  * @param s: DATA to find
  * @param pos: BEFORE or AFTER position to insert
  * @param d: DATA to insert
  */
 void insert(DATA s, POSITION pos, DATA d) {
-    if (!start) {
+    if (!head) {
         perror("not created");
         return;
     }
@@ -139,21 +140,22 @@ void insert(DATA s, POSITION pos, DATA d) {
     }
 
     //search
+    //todo: uses search() instead of binarySearch(). optimize
     NODE *p = search(s);
     if (!p) {
         perror("not found");
         return;
     }
 
-    //p is first node (after start), so inserting before means attaching!
-    if (p == start->next && pos == BEFORE) {
+    //p is first node, so inserting before means attaching!
+    if (p == head && pos == BEFORE) {
         printf("...trigger attach()");
         attach(d);
 
         return;
     }
     //p is last node, so inserting after means appending!
-    if (p == last && pos == AFTER) {
+    if (p == tail && pos == AFTER) {
         printf("...trigger append()");
         append(d);
 
@@ -167,7 +169,7 @@ void insert(DATA s, POSITION pos, DATA d) {
         return;
     }
 
-    //insert: between which means no touch to start or last
+    //insert: between which means no touch to head or tail nodes
     if (pos == BEFORE) {
 
         tmp->data = d;
@@ -196,9 +198,9 @@ void insert(DATA s, POSITION pos, DATA d) {
 /**
  * Delete a node
  * If,<br>
- *    s is 1st node, delete 1st, adjust start<br>
+ *    s is 1st node, delete 1st, adjust head<br>
  *    s is 1st and only node, delete and free()<br>
- *    s is last, delete last<br>
+ *    s is last, delete last, adjust tail <br>
  *    s is between 1st and last, delete<br>
  *    s is not found, error<br>
  *
@@ -206,22 +208,26 @@ void insert(DATA s, POSITION pos, DATA d) {
  * @return : if error or not found, return -1 or return 0
  */
 int delete(DATA s) {
-   //
+   //search vs binarySearch
+
+   //delete
+
+   //injections
 
    return 0;
 }
 
 /**
- * Insert between first and last nodes.
+ * Searches from 1st to last nodes.
  * If,
- *   - start is NULL or empty, error occurs
- *   - otherwise, loops all nodes till found
+ *   - start is NULL or (size = 0), error occurs
+ *   - otherwise, loops all nodes till it founds
  *
  * @param s : DATA to search in nodes
- * @return : found node or NULL if not found or error occurred.
+ * @return : founded node, otherwise NULL if not found or error occurred.
  */
 NODE * search(DATA s) {
-    if (!start) {
+    if (!head) {
         perror("not created");
         return NULL;
     }
@@ -231,7 +237,7 @@ NODE * search(DATA s) {
     }
 
     //loop all
-    NODE *p = start;
+    NODE *p = head;
     do {
         if (p->data.info == s.info)
             break;
@@ -244,14 +250,15 @@ NODE * search(DATA s) {
 
 /**
  * Finds middle node and then, makes comparison.
- * Focuses always middle, and compare with middle. Otherwise, b or e will be null, at last.
+ * Focuses always middle, and compares with middle. At last steps, either b or e will be null, or b > e.
+ * So there are 4 possible exit ways!!
  * Works on sorted data.
  *
  * @param s : search data
  * @return : if not found NULL, otherwise matching node
  */
 NODE * binarySearch(DATA s) {
-    if (!start) {
+    if (!head) {
         perror("not created");
         return NULL;
     }
@@ -260,9 +267,8 @@ NODE * binarySearch(DATA s) {
         return NULL;
     }
 
-    NODE *b = start->next, *e = last, *m=NULL;
+    NODE *b = head, *e = tail, *m = NULL;
     do {
-
         //find middle
         m = getMiddle(b, e);
         if (!m) return NULL;
@@ -275,7 +281,7 @@ NODE * binarySearch(DATA s) {
         //if, invalid, break
         if (b > e) break;
 
-    } while (e);
+    } while (e); //todo: (e || b) ?
 
     return NULL;
 
@@ -289,7 +295,7 @@ NODE * binarySearch(DATA s) {
  */
 NODE * getFirst() {
 
-    return start;
+    return head;
 }
 
 /**
@@ -299,7 +305,7 @@ NODE * getFirst() {
  */
 NODE * getLast() {
 
-    return last;
+    return tail;
 }
 
 /**
@@ -338,7 +344,6 @@ NODE * getMiddle(NODE *b, NODE *e) {
 
 /**
  * Node count
- * - except start node
  *
  * @return : node count
  */
@@ -361,14 +366,14 @@ bool isSorted() {
  */
 void stats() {
 
-    if (!start) {
+    if (!head) {
         perror("not created");
         return;
     }
 
     printf("\n\n---------------stats----------------\n");
 
-    NODE *p = start;
+    NODE *p = head;
     printf("seq data prev\t\t p\t\t next\n");
     int i = 0;
     do {
@@ -387,7 +392,7 @@ void stats() {
  */
 void display() {
 
-    if (!start) {
+    if (!head) {
         perror("not created");
         return;
     }
@@ -396,7 +401,7 @@ void display() {
         return;
     }
 
-    NODE *p = start;
+    NODE *p = head;
     do {
         printf("%d  ", p->data.info);
 

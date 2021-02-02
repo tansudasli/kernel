@@ -8,15 +8,17 @@ NODE *p = NULL;
 
 int main (int argc, char **argv) {
 
-    //init
-    p = create();
+
 
     //add to last
     //created as sorted intentionally!
     int l = 6;
     DATA n[] = {5, 8, 10, 20, 31, 57};
 
-    for (int i = 0; i < 6; i++)
+    //init
+    p = create(n[0]);
+
+    for (int i = 1; i < 6; i++)
        append(n[i]);
 
     //
@@ -32,7 +34,7 @@ int main (int argc, char **argv) {
 
     printf("\n----------------search - notfound---------------------");
     DATA tmp;
-    for (int i = 0; i < 101; i++) {
+    for (int i = 0; i < 30; i++) {
         tmp.info = i;
         f = search(tmp);
         f == NULL ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);

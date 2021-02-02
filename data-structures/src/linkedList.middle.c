@@ -8,8 +8,6 @@ NODE *p = NULL;
 
 int main (int argc, char **argv) {
 
-    //init
-    p = create();
 
     //add to last
     //created as sorted intentionally!
@@ -18,7 +16,10 @@ int main (int argc, char **argv) {
 //    DATA n[] = {5, 8, 10, 20, 31, 57};
     DATA n[] = {5, 6, 8, 10, 12, 20, 21, 22, 31, 57, 72};
 
-    for (int i = 0; i < l; i++)
+    //init
+    p = create(n[0]);
+
+    for (int i = 1; i < l; i++)
        append(n[i]);
 
     //
@@ -26,19 +27,19 @@ int main (int argc, char **argv) {
 
     //check middle func : start .....to.....
     printf("\nstart .....to.....");
-    NODE *m = getMiddle(getFirst()->next, getLast());
+    NODE *m = getMiddle(getFirst(), getLast());
     NODE *last = getLast();
     for (int i = 0; i < l; i++) {
-       printf("\n%d....m....%d=> m=%d", getFirst()->next->data.info, last->data.info, m->data.info);
+       printf("\n%d....m....%d=> m=%d", getFirst()->data.info, last->data.info, m->data.info);
 
        last = m;
-       m =  getMiddle(getFirst()->next, m);
+       m =  getMiddle(getFirst(), m);
     }
 
     printf("\n\n");
     printf(" .....to.....last");
-    m = getMiddle(getFirst()->next, getLast());
-    NODE *first = getFirst()->next;
+    m = getMiddle(getFirst(), getLast());
+    NODE *first = getFirst();
     for (int i = 0; i < l; i++) {
         printf("\n%d....m....%d=> m=%d",  first->data.info, getLast()->data.info, m->data.info);
 

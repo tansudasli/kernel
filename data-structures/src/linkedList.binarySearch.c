@@ -8,8 +8,6 @@ NODE *p = NULL;
 
 int main (int argc, char **argv) {
 
-    //init
-    p = create();
 
     //add to last
     //created as sorted intentionally!
@@ -17,7 +15,10 @@ int main (int argc, char **argv) {
 //    DATA n[] = {5, 8, 10, 20, 31, 57}; int l=6;
     DATA n[] = {5, 6, 8, 10, 12, 20, 21, 22, 31, 57, 72}; int l=11;
 
-    for (int i = 0; i < l; i++)
+    //init
+    p = create(n[0]);
+
+    for (int i = 1; i < l; i++)
        append(n[i]);
 
     display();

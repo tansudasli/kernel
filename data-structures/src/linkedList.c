@@ -7,14 +7,17 @@ NODE *p = NULL;
 
 int main (int argc, char **argv) {
 
-    //init
-    p = create();
+
 
     //add to last
     //creates sorted intentionally!
     DATA n[] = {5, 8, 10, 20, 31, 57};
 
-    for (int i = 0; i < 6; i++)
+    //init
+    p = create(n[0]);
+
+    int l = 6;
+    for (int i = 1; i < l; i++)
        append(n[i]);
 
     //print original
