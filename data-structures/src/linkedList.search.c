@@ -24,24 +24,20 @@ int main (int argc, char **argv) {
 
     //search
     NODE *f;
-    printf("\nO(n) search\n");
+    printf("\n----------------search---------------------\n");
     for (int i = 0; i < l; i++) {
         f = search(n[i]);
         f == NULL ? printf("\nnot found") : printf("\nfound on %p as %d", f, f->data.info);
     }
-    DATA z; z.info = 100;
-    f = search(z);
-    f == NULL ? printf("\nnot found= %d", z) : printf("\nfound on %p as %d", f, f->data.info);
 
-    //binarySearch
-    printf("\n\nO(logn) binarySearch");
-    for (int i = 0; i < l; i++) {
-        f = binarySearch(n[i]);
+    printf("\n----------------search - notfound---------------------");
+    DATA tmp;
+    for (int i = 0; i < 101; i++) {
+        tmp.info = i;
+        f = search(tmp);
         f == NULL ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);
     }
-    DATA k; k.info = 100;
-    f = binarySearch(k);
-    f == NULL ? printf("\nnot found= %d", k.info) : printf("\nfound on %p as %d", f, f->data.info);
+
 
     printf("\n");
 
