@@ -47,7 +47,7 @@ NODE * search2(int s);          //search by int in DATA struct                 /
 NODE * search3(char* s);        //search by string in DATA struct              //todo: impl.
 NODE * binarySearch(DATA s);    //O(logn) - search by splitting into middles   //data dependent comparison!
 
-void append(DATA d);                            //O(1) - appends to the last
+void append(DATA d);                            //O(1) - appends to the last   //todo: rename as push() ?
 void attach(DATA d);                            //O(1) -  inserts at the beginning
 void insert(DATA s, POSITION pos, DATA d);      //O(n) - insert between first and last   //todo: add insert sorted flavor
 void replace(DATA s, DATA r);                   //O(n) - replace s with r          //todo: impl.
