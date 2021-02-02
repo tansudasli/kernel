@@ -14,7 +14,7 @@ int main (int argc, char **argv) {
     //add to last
     //created as sorted intentionally!
 
-//    DATA n[] = {5, 8, 10, 20, 31, 57}; int l = 6;
+//    DATA n[] = {5, 8, 10, 20, 31, 57}; int l=6;
     DATA n[] = {5, 6, 8, 10, 12, 20, 21, 22, 31, 57, 72}; int l=11;
 
     for (int i = 0; i < l; i++)
@@ -35,7 +35,6 @@ int main (int argc, char **argv) {
     f = NULL;
     DATA tmp;
     for (int i = 101; i >= 0; i--) {
-//        int i =30;
         tmp.info = i;
         f = binarySearch(tmp);
         f == NULL ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);
