@@ -260,17 +260,22 @@ NODE * binarySearch(DATA s) {
         return NULL;
     }
 
-    NODE *b = start, *e = last, *m;
-    while (e || b) {
-        //find middle node
+    NODE *b = start->next, *e = last, *m=NULL;
+    do {
+
+        //find middle
         m = getMiddle(b, e);
         if (!m) return NULL;
 
+        //decide what to do
         if (s.info == m->data.info) return m;
         if (s.info > m->data.info) b = m->next;
         if (s.info < m->data.info) e = m->previous;
 
-    };
+        //if, invalid, break
+        if (b > e) break;
+
+    } while (e);
 
     return NULL;
 
@@ -309,15 +314,13 @@ NODE * getLast() {
  */
 NODE * getMiddle(NODE *b, NODE *e) {
     if (!b) {
-        perror("not valid");
         return NULL;
     }
     if (!e) {
-        perror("not valid");
         return NULL;
     }
 
-    //if count is even (count/2)+1, otherwise (count/2)
+    //
     NODE *slow = b, *fast = b;
     while (fast != e) {
         //moving fast 2-steps cause missing end point.
