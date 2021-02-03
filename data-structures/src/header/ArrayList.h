@@ -44,12 +44,12 @@ struct node {
 };
 
 NODE *head, *tail;
-int nodeCount;
-bool sorted;
+static int nodeCount;
+static bool sorted;
 
 //interfaces
-static void init();             //init defaults
-NODE * create(DATA d);          //creates start node
+static void init();                  //initialize variables
+static NODE * create(DATA d);          //creates start node and adds to 1st node
 
 NODE * getFirst();                   //O(1) - returns first node
 NODE * getLast();                    //O(1) - returns last node
@@ -79,6 +79,7 @@ void display();                 //O(n) - prints                             //da
 void stats();                   //O(n) - print some stat data
 int size();                     //O(1) - node count
 bool isSorted();                //O(1) - default not sorted                 //todo: impl.
+bool isEmpty();                                                             //todo: impl.
 
 #ifndef ANSI_C_LIST_H
 #define ANSI_C_LIST_H
