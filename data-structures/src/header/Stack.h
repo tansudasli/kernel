@@ -25,7 +25,6 @@ struct node {
 };
 
 NODE *top;                             //node which resides on top (naturally last in)
-static int nodeCount;
 
 //interfaces
 static void init();                    //initialize variables
@@ -37,7 +36,6 @@ NODE * peek();                         //O(1) - returns top node without pop
 
 void display();                 //prints
 void stats();
-int size();                     //node count
 bool isEmpty();
 
 #ifndef ANSI_C_STACK_H

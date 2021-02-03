@@ -4,8 +4,32 @@
 
 #include "../header/Stack.h"
 
-static void init() {
-    top = NULL;
+void push(DATA d) {
 
-    nodeCount = 0;
+    NODE *p = (NODE *) calloc(1, sizeof(NODE));
+    if (!p) {
+        perror("no-allocation");
+        return;
+    }
+
+    //init rest
+    p->link = !top ? NULL : top;
+    p->data.info = d.info;
+
+    //inject
+    top = p;
+}
+
+NODE * pop() {
+    //get top, adjust and return
+    if (!top) {
+        perror("stackoverflow");
+        return NULL;
+    }
+
+    NODE *p = top;
+
+    top = top->link;
+
+    return p;
 }
