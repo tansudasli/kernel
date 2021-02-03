@@ -23,6 +23,8 @@ int main (int argc, char **argv) {
     for (int i = 0; i < l; i++)
         push(n[i]);
 
+    printf("isEmpty after push() all= %d\n", isEmpty());
+
     //pop & print
     NODE *t;
     for (int i = 0; i < l; i++) {
@@ -31,6 +33,7 @@ int main (int argc, char **argv) {
         printf("%d  ", t->data.info);
     }
 
+    printf("\nisEmpty after pop() all= %d", isEmpty());
     printf("\n------------------------------\n");
 
 

@@ -27,9 +27,21 @@ NODE * pop() {
         return NULL;
     }
 
+    // get top
     NODE *p = top;
 
+    //inject
     top = top->link;
 
     return p;
+}
+
+NODE * peek() {
+
+    return top;
+}
+
+bool isEmpty() {
+    
+   return !top ? true : false;
 }
