@@ -4,8 +4,10 @@
  * Dynamic array
  *
  * Basic logic behind linked list. A bit different usual start-last architecture.
- * Normally, start is a kind of node. That creates problems doublyLinked lists, binarySearch or finding middle.
- * So, below design is more concise and simple.
+ * Normally, start is a kind of 1st node. That creates problems esp. for doublyLinked lists, binarySearch or finding the middle.
+ * So, below design (head and tail approach) is more concise and simple.
+ * In this design, head is actually same as the 1st node.
+ * //todo: More over, We can make one more enhancement. Head pointer points to the 1st node pointer, and not becomes same as 1st node.
  * <br>
  * --> circleLinkedList are trivial.<br>
  * --> doublyLinkedList (handling previous link) is good for searching<br>
@@ -41,7 +43,7 @@ struct node {
     NODE *previous;
 };
 
-NODE *head, *tail;        //todo: think about (start as node vs start)
+NODE *head, *tail;
 int nodeCount;
 bool sorted;
 
@@ -58,11 +60,11 @@ NODE * search2(int s);          //search by int in DATA struct                 /
 NODE * search3(char* s);        //search by string in DATA struct              //todo: impl.
 NODE * binarySearch(DATA s);    //O(logn) - search by splitting into middles   //data dependent comparison!
 
-void append(DATA d);                            //O(1) - appends to the last   //todo: rename as push() ?
+void append(DATA d);                            //O(1) - appends to the last
 void attach(DATA d);                            //O(1) -  inserts at the beginning
 void insert(DATA s, POSITION pos, DATA d);      //O(n) - insert between first and last  //todo: search() vs binarySearch() optimize
                                                                                         //todo: add insert sorted flavor
-void replace(DATA s, DATA r);                   //O(n) - replace s with r          //todo: impl.
+void replace(DATA s, DATA r);                   //O(n) - replace s with r      //todo: impl.
 
 int delete(DATA s);             //O(n) - delete at 1st, middle, last, only  //todo: impl.
 int clean();                    //deletes all records (free heap)           //todo: add a method to delete all records
@@ -70,7 +72,7 @@ int clean();                    //deletes all records (free heap)           //to
 
 NODE * reverse();               //O(n) - reverse (1st becomes last etc..)   //todo: impl.
 
-void display();                 //O(n) - prints                                //data dependent printf!
+void display();                 //O(n) - prints                             //data dependent printf!
 void stats();                   //O(n) - print some stat data
 int size();                     //O(1) - node count
 bool isSorted();                //O(1) - default not sorted                 //todo: impl.
