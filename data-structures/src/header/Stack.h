@@ -12,27 +12,36 @@
 
 
 typedef struct node NODE;
-struct node {
+
+typedef struct data {
     int info;
+
+} DATA;
+
+struct node {
+    DATA data;
 
     NODE *link;
 };
 
-NODE *top;                             //1st node
+NODE *top;                             //node which resides on top (naturally last in)
+static int nodeCount;
+static bool sorted;
 
 //interfaces
-static NODE * create();                //creates start node,
-static NODE * initialize(int);         //creates start node and adds to 1st node
+static void init();                    //initialize variables
+static NODE * create(DATA d);          //creates start node and adds to 1st node
 
-NODE * getTop();                //returns 1st node
-bool isEmpty();
+NODE * getTop();                //returns top node
 
-void push(int);                 //inserts at 1st node
-NODE * pop();                   //removes 1st node
-NODE * peek();                  //returns 1st node without pop
+void push(int);                 //inserts as top node
+NODE * pop();                   //removes top node
+NODE * peek();                  //returns top node without pop
 
 void display();                 //prints
+void stats();
 int size();                     //node count
+bool isEmpty();
 
 #ifndef ANSI_C_STACK_H
 #define ANSI_C_STACK_H
