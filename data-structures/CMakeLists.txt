@@ -25,6 +25,11 @@ add_executable(linkedList.BinarySearch
         src/collection/ArrayList.c
         src/linkedList.binarySearch.c)
 
+add_executable(stack
+        src/header/Stack.h
+        src/collection/Stack.c
+        src/stack.c)
+
 add_executable(linkedList.SortedInsert
         src/header/ArrayList.h
         src/collection/ArrayList.c

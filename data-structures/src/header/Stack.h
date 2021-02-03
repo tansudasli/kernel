@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 /**
  * Works as LIFO.
  *
@@ -27,7 +29,7 @@ static int nodeCount;
 
 //interfaces
 static void init();                    //initialize variables
-static NODE * create(DATA d);          //O(1) - creates start node and adds to 1st node
+NODE * create(DATA d);                 //O(1) - creates start node and adds to 1st node
 
 void push(DATA d);                     //O(1) - inserts as top node
 NODE * pop();                          //O(1) - removes top node
