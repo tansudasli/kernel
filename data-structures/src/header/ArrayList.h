@@ -49,7 +49,7 @@ static bool sorted;
 
 //interfaces
 static void init();                  //initialize variables
-static NODE * create(DATA d);          //creates start node and adds to 1st node
+NODE * create(DATA d);          //creates start node and adds to 1st node
 
 NODE * getFirst();                   //O(1) - returns first node
 NODE * getLast();                    //O(1) - returns last node
