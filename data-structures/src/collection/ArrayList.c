@@ -53,6 +53,8 @@ NODE * create(DATA d) {
  *   - head is NULL, error occurs
  *   - otherwise, appends to tail
  *
+ * When using in sorted lists, pay attention.
+ *
  * @param d: DATA to append
  */
 void append(DATA d) {
@@ -85,6 +87,8 @@ void append(DATA d) {
  * If,
  *   - head is NULL or (size = 0), error occurs
  *   - otherwise, inserts  to the last.
+ *
+ * When using in sorted lists, pay attention.
  *
  * @param d : DATA to attach
  */
@@ -120,7 +124,7 @@ void attach(DATA d) {
 /**
  * Insert between head and tail nodes.
  * If,
- *   - head is NULL or (size = 0), error occurs
+ *   - head is NULL or (size = 0), or (sorted = true), error occurs
  *   - s is head, then inserting BEFORE triggers attach()
  *   - s is tail, then inserting AFTER triggers append()
  *   - otherwise, search() s, then inserts regarding pos (BEFORE or AFTER).
@@ -136,6 +140,10 @@ void insert(DATA s, POSITION pos, DATA d) {
     }
     if (nodeCount == 0) {
         perror("not initialized");
+        return;
+    }
+    if (sorted) {
+        perror("Invalid usage in a sorted list");
         return;
     }
 
