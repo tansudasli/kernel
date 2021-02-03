@@ -196,6 +196,69 @@ void insert(DATA s, POSITION pos, DATA d) {
 }
 
 /**
+ * Insert as sorted.
+ *
+ * @param d : DATA to insert
+ */
+void insertSorted(DATA d) {
+    if (!head) {
+        perror("not created");
+        return;
+    }
+    if (nodeCount == 0) {
+        perror("not initialized");
+        return;
+    }
+
+    //if head is valid, means i have a node.
+
+    //init new node
+    NODE *p = (NODE *) calloc(1, sizeof(NODE));
+    p->data = d;
+
+
+    // <, 1st node comparison
+    NODE *cursor = head;
+    if (p->data.info <= cursor->data.info) {
+        attach(d);
+
+        sorted = true;
+        return;
+    }
+
+    // > then 1st node, but we should find appropriate place
+    cursor = cursor->next;
+    do {
+
+        // > then head, so compare with next node,
+        // so, we should use < operator, to find the node that is right before max
+        if (p->data.info < cursor->data.info) {
+            //insert before!
+            p->next = cursor;
+            p->previous = cursor->previous;
+            cursor->previous->next = p;
+            cursor->previous = p;
+
+            //injections
+            nodeCount++;
+            sorted = true;
+
+            break;
+        }
+
+        cursor = cursor->next;
+    } while (cursor);
+
+    // at the end of list, and cursor is null, means we have max node.
+    if (!cursor) {
+        append(d);
+
+        sorted = true;
+    }
+
+}
+
+/**
  * Delete a node
  * If,<br>
  *    s is 1st node, delete 1st, adjust head<br>
