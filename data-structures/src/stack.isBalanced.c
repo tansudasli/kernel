@@ -23,31 +23,27 @@ int main (int argc, char **argv) {
     bool isBalanced = true;
     for (int i = 0; i < l; i++) {
 
-        //open brackets
+        //if an open bracket, push to the stack
         if (n[i].info == '{' || n[i].info == '(' || n[i].info == '[') {
             push(n[i]);
             continue;
         }
 
-        //now, we should look for closed brackets
+        //if not an open bracket, then we should look for closed brackets, and compare
         p = pop();
         if (!p) break;
 
-        //todo: switch is more elegant
-        if (n[i].info == '}' && p->data.info == '{')
-            continue;
-        else if (n[i].info == ']' && p->data.info == '[')
-            continue;
-        if (n[i].info == ')' && p->data.info == '(')
-            continue;
-        else {
-            isBalanced = false;
-            break;
+        switch (n[i].info) {
+            case '}':  if (p->data.info == '{') continue;
+            case ']':  if (p->data.info == '[') continue;
+            case ')':  if (p->data.info == '(') continue;
+
+            default: isBalanced = false; break;
         }
+
     }
 
     isBalanced ? printf("balanced") : printf("not balanced");
-
 
     printf("\n------------------------------\n");
 
