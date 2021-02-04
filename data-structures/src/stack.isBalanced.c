@@ -31,10 +31,7 @@ bool isBalanced(DATA c) {
 
 int main (int argc, char **argv) {
 
-    //add to last
-    //creates sorted intentionally!
-
-
+    //test data
     DATA k[ROW][COLUMN] = {{'(', '[', '{', '}', ']', ')'},
                            {'(', '[', '{', '}', '[', ')'},
                            {'{', '[', '(', ')', '[', '}'}
@@ -46,10 +43,12 @@ int main (int argc, char **argv) {
         for (int i = 0; i < COLUMN; i++)
             printf("%c  ", (char) k[j][i].info);
 
-        //push
+        //evaluate
+        //1st, push
         bool r = true;
         for (int i = 0; i < COLUMN; i++) {
 
+            //then, pop and compare
             r = isBalanced(k[j][i]);
             if (r) continue;
 
