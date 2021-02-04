@@ -4,48 +4,65 @@
 #include "header/Stack.h"
 
 
+bool isBalanced(DATA c) {
+    NODE *p = NULL;
+
+    //if an open bracket, push to the stack
+    if (c.info == '{' || c.info == '(' || c.info == '[') {
+        push(c);
+        return true;
+    }
+
+    //if not an open bracket, then we should look for closed brackets, and compare
+    p = pop();
+    if (!p) return false;
+
+    switch (c.info) {
+        case '}':  if (p->data.info == '{') return true;
+        case ']':  if (p->data.info == '[') return true;
+        case ')':  if (p->data.info == '(') return true;
+
+        default: return false;
+    }
+}
+
+#define COLUMN 6
+#define ROW 3
+
 int main (int argc, char **argv) {
 
     //add to last
     //creates sorted intentionally!
-    DATA n[] = {'(', '[', '{', '}', ']', ')'}; int l = 6;
-//    DATA n[] = {'(', '[', '{', '}', '[', ')'}; int l = 6;
 
 
-    //print original
-    printf("------------original------------\n");
-    for (int i = 0; i < l; i++)
-        printf("%d  ", n[i].info);
-    printf("\n------------------------------\n");
+    DATA k[ROW][COLUMN] = {{'(', '[', '{', '}', ']', ')'},
+                           {'(', '[', '{', '}', '[', ')'},
+                           {'{', '[', '(', ')', '[', '}'}
+                    };
 
-    //push
-    NODE *p = NULL;
-    bool isBalanced = true;
-    for (int i = 0; i < l; i++) {
+    for (int j = 0; j < ROW; j++) {
 
-        //if an open bracket, push to the stack
-        if (n[i].info == '{' || n[i].info == '(' || n[i].info == '[') {
-            push(n[i]);
-            continue;
+        //print original
+        for (int i = 0; i < COLUMN; i++)
+            printf("%c  ", (char) k[j][i].info);
+
+        //push
+        bool r = true;
+        for (int i = 0; i < COLUMN; i++) {
+
+            r = isBalanced(k[j][i]);
+            if (r) continue;
+
+            break;
         }
 
-        //if not an open bracket, then we should look for closed brackets, and compare
-        p = pop();
-        if (!p) break;
+        r ? printf(" ->balanced") : printf(" ->Unbalanced");
 
-        switch (n[i].info) {
-            case '}':  if (p->data.info == '{') continue;
-            case ']':  if (p->data.info == '[') continue;
-            case ')':  if (p->data.info == '(') continue;
-
-            default: isBalanced = false; break;
-        }
-
+        printf("\n");
     }
 
-    isBalanced ? printf("balanced") : printf("not balanced");
 
-    printf("\n------------------------------\n");
+
 
     return 0;
 }
