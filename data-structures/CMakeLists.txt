@@ -41,6 +41,11 @@ add_executable(stack.isBalanced
         src/collection/Stack.c
         src/stack.isBalanced.c)
 
+add_executable(stack.reverse
+        src/header/Stack.h
+        src/collection/Stack.c
+        src/stack.reverse.c)
+
 #add_executable(collection
 #        src/header/ArrayList.h
 #        src/collection/ArrayList.c
