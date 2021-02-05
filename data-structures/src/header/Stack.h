@@ -34,6 +34,8 @@ NODE *top;                             //node which resides on top (naturally la
 
 //interfaces
 
+//todo: Thing push(NODE **new) vs push(DATA d), which one is better if we can design like a library?
+
 void push(DATA d);                     //O(1) - inserts as top node
 NODE * pop();                          //O(1) - removes top node
 NODE * peek();                         //O(1) - returns top node without pop
