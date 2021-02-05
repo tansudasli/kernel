@@ -33,8 +33,6 @@ struct node {
 NODE *top;                             //node which resides on top (naturally last in)
 
 //interfaces
-static void init();                    //initialize variables
-NODE * create(DATA d);                 //O(1) - creates start node and adds to 1st node
 
 void push(DATA d);                     //O(1) - inserts as top node
 NODE * pop();                          //O(1) - removes top node
