@@ -1,14 +1,20 @@
 #include <stdbool.h>
 
 /**
- * Works as LIFO.
+ * Works as LIFO.<br>
+ * <br>
+ * Basic logic behind stack.<br>
  *
- * Basic logic behind stack.
- *
- *      top             addr2             addr3
- *   info|(addr2) ...  info|(addr3) ...  info|NULL
- *
- * @details Only insert or remove the (top) 1st node. Insert/Delete between nodes not allowed.
+ *      top             addr2             addr3         <br>
+ *   info|(addr2) ...  info|(addr3) ...  info|NULL      <br>
+ * <br>
+ * @details Only insert or remove the (top) 1st node. Insert/Delete between nodes not allowed.<br>
+ * <br>
+ * <br>Suitable for:
+ * 1- Reversing<br>
+ * 2- Backtracking, esp. for do something, if not ok, than reverse and try again. such as chess, maze problems.<br>
+ * 3- Push/Pop/Compare: Symbol balancing, infix/postfix conversion (expression evaluation)<br>
+ * 4- Do/Undo: Forward/Backward in browsers, tower of hanoi, histogram etc...<br>
  * @author tansudasli
  */
 
