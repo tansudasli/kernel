@@ -24,21 +24,10 @@ char * stringOpsWithCharPointer(char * name) {
     strcat(r, "Hi, ");
     strcat(r, name);
 
+//    free(r);  returning a local var, and trying to free. logical mistake
+
     return r;
 }
-
-//only possible with char**.
-void stringOpsWithParameter(char **name) {
-    char *r = malloc(MAXLENGTH);
-
-    strcat(r, *name);
-    strcat(r, "Tansu");
-
-    *name = r;  //changes message variable value.
-
-    free(r);
-}
-
 
 //only possible with char**.
 void stringOpsWithParameter(char **name) {
