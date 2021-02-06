@@ -35,6 +35,7 @@ NODE *top;                             //node which resides on top (naturally la
 //interfaces
 
 //todo: Thing push(NODE **new) vs push(DATA d), which one is better if we can design like a library?
+//if we put top as global, then we can not create 2 stack at the same time !!!
 
 void push(DATA d);                     //O(1) - inserts as top node
 NODE * pop();                          //O(1) - removes top node

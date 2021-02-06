@@ -47,6 +47,9 @@ NODE *head, *tail;
 static int nodeCount;
 static bool sorted;
 
+//todo: Thing create(NODE **new, DATA d) vs create(DATA d), which one is better if we can design like a library?
+//if we put head/tail as global, then we can not create 2 arraylist at the same time !!!
+
 //interfaces
 static void init();                  //initialize variables
 NODE * create(DATA d);          //creates start node and adds to 1st node
