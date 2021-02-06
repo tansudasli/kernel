@@ -9,9 +9,9 @@ int main (int argc, char **argv) {
 
     //add to last
     //creates sorted intentionally!
-//    DATA n[] = {5, 8, 10, 20, 31, 57}; int l = 6;
-    DATA n[] = {'(', '[', '{', '}', ']', ')'}; int l = 6;
-
+//    DATA n[] = {5, 8, 10, 20, 31, 57};
+    DATA n[] = {'(', '[', '{', '}', ']', ')'};
+    int l = sizeof(n)/sizeof(n[0]);
 
     //print original
     printf("------------original------------\n");
@@ -23,7 +23,7 @@ int main (int argc, char **argv) {
     for (int i = 0; i < l; i++)
         push(n[i]);
 
-    printf("isEmpty after push() all= %d\n", isEmpty());
+    printf("isEmpty after push() all= %s\n", isEmpty() ? "true" : "false");
 
     //pop & print
     NODE *t;
@@ -33,7 +33,7 @@ int main (int argc, char **argv) {
         printf("%d  ", t->data.info);
     }
 
-    printf("\nisEmpty after pop() all= %d", isEmpty());
+    printf("\nisEmpty after pop() all= %s",  isEmpty() ? "true" : "false");
     printf("\n------------------------------\n");
 
 
