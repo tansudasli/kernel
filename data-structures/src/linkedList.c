@@ -16,7 +16,7 @@ int main (int argc, char **argv) {
     //init
     p = create(n[0]);
 
-    int l = 6;
+    int l = sizeof(n)/sizeof(n[0]);
     for (int i = 1; i < l; i++)
        append(n[i]);
 
