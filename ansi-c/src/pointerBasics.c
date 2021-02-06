@@ -1,29 +1,46 @@
 #include <stdio.h>
 
+//gcc -o out/pointerBasics src/pointerBasics.c  && out/pointerBasics
 int main(int argc, char **argv) {
     /** In int/char type variables,
-     *      - pointer waits an address. & do the job
-     *      - indirection of pointer contains the value.
+     *      - pointer waits an address. & do the job.
+     *      - indirection of pointer(*x) means "value at Address".
+     *
+     *      int x   - variable is x, and holds value
+     *      int * y  - variable is y, not *y, and holds an address!!
+     *      when we indirect(*y = means value at address), it is not same operator as in int* !!
+     *      & is the address operator of variable
+     *      so &x is addr of x. but &y is also is an address. but y is an address of something else!!
      */
 
     //integer
     int num = 5;           //assign number or *pointer
-    int *numPtr = &num;    //waits a pointer of integer == address
-    int num2 = *numPtr;    //*pointer = indirection of pointer
+    int* numPtr = &num;    //waits a pointer of integer == address, or use malloc to assign something
+                           //numPtr = &num;  //valid
+    int num2 = *numPtr;    //*pointer = indirection of pointer = value at address of numPtr
 
-    printf("num=%d, address of num=%p\n", num, &num);
-    printf("numPtr=%p, value inside ptr=%d\n\n", numPtr, *numPtr);
+    num = 8; //but num2 is still 5.
+
+    printf("addrOfVar        value               value at addr\n");
+    printf("%p        %d                 n/a      int/int*\n", &num, num);
+    printf("%p        %p     %d\n", &numPtr, numPtr, *numPtr);
+    printf("%p        %d                 n/a\n", &num2, num2);
+
+    printf("\n");
 
     //char
     char ch = 'H';
-    char *chPtr = &ch;
-    char *k = "abc"; //valid
+    char* chPtr = &ch;
+    char* k = "abc"; //valid, it is a string in fact, or array of chars
+    //char *z = 'm';  //invalid, cause char* waits an sequence (array) of something
 
-    printf("ch=%c, address of ch=%p\n", ch, &ch);
-    printf("chPtr=%p, value inside ptr=%c\n\n", chPtr, *chPtr);
+    printf("%p        %c                 n/a      char/char*\n", &ch, ch);
+    printf("%p        %p     %c\n", &chPtr, chPtr, *chPtr);
+
+    printf("\n");
 
     /**
-     * In arrays of int/char, array is the address of itself
+     * In arrays of int/char, array is the address of itself !! special case
      * But, int[] not like char[]. You have to use m[0] or *m to access the value.
      *
      * The difference b/w int[]|char[] and char*|int* is pointing strategy
@@ -35,25 +52,33 @@ int main(int argc, char **argv) {
      */
 
     //array
+    int kkk = 5;
     int m[] = {1,2,3,4,5};
-    int *mPtr = m;    //m is same as &d. cause it is array!!!
-    //int *z = {1,2,3,4,5}; //not valid
-    //int *ho = 12345; //not valid and not meaningful as char* !!!
+    int* mPtr = m;    //m is same as &m. cause it is array!!!. And points to addr of m[0]
+    //mPtr = &kkk;      //valid
+
+    //int *z = {1,2,3,4,5}; //not valid,
+    //int *ho = 12345; //not valid and not meaningful as char*="abc" !!!
 
 
-    printf("%d %d %p == %p == %p\n", m[0], *m, &m, m, &m[0]);       //array is the address of itself
-    printf("%d %p != %p\n\n", *mPtr, &mPtr, mPtr);
+//    printf("%d %d %p == %p == %p\n", m[0], *m, &m, m, &m[0]);       //array is the address of itself
+    printf("%p   ==     %p     %d     int*/int[]\n", &m, m, *m);  //*m==m[0] , m==&m
+    printf("%p   !=     %p     %d\n", &mPtr, mPtr, *mPtr);
 
+    printf("\n");
     //
     char msg[] = "Hello";
     char *msg2 = "Mello";
 
-    printf("%c %c %s %p == %p\n", *(msg+1), msg[0], msg, &msg, msg);    //array is the address of itself
+    //msg++;  //invalid. but it was a pointer
+    msg2++;   //valid
+    printf("%c %c %s %p == %p       char*/char[]\n", *(msg+1), msg[0], msg, &msg, msg);    //array is the address of itself
     printf("%c %s %p != %p\n", *msg2, msg2, &msg2, msg2); //but, Mello's addr. is different from msg2's addr
                                                           //here, is also *msg2 and msg2 usage diff. %c waits char, %s waits char*
 
     /**
      * char/int and arrays of (int/char..) act different !!
+     * char* and char[] has some minor diff.
      */
 
     return 0;

@@ -1,19 +1,7 @@
 #include <stdio.h>
 
-#define SIZE 3
 
-int data[SIZE];   //hold some initial data
-
-void initialize() {
-    for (int j = 0; j < SIZE; j++)
-        data[j] = j;
-
-    for (int j = 0; j < SIZE; j++)
-        printf("%d\t", data[j]);
-
-    printf("\n");
-}
-
+//gcc -o out/pointerIndirection src/pointerIndirection.c  && out/pointerIndirection
 int main(int argc, char **argv) {
     /**
      * multiple indirection **, can be used to imagine Arrays, Lists etc..
@@ -27,7 +15,8 @@ int main(int argc, char **argv) {
     int *pi;      //pointer                 int pi[]
     int **ppi;    //pointer to pointer      int *pi[] or  int pi[][] or  a kind of list
 
-    initialize();
+    int data[] = {0, 1, 2};
+    int length = sizeof(data) / sizeof(data[0]);
 
     //
     pi = data;     //data is array, cause it is the pointer & the address !! no need to use &data
@@ -35,16 +24,17 @@ int main(int argc, char **argv) {
 
     //data[1] = 5; //it changes both data, pi, and ppi values. they all look at the same address
 
-    printf("data\t\t pi\t\t ppi\n");
-    for (int j = 0; j < SIZE; j++) {
+    printf("data\t\t\t pi\t\t\t ppi\n");
+    for (int j = 0; j < length; j++) {
 
-        printf("%d(%p)\t %d(%p)\t %d(%p)  \n",data[j], &data[j]
-                                             ,*pi    , pi
-                                             ,**ppi  , ppi);
+        printf("%d(%p)\t %d(%p)\t %d(%p == %p)  \n",data[j], &data[j]
+                                                   ,*pi    , pi       //pi has addr of data, but &pi is diff. addr
+                                                   ,**ppi  , ppi, &pi);    //ppi holds &pi (pi's addr). but &ppi is diff. addr
 
-        pi++;
+        pi++; //this does not change pi's addr, instead changes pi's pointing addr !!
+//      ppi++; //ppi++, changes pi's addr. so nonsense.
     }
-    //for now, ppi is not a list of array. that's why we don't use ppi++
+
 
 
     return 0;
