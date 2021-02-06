@@ -46,6 +46,9 @@ add_executable(stack.reverse
         src/collection/Stack.c
         src/stack.reverse.c)
 
+add_executable(stockSpanProblem
+        ../data-structures/src/stockSpanProblem.c)
+
 #add_executable(collection
 #        src/header/ArrayList.h
 #        src/collection/ArrayList.c

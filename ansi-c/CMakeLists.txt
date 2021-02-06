@@ -80,6 +80,3 @@ add_executable(pointerIndirectionString
 
 add_executable(memory
         src/memory.c)
-
-add_executable(stockSpanProblem
-        src/stockSpanProblem.c)
