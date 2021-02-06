@@ -41,9 +41,27 @@ void stringOpsWithParameter(char **name) {
     free(r);
 }
 
+//it ain't swaps, pass by value
+void swap(int x, int y) {
+    int tmp;
 
-//gcc -o out/pointersStringFunctions src/pointersStringFunctions.c  && out/pointersStringFunctions
-//gcc -o out/pointersStringFunctions src/pointersStringFunctions.c  && out/pointersStringFunctions abidindenyo
+    tmp = x;
+    x = y;
+    y = tmp;
+}
+
+//to swap 2 variables, we need their address
+void swap2(int* x, int* y) {
+
+    int tmp;
+
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+
+//gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions
+//gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions abidindenyo
 int main(int argc, char *argv[]) {
 
     //get by returning the new message
@@ -55,6 +73,16 @@ int main(int argc, char *argv[]) {
     stringOpsWithParameter( &message);
     printf("%s\n", message);
 
+    //
+    int a = 20;
+    int b = 10;
+    printf("original...a=%d   b=%d\n", a, b);
+
+    swap2(&a, &b);
+
+    printf("swapped....a=%d   b=%d", a, b);
+
+    //
 
     return 0;
 }

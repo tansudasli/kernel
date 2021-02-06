@@ -55,8 +55,8 @@ add_executable(pointersAndCharArrays
 add_executable(pointersArithmetic
         src/pointersArithmetic.c)
 
-add_executable(pointersStringFunctions
-        src/pointersStringFunctions.c)
+add_executable(pointersInFunctions
+        src/pointersInFunctions.c)
 
 add_executable(structs
         src/structs.c
