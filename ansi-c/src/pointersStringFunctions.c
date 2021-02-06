@@ -40,6 +40,19 @@ void stringOpsWithParameter(char **name) {
 }
 
 
+//only possible with char**.
+void stringOpsWithParameter(char **name) {
+    char *r = malloc(MAXLENGTH);
+
+    strcat(r, *name);
+    strcat(r, "Tansu");
+
+    *name = r;  //changes message variable value.
+
+    free(r);
+}
+
+
 //gcc -o out/pointersStringFunctions src/pointersStringFunctions.c  && out/pointersStringFunctions
 //gcc -o out/pointersStringFunctions src/pointersStringFunctions.c  && out/pointersStringFunctions abidindenyo
 int main(int argc, char *argv[]) {
