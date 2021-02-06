@@ -77,9 +77,7 @@ int main(int argc, char *argv[]) {
     int a = 20;
     int b = 10;
     printf("original...a=%d   b=%d\n", a, b);
-
     swap2(&a, &b);
-
     printf("swapped....a=%d   b=%d", a, b);
 
     //
