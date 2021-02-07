@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//gcc -o out/pointersAndCharArrays src/pointersAndCharArrays.c  && out/pointersAndCharArrays
+//gcc -o out/pointerAndCharArrays src/pointerAndCharArrays.c  && out/pointerAndCharArrays
 int main(int argc, char const *argv[])
 {
     //minor diff is the memory address value. hexOfPointer=valueOfHex

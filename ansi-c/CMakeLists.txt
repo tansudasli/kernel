@@ -50,10 +50,10 @@ add_executable(operatorsSwitch
         src/operatorsSwitch.c)
 
 add_executable(pointersAndCharArrays
-        src/pointersAndCharArrays.c)
+        src/pointerAndCharArrays.c)
 
 add_executable(pointersArithmetic
-        src/pointersArithmetic.c)
+        src/pointerArithmetic.c)
 
 add_executable(pointerInFunctions
         src/pointerInFunctions.c)
