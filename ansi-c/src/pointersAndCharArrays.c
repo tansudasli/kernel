@@ -7,9 +7,9 @@ int main(int argc, char const *argv[])
     char string1[] = "Hello";      //value of string1 is the address of start of char array Hello
     char *string2 = "Hello";       //pointing a char at a memory address
 
-    printf("hexOfPointer  |variableNameOfHex| value\n");
-    printf("%p      |%p        | %s\n", &string1, string1, string1);
-    printf("%p      |%p         | %s\n", &string2, string2, string2);
+    printf("hexOfPointer        |variableNameOfHex| value\n");
+    printf("%p  ==  |%p        | %s\n", &string1, string1, string1);
+    printf("%p  !=  |%p         | %s\n", &string2, string2, string2);
 
 //    hexOfPointer  |variableNameOfHex| value
 //    e7a3b6ba      |e7a3b6ba        | Hello       hexOfPointer=variableNameOfHex
@@ -26,9 +26,9 @@ int main(int argc, char const *argv[])
 //    eb0016b0      |eb0016ba        | Hello
 
 // char arrays or string in C is immutable.
-//    string1 = "Goodbye";     //new assignment and it fails. Immutable
-    string2 = "Goodbye";   //but no problem for a pointer itself !
-    printf("%p      |%p         | %s\n", &string2, string2, string2);
+//    string1 = "Goodbye";     //new assignment and it fails. Immutable. const * !!! so we cannot say string1++
+    string2 = "Goodbye";       //but no problem for a pointer itself !
+    printf("%p      |%p         | %s      | %c\n", &string2, string2, string2,  *string2);
 
 //    hexOfPointer  |variableNameOfHex| value
 //    eb3256aa      |eb3256aa        | Hello

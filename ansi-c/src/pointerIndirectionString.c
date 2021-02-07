@@ -15,6 +15,7 @@ void initialize() {
     printf("\n");
 }
 
+//gcc -o out/pointerIndirectionString src/pointerIndirectionString.c  && out/pointerIndirectionString
 int main(int argc, char **argv) {
 
     char ch = 'c';   //value

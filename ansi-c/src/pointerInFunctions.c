@@ -90,8 +90,8 @@ void display2(int* b, int l) {
     }
 }
 
-//gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions
-//gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions abidindenyo
+//gcc -o out/pointerInFunctions src/pointerInFunctions.c  && out/pointerInFunctions
+//gcc -o out/pointerInFunctions src/pointerInFunctions.c  && out/pointerInFunctions abidindenyo
 int main(int argc, char *argv[]) {
 
     //by value, so, returning the new message
@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
     stringOpsWithParameter(&message);  //
     printf("%s\n", message);
 
-    char message2[50] = "Hi, bro ";
+    char message2[50] = "Hi, bro "; //
     stringOpsWithParameter2(message2); //&message2=message2. it is an array
     printf("%s\n", message2);
 
