@@ -60,6 +60,25 @@ void swap2(int* x, int* y) {
     *y = tmp;
 }
 
+
+//by value
+//if array is huge, it occupies more memory! so not efficient
+void display(int b[5], int l) {
+
+    for (int i = 0; i < l; i++)
+        printf("%d ", b[i]);
+}
+
+//arr is an * [pointer/array]. so we need  ** to reach that
+//** is also waits an addr. it is still pointer.
+void display2(int *b, int l) {
+
+    for (int i = 0; i < l; i++) {
+        printf("%d ", *b);
+        b++;
+    }
+}
+
 //gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions
 //gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions abidindenyo
 int main(int argc, char *argv[]) {
@@ -80,7 +99,17 @@ int main(int argc, char *argv[]) {
     swap2(&a, &b);
     printf("swapped....a=%d   b=%d", a, b);
 
-    //
+    //pass by value, below will copy arr into b[] array.
+    printf("\n");
+    int arr[] = {11, 22, 33, 44, 55};
+    int l = sizeof(arr)/sizeof(arr[0]);
+    display(arr, l);
+
+    //it ain't copy the arr into *b. just sent the addr of arr.
+    printf("\n");
+    display2(&arr[0], l);     //printf("\n%p == %p", &arr, &arr[0]);  same , because it is not an int *!! In arrays, &arr = arr !!
+//    display2(&arr, l); this is ok, but generates a warning
+
 
     return 0;
 }
