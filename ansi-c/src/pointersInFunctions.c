@@ -2,7 +2,7 @@
 #include <string.h>
 #include <mm_malloc.h>
 
-#define MAXLENGTH 100
+#define MAXLENGTH 150
 
 
 // we can not reassign like (message = message + name; ) to a char[], or any string :)
@@ -30,8 +30,8 @@ char * stringOpsWithCharPointer(char * name) {
 }
 
 //only possible with char**.
-void stringOpsWithParameter(char **name) {
-    char *r = malloc(MAXLENGTH);
+void stringOpsWithParameter(char** name) {
+    char *r =  calloc(MAXLENGTH, sizeof(char));
 
     strcat(r, *name);
     strcat(r, "Tansu");
@@ -39,6 +39,17 @@ void stringOpsWithParameter(char **name) {
     *name = r;  //changes message variable value.
 
     free(r);
+}
+
+void stringOpsWithParameter2(char* z) {
+    char *rrr = calloc(MAXLENGTH, sizeof(char)); //use calloc not malloc :)
+
+    strcat(rrr, z);
+    strcat(rrr, "Tansu");
+
+    strcpy(z, rrr);  //changes message variable value.
+
+    free(rrr);
 }
 
 //it ain't swaps, pass by value
@@ -71,7 +82,7 @@ void display(int b[5], int l) {
 
 //arr is an * [pointer/array]. so we need  ** to reach that
 //** is also waits an addr. it is still pointer.
-void display2(int *b, int l) {
+void display2(int* b, int l) {
 
     for (int i = 0; i < l; i++) {
         printf("%d ", *b);
@@ -83,14 +94,19 @@ void display2(int *b, int l) {
 //gcc -o out/pointersInFunctions src/pointersInFunctions.c  && out/pointersInFunctions abidindenyo
 int main(int argc, char *argv[]) {
 
-    //get by returning the new message
+    //by value, so, returning the new message
     printf("%s\n", stringOpsWithCharArray( "Ali"));
     printf("%s\n", stringOpsWithCharPointer(argc > 1 ? argv[1] : "Veli"));
 
-    //change the message in place
+    //by ref
     char *message = "Hi, ";
-    stringOpsWithParameter( &message);
+    stringOpsWithParameter(&message);  //
     printf("%s\n", message);
+
+    char message2[50] = "Hi, bro ";
+    stringOpsWithParameter2(message2); //&message2=message2. it is an array
+    printf("%s\n", message2);
+
 
     //
     int a = 20;
@@ -101,14 +117,13 @@ int main(int argc, char *argv[]) {
 
     //pass by value, below will copy arr into b[] array.
     printf("\n");
-    int arr[] = {11, 22, 33, 44, 55};
+    int arr[] = {11, 22, 33, 44, 55};     //like const pointer. so we can not say arr++ (pointer arithmetic)
     int l = sizeof(arr)/sizeof(arr[0]);
     display(arr, l);
 
     //it ain't copy the arr into *b. just sent the addr of arr.
     printf("\n");
-    display2(&arr[0], l);     //printf("\n%p == %p", &arr, &arr[0]);  same , because it is not an int *!! In arrays, &arr = arr !!
-//    display2(&arr, l); this is ok, but generates a warning
+    display2(arr, l);  //or , display2(&arr[0], l);
 
 
     return 0;
