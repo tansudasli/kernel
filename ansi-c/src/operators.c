@@ -3,7 +3,8 @@
 //gcc -o out/operators src/operators.c && out/operators
 int main(int argc, char const *argv[])
 {
-    /* code */
+//    ++ or -- is a bit different in pointer variables !! look for pointerArithmetic.c
+
     int z = 9;
     int a = 10;
     int b = 9;
