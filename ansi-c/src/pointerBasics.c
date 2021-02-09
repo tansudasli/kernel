@@ -3,27 +3,27 @@
 //gcc -o out/pointerBasics src/pointerBasics.c  && out/pointerBasics
 int main(int argc, char **argv) {
     /** In int/char type variables,
-     *      - pointer waits an address. & do the job.
+     *      - pointer waits an address. & does the job.
      *      - indirection of pointer(*x) means "value at Address".
      *
      *      int x   - variable is x, and holds value
-     *      int * y  - variable is y, not *y, and holds an address!!
-     *      when we indirect(*y = means value at address), it is not same operator as in int* !!
-     *      & is the address operator of variable
-     *      so &x is addr of x. but &y is also is an address. but y is an address of something else!!
+     *      int *y  - variable is y, not *y, and holds an address!!
+     *          when we indirect(*y = means value at address), it is not the same operator as in int* !!
+     *          & is the address operator of variable
+     *          so &x is addr of x. but &y is also an address. but y is an address of something else!!
      */
 
-    //integer
+    //int
     int num = 5;           //assign number or *pointer
     int* numPtr = &num;    //waits a pointer of integer == address, or use malloc to assign something
                            //numPtr = &num;  //valid
     int num2 = *numPtr;    //*pointer = indirection of pointer = value at address of numPtr
 
-    num = 8; //but num2 is still 5.
+    num = 8; //but num2 is still 5. *numPtr is 8 !
 
     printf("addrOfVar        value               value at addr\n");
     printf("%p        %d                 n/a      int/int*\n", &num, num);
-    printf("%p        %p     %d\n", &numPtr, numPtr, *numPtr);
+    printf("%p        %p     %d\n", &numPtr, numPtr, *numPtr);  //numPtr's value is the addr of num!
     printf("%p        %d                 n/a\n", &num2, num2);
 
     printf("\n");
@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
      *
      * The difference b/w int[]|char[] and char*|int* is pointing strategy
      *
-     * In char[], you have chance to use %c and %s . In int[] , you can only use %d, So
+     * In char[], you have chance to use %c and %s . In int[], you can only use %d, So
      * There is one diff. while accessing to value. %s waits char*, while %c waits char.
      *
      * Array is pointer and has value, But pointer has addr, not value. Value' addr is somewhere in memory.
