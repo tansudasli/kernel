@@ -3,13 +3,6 @@
 
 //gcc -o out/pointerIndirection src/pointerIndirection.c  && out/pointerIndirection
 int main(int argc, char **argv) {
-    /**
-     * multiple indirection **, can be used to imagine Arrays, Lists etc..
-     *
-     * char **argv is string array. while char *argv is char array (string)
-     * so, char **argv or char *argv[] is same (w/ some minor diff.)
-     *
-     */
 
     int i = 10;   //value
     int *pi;      //pointer                 int pi[]
@@ -24,15 +17,14 @@ int main(int argc, char **argv) {
 
     //data[1] = 5; //it changes both data, pi, and ppi values. they all look at the same address
 
-    printf("data\t\t\t pi\t\t\t ppi\n");
+    printf("data\t\t\t pi\n");
     for (int j = 0; j < length; j++) {
 
-        printf("%d(%p)\t %d(%p)\t %d(%p == %p)  \n",data[j], &data[j]
-                                                   ,*pi    , pi       //pi has addr of data, but &pi is diff. addr
-                                                   ,**ppi  , ppi, &pi);    //ppi holds &pi (pi's addr). but &ppi is diff. addr
+        printf("%d(%p)\t %d(%p)  \n",data[j], &data[j]
+                                    ,*pi    , pi );      //pi has addr of data, but &pi is diff. addr
+
 
         pi++; //this does not change pi's addr, instead changes pi's pointing addr !!
-//      ppi++; //ppi++, changes pi's addr. so nonsense.
     }
 
     return 0;
