@@ -75,8 +75,8 @@ add_executable(pointerBasics
 add_executable(pointerIndirection
         src/pointerIndirection.c)
 
-add_executable(pointerIndirectionString
-        src/pointerIndirectionString.c)
+add_executable(pointerToPointerString
+        src/pointerToPointerString.c)
 
 add_executable(pointerToPointer
         src/pointerToPointer.c)

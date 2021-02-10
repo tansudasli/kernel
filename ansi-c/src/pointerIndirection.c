@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     int *pi;      //pointer                 int pi[]
     int **ppi;    //pointer to pointer      int *pi[] or  int pi[][] or  a kind of list
 
-    int data[] = {0, 1, 2};
+    int data[] = {0, 1, 2};         //this is not ==> int *data[SIZE] . look for pointerToPointer.c
     int length = sizeof(data) / sizeof(data[0]);
 
     //
@@ -34,8 +34,6 @@ int main(int argc, char **argv) {
         pi++; //this does not change pi's addr, instead changes pi's pointing addr !!
 //      ppi++; //ppi++, changes pi's addr. so nonsense.
     }
-
-
 
     return 0;
 }
