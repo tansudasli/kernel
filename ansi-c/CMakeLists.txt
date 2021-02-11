@@ -10,6 +10,9 @@ include_directories(src/header)
 add_executable(arrays
         src/arrays.c)
 
+add_executable(arraysIntvsChar
+        src/arraysIntvsChar.c)
+
 add_executable(fileHandling
         src/header/search.h
         src/fileHandling.c
