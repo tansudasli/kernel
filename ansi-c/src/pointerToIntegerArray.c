@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//gcc -o out/pointerToPointer src/pointerToPointer.c  && out/pointerToPointer
+//gcc -o out/pointerToIntegerArray src/pointerToIntegerArray.c  && out/pointerToIntegerArray
 int main(int argc, char **argv) {
 
     int k[] = {1, 2, 3, 4, '\0'};   //if we dont put \0, below while (*o[i] != '\0') does not work properly!!!!

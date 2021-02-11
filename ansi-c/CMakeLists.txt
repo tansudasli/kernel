@@ -75,11 +75,15 @@ add_executable(pointerBasics
 add_executable(pointerIndirection
         src/pointerIndirection.c)
 
-add_executable(pointerToPointerString
-        src/pointerToPointerString.c)
+add_executable(pointerToStringArray
+        src/pointerToStringArray.c)
 
-add_executable(pointerToPointer
-        src/pointerToPointer.c)
+
+add_executable(pointerToFunctions
+        src/pointerToFunctions.c)
+
+add_executable(pointerToIntegerArray
+        src/pointerToIntegerArray.c)
 
 add_executable(memory
         src/memory.c)

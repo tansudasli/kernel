@@ -2,9 +2,7 @@
 
 #define SIZE 3
 
-
-
-//gcc -o out/pointerIndirectionString src/pointerIndirectionString.c  && out/pointerIndirectionString
+//gcc -o out/pointerToStringArray src/pointerToStringArray.c  && out/pointerToStringArray
 int main(int argc, char **argv) {
 
     char ch = 'c';   //value
@@ -32,8 +30,11 @@ int main(int argc, char **argv) {
     printf("words\t\t\t ppc\t\t\t pc\n");
     for (int j = 0; j < SIZE; j++) {
 
-        printf("%s(%p)\t %s(%p)\n",words[j], &words[j]
-                                  ,*ppc    , ppc);
+        printf("%s(%p)\t %s(%p)\n",words[j],   //*(words+i) is also valid to get value.
+                                               // But we can not do words++ type things!
+                                   &words[j]   //(words+i) is also possible to get address
+                                  ,*ppc
+                                  ,ppc);
 
         ppc++;      // we can also treat **ppc as an array. ppc[j] also works !!
     }
