@@ -1,9 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-//gcc -o out/pointerArithmetic src/pointerArithmetic.c  && out/pointerArithmetic
+//gcc -o out/pointerOperators src/pointerOperators.c  && out/pointerOperators
 int main(int argc, char const *argv[])
 {
+    /**
+     * int * p vs *p  (both * is different operator !!!
+     * *p     --> value at address p
+     * **p    --> value at address at (value at address p)
+     * &      --> address of variable
+     * ++/--  --> this moves pointer's pointing address. not p's address!!. And, it changes p addr value !!.
+     * p+1    --> moves not p address, p's pointing address. And not 1 step more, + sizeof(type of p) !! And not updates p addr value
+     *
+     */
     char string1[] = "Hello";      //hexOfPointer=variableNameOfHex, string1 is the pointer address !
     char *string2 = "Hello";       //pointing addr of string pointer, in reality.
 
