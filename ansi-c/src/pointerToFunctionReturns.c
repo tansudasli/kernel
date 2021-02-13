@@ -15,8 +15,8 @@ int* sum4(int* x, int* y) {
 int* sum3(int* x, int* y) {
     int c = *x + *y;
 
-    return &c;   //it is a danglin pointer. c is local variable. !!!
-                 //so we need to retun heap address or static variable to overcome this issue !
+    return &c;   //it is a dangling pointer. c is local variable. !!!
+                 //so we need to return heap address or static variable to overcome this issue !
 }
 
 //gets pointer, returns value
