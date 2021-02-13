@@ -93,5 +93,8 @@ add_executable(pointerToFunctionReturns
 add_executable(pointerToStruct
         src/pointerToStruct.c)
 
+add_executable(structBasics
+        src/structBasics.c)
+
 add_executable(memory
         src/memory.c)
