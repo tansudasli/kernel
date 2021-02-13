@@ -36,6 +36,9 @@ int sum(int x, int y) {
 
 //gcc -o out/pointerToFunctionReturns src/pointerToFunctionReturns.c  && out/pointerToFunctionReturns
 int main(int argc, char **argv) {
+    /**
+     * to overcome returning stack variable address (dangling pointer), use heap memory or global variable
+     */
 
     int a = 3, b = 4;
 //    int r = sum(a, b);  printf("%d", r);
