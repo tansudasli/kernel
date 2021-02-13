@@ -7,6 +7,9 @@ int sum(int a, int b) {
 
 //gcc -o out/pointerToFunctions src/pointerToFunctions.c  && out/pointerToFunctions
 int main(int argc, char *argv[]) {
+    /**
+     * It is good for call backs or event management
+     */
 
     //define and init
     //syntax is critical
