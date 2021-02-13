@@ -62,8 +62,7 @@ add_executable(pointerInFunctions
         src/pointerInFunctions.c)
 
 add_executable(structs
-        src/structs.c
-        src/utility/initialize.c)
+        src/structs.c)
 
 add_executable(userInput
         src/userInput.c)
@@ -90,6 +89,9 @@ add_executable(pointerToIntegerArray
 
 add_executable(pointerToFunctionReturns
         src/pointerToFunctionReturns.c)
+
+add_executable(pointerToStruct
+        src/pointerToStruct.c)
 
 add_executable(memory
         src/memory.c)
