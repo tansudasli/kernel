@@ -61,8 +61,8 @@ add_executable(pointerOperators
 add_executable(pointerInFunctions
         src/pointerInFunctions.c)
 
-add_executable(structs
-        src/structs.c)
+add_executable(structsAsArrays
+        src/structsAsArrays.c)
 
 add_executable(userInput
         src/userInput.c)
