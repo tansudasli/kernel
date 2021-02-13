@@ -88,5 +88,8 @@ add_executable(pointerToFunctions
 add_executable(pointerToIntegerArray
         src/pointerToIntegerArray.c)
 
+add_executable(pointerToFunctionReturns
+        src/pointerToFunctionReturns.c)
+
 add_executable(memory
         src/memory.c)
