@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <math.h>
+#include <stdlib.h>
 
 /** bubble sort
  * how can we make comparison step flexible ?
@@ -34,6 +35,11 @@ void sort(int *s, int l) {
 bool compare(int x, int y) {
 
     return x > y ? true : false;
+}
+
+bool compareAbs(int x, int y) {
+
+    return abs(x) > abs(y) ? true : false;
 }
 
 /**
@@ -75,12 +81,14 @@ int main(int argc, char *argv[]) {
     printf("%d \n",  pFunction(5, 7));
 
     //as in function parameters
-    int grades[] = {10, 2, 15, 45, 100, 75, 92, 91, 75, 5};
+    int grades[] = {10, 2, -15, 45, 100, 75, 92, 91, 75, 5};
     int length = sizeof(grades) / sizeof(grades[0]);
 
-//    sort(grades, length);
-    sort2(grades, length, compare);   //send the compare function's addr. as pointer.
-                                      //think of compare func is in the client. sort2 is in the library files.
+    //sort(grades, length);
+    //sort2(grades, length, compare);   //send the compare function's addr. as pointer.
+                                        //think of compare func is in the client. sort2 is in the library files.
+
+    sort2(grades, length, compareAbs);
 
     for (int i = 0; i < length; i++)
         printf("%d ", grades[i]);
