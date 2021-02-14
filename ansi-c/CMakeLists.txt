@@ -96,5 +96,8 @@ add_executable(pointerToStruct
 add_executable(structBasics
         src/structBasics.c)
 
+add_executable(structsHasPointers
+        src/structsHasPointers.c)
+
 add_executable(memory
         src/memory.c)
