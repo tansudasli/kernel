@@ -4,28 +4,6 @@
 #include "header/Stack.h"
 
 
-bool isBalanced(DATA c) {
-    NODE *p = NULL;
-
-    //if an open bracket, push to the stack
-    if (c.info == '{' || c.info == '(' || c.info == '[') {
-        push(c);
-        return true;
-    }
-
-    //if not an open bracket, then we should look for closed brackets, and compare
-    p = pop();
-    if (!p) return false;
-
-    switch (c.info) {
-        case '}':  if (p->data.info == '{') return true;
-        case ']':  if (p->data.info == '[') return true;
-        case ')':  if (p->data.info == '(') return true;
-
-        default: return false;
-    }
-}
-
 #define COLUMN 6
 #define ROW 3
 
@@ -35,7 +13,7 @@ int main (int argc, char **argv) {
     DATA k[ROW][COLUMN] = {{'(', '[', '{', '}', ']', ')'},
                            {'(', '[', '{', '}', '[', ')'},
                            {'{', '[', '(', ')', '[', '}'}
-                    };
+                          };
 
     for (int j = 0; j < ROW; j++) {
 
@@ -44,13 +22,36 @@ int main (int argc, char **argv) {
             printf("%c  ", (char) k[j][i].info);
 
         //evaluate
-        //1st, push
         bool r = true;
-        for (int i = 0; i < COLUMN; i++) {
+        NODE *stack = create(k[j][0]);
+        for (int i = 1; i < COLUMN; i++) {
 
             //then, pop and compare
-            r = isBalanced(k[j][i]);
-            if (r) continue;
+            DATA c = k[j][i];
+
+            //if an open bracket, push to the stack
+            if (c.info == '{' || c.info == '(' || c.info == '[') {
+                push(&stack, c);
+
+                continue;
+            }
+
+            //if not an open bracket, then we should look for closed brackets, and compare
+            NODE *n = pop(&stack);
+            if (!n) {
+                perror("error getting node");
+                break;
+            };
+
+            switch (c.info) {
+                case '}':  if (n->data.info == '{') free(n); continue;
+                case ']':  if (n->data.info == '[') free(n); continue;
+                case ')':  if (n->data.info == '(') free(n); continue;
+
+                default: r = false; break;
+            }
+
+            free(n);
 
             break;
         }
@@ -59,9 +60,6 @@ int main (int argc, char **argv) {
 
         printf("\n");
     }
-
-
-
 
     return 0;
 }

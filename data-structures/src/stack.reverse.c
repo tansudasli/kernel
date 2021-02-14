@@ -4,16 +4,12 @@
 
 #include "header/Stack.h"
 
-
 #define ROW 3
 
 int main (int argc, char **argv) {
 
     //test data
-    char * word[ROW] = {"abidindenyo",
-                        "kazablankalastiramadiklarimizdan misiniz?",
-                        ">>olalo<<"
-                       };
+    char * word[ROW] = {"abidindenyo", "kazablankalastiramadiklarimizdan misiniz?", ">>olalo<<"};
 
     //check lengths
     printf("%lu  %lu\n", strlen(word[0]),
@@ -25,21 +21,28 @@ int main (int argc, char **argv) {
         printf("%s ", word[j]);
 
         //reverse
-        size_t len = strlen(word[j]);
         DATA ch;
-        for (int i = 0; i < len; i++) {
+        int length = strlen(word[j]);
+        ch.info = (int)*word[j]++;
+
+        //init
+        NODE *stack = create(ch);
+
+        for (int i = 1; i < length; i++) {
             ch.info = (int)*word[j]++;
-            push(ch);
+            push(&stack, ch);
         }
 
-        while (top)
-            printf("%c", (char) pop()->data.info);
+        while (!isEmpty(&stack)) {
+            NODE *n = pop(&stack);
+
+            printf("%c", (char) n->data.info);
+
+            free(n);
+        }
 
         printf("\n");
     }
-
-
-
 
     return 0;
 }

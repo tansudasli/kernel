@@ -3,39 +3,72 @@
 
 #include "header/Stack.h"
 
-NODE *p = NULL;
 
 int main (int argc, char **argv) {
+    /**
+     * creating 2 independent stacks at the same time
+     */
 
-    //add to last
-    //creates sorted intentionally!
-//    DATA n[] = {5, 8, 10, 20, 31, 57};
-    DATA n[] = {'(', '[', '{', '}', ']', ')'};
-    int l = sizeof(n)/sizeof(n[0]);
+    //preparations
+    DATA numbers[] = {5, 8, 10, 20, 31, 57, 45, 73, 32, 31, 3, 7, 9, 99};
+    DATA symbols[] = {'(', '[', '{', '}', ']', ')'};
+
+    int lS = sizeof(symbols) / sizeof(symbols[0]);
+    int lN = sizeof(numbers) / sizeof(numbers[0]);
+
+    printf("\n---------------1---------------\n");
 
     //print original
-    printf("------------original------------\n");
-    for (int i = 0; i < l; i++)
-        printf("%d  ", n[i].info);
-    printf("\n------------------------------\n");
+    printf("pushed.. ");
+    for (int i = 0; i < lS; i++)
+        printf("%c  ", (char) symbols[i].info);
+
+    //create 1st stackSymbols
+    NODE *stackSymbols = create(symbols[0]);
 
     //push
-    for (int i = 0; i < l; i++)
-        push(n[i]);
+    for (int i = 1; i < lS; i++)
+        push(&stackSymbols, symbols[i]);
 
-    printf("isEmpty after push() all= %s\n", isEmpty() ? "true" : "false");
+//    printf("-->%d", isEmpty(&stackSymbols));
 
-    //pop & print
+    //pop
     NODE *t;
-    for (int i = 0; i < l; i++) {
-        t = pop();
+    printf("\npopped.. ");
+    for (int i = 0; i < lS; i++) {
+        t = pop(&stackSymbols);
 
-        printf("%d  ", t->data.info);
+        printf("%c  ", (char) t->data.info);
+        free(t);
     }
 
-    printf("\nisEmpty after pop() all= %s",  isEmpty() ? "true" : "false");
-    printf("\n------------------------------\n");
+//    printf("-->%d", isEmpty(&stackSymbols));
 
+    printf("\n---------------2---------------\n");
+
+    //simulate second stack at sametime!!
+    printf("pushed.. ");
+    for (int i = 0; i < lN; i++)
+        printf("%d  ", numbers[i].info);
+
+    //create 1st stackSymbols
+    NODE *stackNumbers = create(numbers[0]);
+
+    //push
+    for (int i = 1; i < lN; i++)
+        push(&stackNumbers, numbers[i]);
+
+    //pop
+    NODE *k;
+    printf("\npopped.. ");
+    for (int i = 0; i < lN; i++) {
+        k = pop(&stackNumbers);
+
+        printf("%d  ", k->data.info);
+        free(k);
+    }
+
+    //free
 
 
     return 0;

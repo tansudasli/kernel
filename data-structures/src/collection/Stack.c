@@ -5,12 +5,49 @@
 #include "../header/Stack.h"
 
 /**
- * If top is Null, then creates 1st node and pushes. Otherwise, pushes just as top.<br>
- * No need to use init(), or create(). Very lightweight and simple.<br>
- *
- * @param d: DATA new node
+ * Initialize variables
  */
-void push(DATA d) {
+static void init() {
+
+
+}
+
+/**
+ * Initializes and creates 1st node of Stack. This becomes the top node.
+ *
+ * @param d : top node's Data
+ * @return : top node which points to (1st node)
+ */
+NODE * create(DATA d) {
+    init();
+
+    NODE *p = (NODE *) calloc(1, sizeof(NODE));
+    if (!p) {
+        perror("no-allocation");
+        return NULL;
+    }
+
+    //init rest
+    p->link = NULL;
+    p->data.info = d.info;
+
+    return p;
+
+}
+
+ /**
+  *  It pushes new node as the new top. And adjust old top.<br>
+  *  Use create() before pushing first, then push().
+  *
+  * @param t : Address of old top node is updated as new top. if it is NULL, not-created error occurs.
+  * @param d : DATA new node
+  */
+void push(NODE **t, DATA d) {
+
+    if (!t) {
+        perror("not-created");
+        return;
+    }
 
     NODE *p = (NODE *) calloc(1, sizeof(NODE));
     if (!p) {
@@ -19,42 +56,44 @@ void push(DATA d) {
     }
 
     //init rest
-    p->link = !top ? NULL : top;
+    p->link = *t;
     p->data.info = d.info;
 
     //inject
-    top = p;
+    *t = p;
 }
 
 /**
- * Gets last in node, then updates the remaining as top.
+ * Gets top node (t), then updates next node as the new top, and returns old top node.
  *
- * @return : top node
+ * @param t : Address of old top node provided by client that is updated as new top. if it is NULL, stack-overflow error occurs.
+ * @return : old top node (which is also given as t)
  */
-NODE * pop() {
-    //get top, adjust and return
-    if (!top) {
-        perror("stackoverflow");
+NODE * pop(NODE **t) {
+
+    if (!t) {
+        perror("stack-overflow");
         return NULL;
     }
 
     // get top
-    NODE *p = top;
+    NODE *p = *t;
 
     //inject
-    top = top->link;
+    *t = p->link;
 
     return p;
 }
 
 /**
- * Get last in node, but do not update top. Good for checking, comparing etc..<br>
- * 
- * @return : top node
+ * Gets top node (t), but does not do any update in stack. Good for checking, comparing etc..<br>
+ *
+ * @param t: top node by client
+ * @return : t itself.
  */
-NODE * peek() {
+NODE * peek(NODE **t) {
 
-    return top;
+    return *t;
 }
 
 /**
@@ -62,7 +101,7 @@ NODE * peek() {
  *
  * @return true, if empty or otherwise false.
  */
-bool isEmpty() {
+bool isEmpty(NODE **t) {
     
-   return !top ? true : false;
+   return !*t ? true : false;
 }

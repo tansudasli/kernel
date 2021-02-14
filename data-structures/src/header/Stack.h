@@ -2,11 +2,15 @@
 
 /**
  * Works as LIFO.<br>
+ * First, Use create() then use push() and pop() methods.<br>
+ * Can be used to create many stacks at the same time.
+ *
  * <br>
  * Basic logic behind stack.<br>
  *
  *      top             addr2             addr3         <br>
  *   info|(addr2) ...  info|(addr3) ...  info|NULL      <br>
+ * <br>
  * <br>
  * @details Only insert or remove the (top) 1st node. Insert/Delete between nodes not allowed.<br>
  * <br>
@@ -30,20 +34,17 @@ struct node {
     NODE *link;
 };
 
-NODE *top;                             //node which resides on top (naturally last in)
-
 //interfaces
 
-//todo: Thing push(NODE **new) vs push(DATA d), which one is better if we can design like a library?
-//if we put top as global, then we can not create 2 stack at the same time !!!
+static void init();
+NODE * create(DATA d);                  //O(1) - creates 1st node, returns top
 
-void push(DATA d);                     //O(1) - inserts as top node
-NODE * pop();                          //O(1) - removes top node
-NODE * peek();                         //O(1) - returns top node without pop
+void push(NODE **t, DATA d);            //O(1) - inserts as top node
+NODE * pop(NODE **t);                   //O(1) - updates top node, returns given old top
+NODE * peek(NODE **t);                  //O(1) - returns top node without pop
 
-bool isEmpty();
+void deleteAll(NODE **t);               //O(n) - todo: free all nodes
 
-#ifndef ANSI_C_STACK_H
-#define ANSI_C_STACK_H
+bool isEmpty(NODE **t);
 
-#endif //ANSI_C_STACK_H
+
