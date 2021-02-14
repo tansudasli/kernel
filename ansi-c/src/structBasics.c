@@ -10,15 +10,17 @@ struct employee {
     char surname[50];
     char birthPlace[25];
     double salary;
+    int *bonusHistory;
 } EMPLOYEE;
 
 void display(EMPLOYEE x) {
 
-    printf("%d \t%s \n", x.id, x.name);
+    printf("%d %s %s %s %0.2f (%d, %d)\n", x.id, x.name, x.surname, x.birthPlace, x.salary,
+                                           x.bonusHistory[0], x.bonusHistory[1]);
 }
 void display2(EMPLOYEE *x) {
 
-    printf("%d \t%s \n", x->id, x->name);
+    printf("%d %s \n", x->id, x->name);
 }
 void display3(EMPLOYEE *x) {
 
@@ -42,9 +44,11 @@ int main(int argc, char **argv) {
      */
 
     //define & initialize
-    EMPLOYEE e = {1, "Abidin"};
+    int h[] = {10000, 15000};
+    EMPLOYEE e = {1, "Abidin", "zabid", "bodrum", 1200.00, h};
 
-    display2(&e);  // display(e);
+     display(e);
+//    display2(&e);
 
     //stats
     printf("sizeof=%lu, %lu\n", sizeof(e), sizeof(EMPLOYEE));
