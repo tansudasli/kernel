@@ -36,7 +36,7 @@ struct node {
 
 //interfaces
 
-static void init();
+
 NODE * create(DATA d);                  //O(1) - creates 1st node, returns top
 
 void push(NODE **t, DATA d);            //O(1) - inserts as top node

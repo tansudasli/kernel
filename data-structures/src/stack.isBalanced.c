@@ -44,9 +44,9 @@ int main (int argc, char **argv) {
             };
 
             switch (c.info) {
-                case '}':  if (n->data.info == '{') free(n); continue;
-                case ']':  if (n->data.info == '[') free(n); continue;
-                case ')':  if (n->data.info == '(') free(n); continue;
+                case '}':  if (n->data.info == '{') {free(n); continue;}
+                case ']':  if (n->data.info == '[') {free(n); continue;}
+                case ')':  if (n->data.info == '(') {free(n); continue;}
 
                 default: r = false; break;
             }

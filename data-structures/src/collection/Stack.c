@@ -4,13 +4,6 @@
 
 #include "../header/Stack.h"
 
-/**
- * Initialize variables
- */
-static void init() {
-
-
-}
 
 /**
  * Initializes and creates 1st node of Stack. This becomes the top node.
@@ -19,7 +12,6 @@ static void init() {
  * @return : top node which points to (1st node)
  */
 NODE * create(DATA d) {
-    init();
 
     NODE *p = (NODE *) calloc(1, sizeof(NODE));
     if (!p) {
