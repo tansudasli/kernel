@@ -2,20 +2,48 @@
 #include <stdlib.h>
 #include <assert.h>
 
-int fibonacci(int n) {
+//O(2^n)
+unsigned long fibonacci(int n) {
 
+    if (n < 0) { perror("not-positive"); return -1; }
+    if (n == 0) return 0;
     if (n <= 2) return 1;  //base
 
     return fibonacci(n-1) + fibonacci(n-2);
 }
 
-//gcc -o out/fibonacci src/fibonacci.c  && out/fibonacci 6
+//O(n) w/ dynamic technics
+unsigned long fibonacci2(int n, unsigned long *memo) {
+
+    //memoize
+    if (memo[n-1] != 0) return memo[n-1];
+
+    //base
+    if (n < 0) { perror("not-positive"); return n; }
+    if (n == 0) return 0;
+    if (n <= 2) return 1;
+
+    unsigned long result = fibonacci2(n-1, memo) + fibonacci2(n-2, memo);
+
+    //save
+    memo[n-1] = result;
+
+    return result;
+}
+
+//gcc -o out/fibonacci src/fibonacci.c  && out/fibonacci 50
 int main(int argc, char const *argv[]) {
 
-    int n = (argc > 1 ? atoi(argv[1]) : 5);
+    long n = (argc > 1 ? atoi(argv[1]) : 10);
 
-    printf("fibonacci of %d = %d\n", n, fibonacci(n));
-    printf("fibonacci of %d = %d", 10, fibonacci(10));
+    unsigned long *memoization = (unsigned long *) calloc(n, sizeof(unsigned long));
+
+    printf("fibonacci of %ld = %lu\n", n, fibonacci2(n, memoization));
+
+    //debug
+    printf("\n------------\n");
+    for (int i = 0; i < n; i++)
+        printf("%lu ", *(memoization+i));
 
     return 0;
 }
