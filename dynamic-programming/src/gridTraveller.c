@@ -60,6 +60,10 @@ int main(int argc, char const *argv[]) {
      */
 //    unsigned long *memoization = (unsigned long *) calloc(m * n, sizeof(unsigned long));
 //    unsigned long result = gridTraveller2(m, n, memoization);
+//    //debug
+//    printf("\n------------\n");
+//    for (int i = 0; i < m * n; i++)
+//        printf("%lu ", *(memoization+i));
 
     /**
      * use [m][n] array to hold results. so you dont need hash function
@@ -68,19 +72,14 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < m; i++)
         memoization[i] = (unsigned long *) calloc(n, sizeof(unsigned long));
 
-
     unsigned long result = gridTraveller3(m, n, memoization);
 
     printf("%lu", result);
 
-    //debug
-    printf("\n------------\n");
-//    for (int i = 0; i < m * n; i++)
-//        printf("%lu ", *(memoization+i));
-
+//    //debug
 //    for (int i = 0; i < m; i++) {
 //        for (int j = 0; j < n; j++) {
-//            printf("%lu", mem[i][j]);
+//            printf("%lu ", memoization[i][j]);
 //        }
 //        printf("\n");
 //    }
