@@ -12,20 +12,6 @@ unsigned long gridTraveller(int m, int n) {
     return gridTraveller(m-1, n) + gridTraveller(m, n-1); //down \\right
 }
 
-int mod;
-
-unsigned long
-hoo(unsigned char *str)
-{
-    unsigned long hash = 5381;
-    int c;
-
-    while ((c = *str++))
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-
-    return hash;
-}
-
 //O(m*n)
 unsigned long gridTraveller2(int m, int n, unsigned long *memo) {
 
