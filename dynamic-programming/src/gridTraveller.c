@@ -7,12 +7,11 @@ unsigned long gridTraveller(int m, int n) {
 
     if (m == 0 || n == 0) return 0;
     if (m == 1 && n == 1) return 1;
-//    if ((m == 1 && n == 2) || (m == 2 && n == 1)) return 1;
 
     return gridTraveller(m-1, n) + gridTraveller(m, n-1); //down \\right
 }
 
-//O(m*n)
+//O(m*n) but not cover all cases
 unsigned long gridTraveller2(int m, int n, unsigned long *memo) {
 
     //todo: creates collusion
@@ -21,18 +20,30 @@ unsigned long gridTraveller2(int m, int n, unsigned long *memo) {
 
     printf("%d x %d = %d\n", m, n, hash);
 
-    //memoization
-    if (memo[hash-1] != 0) return memo[hash-1];
 
     if (m == 0 || n == 0) return 0;
     if (m == 1 && n == 1) return 1;
 
-    unsigned long result = gridTraveller2(m-1, n, memo) + gridTraveller2(m, n-1, memo); //down \\right
+    //memoization
+    if (memo[hash-1] != 0) return memo[hash-1];
 
-    //save
-    memo[hash-1] = result;
+    memo[hash-1] = gridTraveller2(m-1, n, memo) + gridTraveller2(m, n-1, memo); //down \\right
 
-    return result;
+    return memo[hash-1];
+}
+
+//O(m*n), covers all cases
+unsigned long gridTraveller3(int m, int n, unsigned long *memo[]) {
+
+    if (m == 1 && n == 1) return 1;
+    if (m == 0 || n == 0) return 0;
+
+    //memoization
+    if (memo[m-1][n-1] != 0) return memo[m-1][n-1];
+
+    memo[m-1][n-1] = memo[n-1][m-1] = gridTraveller3(m-1, n, memo) + gridTraveller3(m, n-1, memo); //down \\right
+
+    return memo[m-1][n-1];
 }
 
 //gcc -o out/gridTraveller src/gridTraveller.c  && out/gridTraveller 3 3
@@ -44,16 +55,35 @@ int main(int argc, char const *argv[]) {
     long m = argc > 1 ? atoi(argv[1]) : 3;
     long n = argc > 1 ? atoi(argv[2]) : 3;
 
-    unsigned long *memoization = (unsigned long *) calloc(m * n, sizeof(unsigned long));
+    /**
+     * needs better hash function
+     */
+//    unsigned long *memoization = (unsigned long *) calloc(m * n, sizeof(unsigned long));
+//    unsigned long result = gridTraveller2(m, n, memoization);
 
-    unsigned long result = gridTraveller2(m, n, memoization);
+    /**
+     * use [m][n] array to hold results. so you dont need hash function
+     */
+    unsigned long *memoization[m];
+    for (int i = 0; i < m; i++)
+        memoization[i] = (unsigned long *) calloc(n, sizeof(unsigned long));
+
+
+    unsigned long result = gridTraveller3(m, n, memoization);
 
     printf("%lu", result);
 
     //debug
     printf("\n------------\n");
-    for (int i = 0; i < m * n; i++)
-        printf("%lu ", *(memoization+i));
+//    for (int i = 0; i < m * n; i++)
+//        printf("%lu ", *(memoization+i));
+
+//    for (int i = 0; i < m; i++) {
+//        for (int j = 0; j < n; j++) {
+//            printf("%lu", mem[i][j]);
+//        }
+//        printf("\n");
+//    }
 
     return 0;
 }
