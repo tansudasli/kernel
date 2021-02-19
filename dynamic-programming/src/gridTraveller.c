@@ -22,8 +22,7 @@ unsigned long gridTraveller2(int m, int n, unsigned long *memo) {
     printf("%d x %d = %d\n", m, n, hash);
 
     //memoization
-    if (hash-1 > 0)
-        if (memo[hash-1] != 0) return memo[hash-1];
+    if (memo[hash-1] != 0) return memo[hash-1];
 
     if (m == 0 || n == 0) return 0;
     if (m == 1 && n == 1) return 1;
