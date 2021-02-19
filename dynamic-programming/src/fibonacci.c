@@ -15,13 +15,14 @@ unsigned long fibonacci(int n) {
 //O(n) w/ dynamic technics
 unsigned long fibonacci2(int n, unsigned long *memo) {
 
-    //memoize
-    if (memo[n-1] != 0) return memo[n-1];
 
     //base
-    if (n < 0) { perror("not-positive"); return n; }
+//    if (n < 0) { perror("not-positive"); return n; }
     if (n == 0) return 0;
-    if (n <= 2) return 1;
+    if (n <= 2) { memo[n-1] = 1; return 1; }
+
+    //memoize
+    if (memo[n-1] != 0) return memo[n-1];
 
     unsigned long result = fibonacci2(n-1, memo) + fibonacci2(n-2, memo);
 
