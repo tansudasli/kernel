@@ -1,50 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "header/ArrayList.h"
 
-
-NODE *p = NULL;
-
 int main (int argc, char **argv) {
 
+    //search - O(n)
 
+    DATA n[] = {5, 8, 3, 10, 20, 31, 51, 41, 35, 32, 2, 4};
+    int lN = sizeof(n) / sizeof(n[0]);
 
-    //add to last
-    //created as sorted intentionally!
-    int l = 6;
-    DATA n[] = {5, 8, 10, 20, 31, 57};
+    //init & initialize
+    NODE *headN = create(n[0], false);
 
-    //init
-    p = create(n[0]);
+    for (int i = 1; i < lN; i++)
+       append(&headN, n[i]);
 
-    for (int i = 1; i < 6; i++)
-       append(n[i]);
+    DATA k; k.info = 1;
+    insert(&headN,n[0], k, BEFORE);
+    lN++;
+
+    k.info = 6;
+    insert(&headN,n[11], k, AFTER);
+    lN++;
+
+    k.info = 29;
+    insert(&headN,n[6], k, AFTER);
+    lN++;
 
     //
-    display();
+    printf("\n");
+    display(&headN);
 
     //search
+    printf("\n----------------search ---------------------");
     NODE *f;
-    printf("\n----------------search---------------------\n");
-    for (int i = 0; i < l; i++) {
-        f = search(n[i]);
-        f == NULL ? printf("\nnot found") : printf("\nfound on %p as %d", f, f->data.info);
-    }
-
-    printf("\n----------------search - notfound---------------------");
     DATA tmp;
-    for (int i = 0; i < 30; i++) {
+    int counter = 0;
+    for (int i = 0; i < 60; i++) {
         tmp.info = i;
-        f = search(tmp);
-        f == NULL ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);
+
+        f = search(&headN, tmp);
+        !f ? counter : counter++;
+        !f ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);
     }
 
-
-    printf("\n");
+    assert(counter == lN);   //printf("\n%d records found", counter);
 
     //
-    stats();
+    stats(&headN);
 
     return 0;
 }

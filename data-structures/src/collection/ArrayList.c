@@ -6,62 +6,54 @@
 
 
 /**
- * Inits variables
- */
-static void init() {
-    head = NULL;
-    tail = NULL;
-
-    nodeCount = 0;
-    sorted = false;
-}
-
-/**
- * Initializes and creates 1st node of ArrayList.
- * Sets Tail and Head pointers to the 1st node.
- *
- * @param d : 1st node's Data
+ * Initializes and creates 1st node of ArrayList, sets head and returns head.
+ * So client can use head in his code.
+ * Sets Tail and Head pointers to the 1st node. To create as a sorted list set sorted=true.
+ * <br><br>
+ * @param d : DATA to attach as new head node
+ * @param sorted : sorted list. default false.
  * @return : head node which points to (1st node)
  */
-NODE * create(DATA d) {
+NODE * create(DATA d, bool sorted) {
 
-    init();
-
-    NODE *p = (NODE *) calloc(1, sizeof(NODE));
-    if (!p) {
+    NODE *head = (NODE *) calloc(1, sizeof(NODE));
+    if (!head) {
         perror("no-allocation");
         return NULL;
     }
 
-    //init rest
-    p->next = NULL;
-    p->previous = NULL;
-    p->data.info = d.info;
+    //init
+    head->header.tail = NULL;
+    head->header.nodeCount = 0;
+    head->header.sorted = (sorted ? sorted : false);
+    head->next = NULL;
+    head->previous = NULL;
 
     //inject
-    head = p;
-    tail = head;
-    nodeCount++;
+    head->data.info = d.info;
+    head->header.tail = head;
+    head->header.nodeCount++;
 
     return head;
 }
 
 /**
- * Appends to the last.
- *
- * If,
- *   - head is NULL, error occurs
- *   - otherwise, appends to tail
- *
- * When using in sorted lists, pay attention.
- *
- * @param d: DATA to append
+ * Appends to the last node.<br>
+ * Use insertSorted() method in a sorted list.
+ * <br><br>
+ * @param head : head node's addr. If, head is NULL, error occurs. Use create() first, to get a head
+ * @param d : DATA to append as new node
  */
-void append(DATA d) {
+void append(NODE **head, DATA d) {
     if (!head) {
         perror("not created");
         return;
     }
+//    insertSorted() calls attach() and append() methods automatically. Enabling this creates error.
+//    if ((*head)->header.sorted) {
+//        perror("invalid usage in a sorted list");
+//        return;
+//    }
 
     NODE *p = (NODE *) calloc(1, sizeof(NODE));
     if (!p) {
@@ -72,35 +64,34 @@ void append(DATA d) {
     //init new node
     p->data = d;
     p->next = NULL;
-    p->previous = tail;
+    p->previous = (*head)->header.tail;
 
     //append
-    tail->next = p;
+    (*head)->header.tail->next = p;
 
     //injections
-    tail = p;
-    nodeCount++;
+    (*head)->header.tail = p;
+    (*head)->header.nodeCount++;
 }
 
 /**
- * Inserts between 1st and 2nd node.
- * If,
- *   - head is NULL or (size = 0), error occurs
- *   - otherwise, inserts  to the last.
- *
- * When using in sorted lists, pay attention.
- *
- * @param d : DATA to attach
+ * Replaces 1st (head) node, and makes it second node. Sets new node as the head.<br>
+ * Use insertSorted() method in a sorted list.
+ * <br><br>
+ * @param head : head node's addr. After replacement, it is updated as new head addr, and HEADER data copied to the new.
+ *               If, head is NULL, error occurs. Use create() first, to get a head
+ * @param d : DATA to attach as new node
  */
-void attach(DATA d) {
+void attach(NODE **head, DATA d) {
     if (!head) {
         perror("not created");
         return;
     }
-    if (nodeCount == 0) {
-        perror("not initialized");
-        return;
-    }
+//    insertSorted() calls attach() and append() methods automatically. Enabling this creates error.
+//    if ((*head)->header.sorted) {
+//        perror("invalid usage in a sorted list");
+//        return;
+//    }
 
     NODE *p = (NODE *) calloc(1, sizeof(NODE));
     if (!p) {
@@ -110,62 +101,63 @@ void attach(DATA d) {
 
     //init new node
     p->data = d;
-    p->next = head;
+    p->next = *head;
     p->previous = NULL;
-    head->previous = p;
+    (*head)->previous = p;
 
     //attach
-    head = p;
+    p->header.tail = (*head)->header.tail;
+    p->header.nodeCount = (*head)->header.nodeCount;
+    p->header.sorted = (*head)->header.sorted;
+    *head = p;
 
     //injections
-    nodeCount++;
+    (*head)->header.nodeCount++;
 }
 
 /**
- * Insert between head and tail nodes.
+ * Inserts between head and tail nodes.<br>
  * If,
- *   - head is NULL or (size = 0), or (sorted = true), error occurs
- *   - s is head, then inserting BEFORE triggers attach()
+ *   - s is head, then inserting BEFORE triggers attach(), and updates head in-place again.
  *   - s is tail, then inserting AFTER triggers append()
- *   - otherwise, search() s, then inserts regarding pos (BEFORE or AFTER).
- *
- * @param s: DATA to find
- * @param pos: BEFORE or AFTER position to insert
- * @param d: DATA to insert
+ *   - otherwise, searches s, then inserts regarding pos (BEFORE or AFTER).
+ * <br><br>
+ * @param head : head node's addr. If, head is NULL, error occurs. Use create() first, to get a head.
+ *               If, It is sorted, error occurs, use insertSorted().
+ * @param s : DATA to find node
+ * @param d : DATA to insert as new node
+ * @param pos : BEFORE or AFTER position to insert
  */
-void insert(DATA s, POSITION pos, DATA d) {
+void insert(NODE **head, DATA s, DATA d, POSITION pos) {
     if (!head) {
         perror("not created");
         return;
     }
-    if (nodeCount == 0) {
-        perror("not initialized");
-        return;
-    }
-    if (sorted) {
-        perror("Invalid usage in a sorted list");
+    if ((*head)->header.sorted) {
+        perror("invalid usage in a sorted list");
         return;
     }
 
     //search
     //todo: uses search() instead of binarySearch(). optimize
-    NODE *p = search(s);
+    NODE *p = search(head, s);
     if (!p) {
         perror("not found");
         return;
     }
 
-    //p is first node, so inserting before means attaching!
-    if (p == head && pos == BEFORE) {
+    //if p is the first node, so inserting before means attaching!
+    if (p == *head && pos == BEFORE) {
         printf("...trigger attach()");
-        attach(d);
+        attach(head, d);
 
         return;
     }
-    //p is last node, so inserting after means appending!
-    if (p == tail && pos == AFTER) {
+
+    //if p is the last node, so inserting after means appending!
+    if (p == (*head)->header.tail && pos == AFTER) {
         printf("...trigger append()");
-        append(d);
+        append(head, d);
 
         return;
     }
@@ -187,7 +179,7 @@ void insert(DATA s, POSITION pos, DATA d) {
         p->previous = tmp;
 
         //injections
-        nodeCount++;
+        (*head)->header.nodeCount++;
 
     } else {
 
@@ -198,23 +190,24 @@ void insert(DATA s, POSITION pos, DATA d) {
         p->next = tmp;
 
         //injections
-        nodeCount++;
+        (*head)->header.nodeCount++;
     }
 
 }
 
 /**
- * Insert as sorted.
- *
- * @param d : DATA to insert
+ * Inserts as sorted.
+ * <br><br>
+ * @param head : head node's addr. If, head is null, use create() as sorted true.
+ * @param d : DATA to insert as new node
  */
-void insertSorted(DATA d) {
+void insertSorted(NODE **head, DATA d) {
     if (!head) {
         perror("not created");
         return;
     }
-    if (nodeCount == 0) {
-        perror("not initialized");
+    if (!(*head)->header.sorted) {
+        perror("invalid usage in an unsorted list");
         return;
     }
 
@@ -224,23 +217,23 @@ void insertSorted(DATA d) {
     NODE *p = (NODE *) calloc(1, sizeof(NODE));
     p->data = d;
 
-
     // <, 1st node comparison
-    NODE *cursor = head;
-    if (p->data.info <= cursor->data.info) {
-        attach(d);
+    NODE *cursor = *head;
+    if (p->data.info < cursor->data.info) {     //comparison I
 
-        sorted = true;
+        attach(head, d);
+
         return;
     }
 
     // > then 1st node, but we should find appropriate place
     cursor = cursor->next;
-    do {
 
-        // > then head, so compare with next node,
-        // so, we should use < operator, to find the node that is right before max
-        if (p->data.info < cursor->data.info) {
+    while (cursor) {
+
+        // > then head, so compare with next node, so, we should use < operator, to find the node that is right
+        if (p->data.info < cursor->data.info) {  //comparison II
+
             //insert before!
             p->next = cursor;
             p->previous = cursor->previous;
@@ -248,37 +241,38 @@ void insertSorted(DATA d) {
             cursor->previous = p;
 
             //injections
-            nodeCount++;
-            sorted = true;
+            (*head)->header.nodeCount++;
 
             break;
         }
 
         cursor = cursor->next;
-    } while (cursor);
+    };
 
-    // at the end of list, and cursor is null, means we have max node.
+    // at the end of list, and cursor is null (,or just after initialized), means we traversed all nodes.
     if (!cursor) {
-        append(d);
 
-        sorted = true;
+        append(head, d);
+
     }
 
+    return;
 }
 
 /**
- * Delete a node
+ * Deletes all nodes<br>
  * If,<br>
  *    s is 1st node, delete 1st, adjust head<br>
  *    s is 1st and only node, delete and free()<br>
  *    s is last, delete last, adjust tail <br>
  *    s is between 1st and last, delete<br>
  *    s is not found, error<br>
- *
- * @param s : DATA to search and delete
- * @return : if error or not found, return -1 or return 0
+ * <br><br>
+ * @param head : head node's addr.
+ * @param s : DATA to search and to delete
+ * @return : if error occurs, return -1 or return 0
  */
-int delete(DATA s) {
+int deleteAll(NODE **head, DATA s) {
    //search vs binarySearch
 
    //delete
@@ -289,56 +283,52 @@ int delete(DATA s) {
 }
 
 /**
- * Searches from 1st to last nodes.
- * If,
- *   - start is NULL or (size = 0), error occurs
- *   - otherwise, loops all nodes till it founds
- *
+ * Searches from head to tail node.
+ * <br><br>
+ * @param head, If head is NULL, error occurs
  * @param s : DATA to search in nodes
- * @return : founded node, otherwise NULL if not found or error occurred.
+ * @return : if founds, returns the node, otherwise NULL.
  */
-NODE * search(DATA s) {
+NODE * search(NODE **head, DATA s) {  //todo: compare function ?
     if (!head) {
         perror("not created");
-        return NULL;
-    }
-    if (nodeCount == 0) {
-        perror("not initialized");
         return NULL;
     }
 
     //loop all
-    NODE *p = head;
+    NODE *cursor = *head;
     do {
-        if (p->data.info == s.info)
+        if (cursor->data.info == s.info)  //comparison
             break;
 
-        p = p->next;
-    } while (p);
+        cursor = cursor->next;
+    } while (cursor);
 
-    return p;
+    return cursor;
 }
 
 /**
- * Finds middle node and then, makes comparison.
- * Focuses always middle, and compares with middle. At last steps, either b or e will be null, or b > e.
- * So there are 4 possible exit ways!!
+ * Finds middle node and then, makes a comparison.
+ * Focuses always the middle, and compares with the middle.
+ * At last steps, either b or e will be null, or b > e.
  * Works on sorted data.
- *
- * @param s : search data
- * @return : if not found NULL, otherwise matching node
+ * <br><br>
+ * @param head, If head is NULL, error occurs. If it is not sorted, error occurs.
+ * @param s : DATA to search in nodes
+ * @return : if founds, returns the node, otherwise NULL.
  */
-NODE * binarySearch(DATA s) {
+NODE * binarySearch(NODE **head, DATA s) {
     if (!head) {
         perror("not created");
         return NULL;
     }
-    if (nodeCount == 0) {
-        perror("not initialized");
+    if (!(*head)->header.sorted) {
+        perror("invalid usage in an unsorted list");
         return NULL;
     }
 
-    NODE *b = head, *e = tail, *m = NULL;
+    //compare middle, then divide again, till it found
+    NODE *b = *head, *e = (*head)->header.tail, *m = NULL;
     do {
         //find middle
         m = getMiddle(b, e);
@@ -355,38 +345,38 @@ NODE * binarySearch(DATA s) {
     } while (e); //todo: (e || b) ?
 
     return NULL;
-
-    //compare middle, then divide again, till it found
 }
 
 /**
- * Start node
- *
- * @return : start
+ * Head node.
+ * <br><br>
+ * @param head
+ * @return head
  */
-NODE * getFirst() {
+NODE * getHead(NODE **head) {
 
-    return head;
+    return *head;
 }
 
 /**
  * Last node
- *
- * @return : last
+ * <br><br>
+ * @param head
+ * @return tail
  */
-NODE * getLast() {
+NODE * getTail(NODE **head) {
 
-    return tail;
+    return (*head)->header.tail;
 }
 
 /**
- * Locates middle node, using start end end node approach. So it can be called recursively.
- * Uses 2 pointers, one moves 1-step, second moves 2-steps. When faster reaches the end, slow shows the middle.
+ * Locates middle node, using start and end node approach. So it can be called recursively.
+ * Uses 2 pointers, one moves 1-step, second moves 2-steps. When faster reaches the end, slow points to the middle.
  * Better than mathematical (n/2) approach, if you can not have (or not meaningful) index-based reach.
  * Useful for binarySearch() method.
  *
- * @param b : beginning node
- * @param e : end node
+ * @param b : beginning node. At first call, it is the head !
+ * @param e : end node. At first call, it is the tail
  * @return : middle node
  */
 NODE * getMiddle(NODE *b, NODE *e) {
@@ -415,28 +405,43 @@ NODE * getMiddle(NODE *b, NODE *e) {
 
 /**
  * Node count
- *
- * @return : node count
+ * <br><br>
+ * @param head
+ * @return size
  */
-int size() {
+int size(NODE **head) {
 
-    return nodeCount;
+    return (*head)->header.nodeCount;
 }
 
 /**
- * Default not sorted.
+ * Sorted
  *
- * @return : bool
+ * @param head
+ * @return true if sorted, or false (default)
  */
-bool isSorted() {
-    return sorted;
+bool isSorted(NODE **head) {
+
+    return (*head)->header.sorted;
 }
 
 /**
- * some internal stats , pointer's addr etc...
+ * Empty
+ * <br><br>
+ * @param head
+ * @return size equals 0, true, or false
  */
-void stats() {
+bool isEmpty(NODE **head) {
 
+    return ((*head)->header.nodeCount == 0) ? true : false;
+}
+
+/**
+ * some internal stats, pointer's addr etc...
+ * <br><br>
+ * @param head
+ */
+void stats(NODE **head) {
     if (!head) {
         perror("not created");
         return;
@@ -444,39 +449,35 @@ void stats() {
 
     printf("\n\n---------------stats----------------\n");
 
-    NODE *p = head;
+    NODE *cursor = *head;
     printf("seq data prev\t\t p\t\t next\n");
     int i = 0;
     do {
-        printf("%d   %d\t %p\t %p\t %p\n", i, p->data.info, p->previous, p, p->next);
+        printf("%d   %d\t %p\t %p\t %p\n", i, cursor->data.info, cursor->previous, cursor, cursor->next);
 
         i++;
-        p = p->next;
-    } while (p);
+        cursor = cursor->next;
+    } while (cursor);
 
     printf("------------end of stats------------\n");
-
 }
 
 /**
- * Prints
+ * Prints all nodes
+ * <br><br>
+ * @param head
  */
-void display() {
+void display(NODE **head) {
 
     if (!head) {
         perror("not created");
         return;
     }
-    if (nodeCount == 0) {
-        perror("not initialized");
-        return;
-    }
 
-    NODE *p = head;
+    NODE *cursor = *head;
     do {
-        printf("%d  ", p->data.info);
+        printf("%d  ", cursor->data.info);
 
-        p = p->next;
-    } while (p);
-
+        cursor = cursor->next;
+    } while (cursor);
 }

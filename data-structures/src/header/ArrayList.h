@@ -4,13 +4,23 @@
  * Dynamic array
  *
  * Basic logic behind linked list. A bit different usual start-last architecture.
- * Normally, start is a kind of 1st node. That creates problems esp. for doublyLinked lists, binarySearch or finding the middle.
+ * Normally, start is a kind of Dummy 1st node. That creates problems esp. for doublyLinked lists, binarySearch or finding the middle.
  * So, below design (head and tail approach) is more concise and simple.
- * In this design, head is actually same as the 1st node.
- * //todo: More over, We can make one more enhancement. Head pointer points to the 1st node pointer, and not becomes same as 1st node.
  * <br>
- * --> circleLinkedList are trivial.<br>
- * --> doublyLinkedList (handling previous link) is good for searching<br>
+ * <br>
+ * On the other hand, there are 3 main considerations.
+ * <br>
+ * 1- Taking head from client like f(NODE **head) vs holding head as a global. The latter means
+ *   you can not create two ArrayList at the same time. So that it can not be a library.
+ * 2- How can decrease some O(n) operations to O(1). Such as counting nodes, getting last node etc..
+ *   In previous design, (getting head from client), you can not hold them as global variables.
+ *   So you need a HEADER section in your NODE design.
+ * 3- to optimize search O(n). to do that yo need to get last and middle nodes faster.
+ *   So you can leverage binarySearch O(logn).
+ *   To do this you need to hold previous link, and sorted inserts.
+ *
+ * <br>
+ * ArrayList is also critical data structure to build HashMaps which is the combination of Array + ArrayList !!
  *
  *
  * p        head                                              tail              <br>
@@ -22,6 +32,9 @@
  * <br>- Insert/Remove to end/beginning/between possible.
  * <br>- Optimized for many features O(1) instead of O(n)
  * <br>- First create() then use append(), attach() or insert() methods to build ArrayList.
+ * <br>
+ * --> circleLinkedList are trivial.<br>
+ * --> doublyLinkedList (handling previous link) is good for searching<br>
  * @author tansudasli
  */
 
@@ -29,7 +42,10 @@ typedef struct node NODE;
 typedef enum {BEFORE, AFTER} POSITION;
 
 typedef struct header {
+    NODE *tail;
 
+    int nodeCount;
+    bool sorted;
 } HEADER;
 typedef struct data {
     int info;
@@ -43,48 +59,39 @@ struct node {
     NODE *previous;
 };
 
-NODE *head, *tail;
-static int nodeCount;
-static bool sorted;
-
-//todo: Thing create(NODE **new, DATA d) vs create(DATA d), which one is better if we can design like a library?
-//if we put head/tail as global, then we can not create 2 arraylist at the same time !!!
 
 //interfaces
-static void init();                  //initialize variables
-NODE * create(DATA d);          //creates start node and adds to 1st node
+//todo: make  sorted as optional
+NODE * create(DATA d, bool sorted);            //O(1) - creates head node, and returns to client
 
-NODE * getFirst();                   //O(1) - returns first node
-NODE * getLast();                    //O(1) - returns last node
-NODE * getMiddle(NODE *b, NODE *e);  //O(logn) - returns in the middle node
+NODE * getHead(NODE **head);                   //O(1) - returns first node
+NODE * getTail(NODE **head);                   //O(1) - returns last node
+NODE * getMiddle(NODE *b, NODE *e);            //O(logn) - returns the middle node
 
-NODE * search(DATA s);          //O(n) - search                                //data dependent comparison!
-NODE * search2(int s);          //search by int in DATA struct                 //todo: impl.
-NODE * search3(char* s);        //search by string in DATA struct              //todo: impl.
-NODE * binarySearch(DATA s);    //O(logn) - search by splitting into middles   //data dependent comparison!
+NODE * search(NODE **head, DATA s);            //O(n) - search
+//NODE * search2(NODE **head, bool (*comparison) (int v1, int s));    //O(n) - search todo: impl.
 
-void append(DATA d);                            //O(1) - appends to the last
-void attach(DATA d);                            //O(1) - inserts at the beginning
-void insert(DATA s, POSITION pos, DATA d);      //O(n) - insert between 1st and last, append/attach where necessary
-                                                                               //todo: search() vs binarySearch() optimize
-void insertSorted(DATA d);                      //O(n) - insert as sorted
+NODE * binarySearch(NODE **head, DATA s);      //O(logn) - search by splitting into middles
 
-void replace(DATA s, DATA r);                   //O(n) - replace s with r          //todo: impl.
-void swap(DATA s, DATA r);                      //sway s with r, and vise versa... //todo: impl.
+void append(NODE **head, DATA d);              //O(1) - appends to the last
+void attach(NODE **head, DATA d);              //O(1) - replaces head with new node
 
-int delete(DATA s);             //O(n) - delete at 1st, middle, last, only  //todo: impl.
-int clean();                    //deletes all records (free heap)           //todo: add a method to delete all records
-                                                                            //todo: add onexit signal
+void insert(NODE **head, DATA s, DATA d, POSITION pos);      //O(n) - insert between 1st and last, append/attach where necessary
+//void insert2(NODE **head, NODE * (*search) (NODE **head, DATA s), DATA d, POSITION pos); //todo: gets search func. as function pointer :) why not
+void insertSorted(NODE **head, DATA d);                      //O(n) - insert as descending sorted
+//void insertSorted2(NODE **head, DATA d, bool (*comparison) (int s, int d)); //todo: to enable ascending mode sorting etc..
 
-NODE * reverse();               //O(n) - reverse (1st becomes last etc..)   //todo: impl.
+//void replace(NODE **head, DATA s, DATA r);     //O(n) - replace s with r     todo: impl.
+//void swap(NODE **head, DATA s, DATA r);        //O(n) - swap s with r, and vise versa... todo: impl.
+//NODE * reverse(NODE **head);                   //O(n) - reverse todo: impl.
 
-void display();                 //O(n) - prints                             //data dependent printf!
-void stats();                   //O(n) - print some stat data
-int size();                     //O(1) - node count
-bool isSorted();                //O(1) - default not sorted                 //todo: impl.
-bool isEmpty();                                                             //todo: impl.
+//int deleteAll(NODE **head, DATA s);            //O(n) - delete at 1st, middle, last, only  todo: impl.
+//int clean();                                   //O(n) - deletes all nodes (free heap)      todo: impl.
 
-#ifndef ANSI_C_LIST_H
-#define ANSI_C_LIST_H
 
-#endif //ANSI_C_LIST_H
+void display(NODE **head);                 //O(n) - prints all
+void stats(NODE **head);                   //O(n) - print some stat data
+int size(NODE **head);                     //O(1) - node count
+bool isSorted(NODE **head);                //O(1) - sort status
+bool isEmpty(NODE **head);                 //O(1) - size status
+

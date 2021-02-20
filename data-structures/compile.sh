@@ -1,5 +1,5 @@
 #on linux/Mac/windows
-#under ansi-c folder
+#under data-structures folder
 cmake . -B out
 make -C out
 

@@ -1,50 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "header/ArrayList.h"
 
-
-NODE *p = NULL;
-
 int main (int argc, char **argv) {
 
+    //binarySearch - O(logn)
 
-    //add to last
-    //created as sorted intentionally!
+    DATA n[] = {3, 5, 8, 9, 10, 20, 31, 37, 39, 41, 42, 44, 47, 49, 50, 51, 52, 53, 54, 55, 59};
+    int lN = sizeof(n) / sizeof(n[0]);
 
-//    DATA n[] = {5, 8, 10, 20, 31, 57}; int l=6;
-    DATA n[] = {5, 6, 8, 10, 12, 20, 21, 22, 31, 57, 72}; int l=11;
+    //init & initialize
+    NODE *headN = create(n[0], true);
 
-    //init
-    p = create(n[0]);
-
-    for (int i = 1; i < l; i++)
-       append(n[i]);
-
-    display();
-
-    //binarySearch
-    NODE *f = NULL;
-    printf("\n---------binarySearch---------------------");
-    for (int i = 0; i < l; i++) {
-        f = binarySearch(n[i]);
-        f == NULL ? printf("\nnot found= %d", n[i].info) : printf("\nfound on %p as %d", f, f->data.info);
-    }
-
-    //not found cases
-    printf("\n---------binarySearch - notFound------------");
-    f = NULL;
-    DATA tmp;
-    for (int i = 101; i >= 0; i--) {
-        tmp.info = i;
-        f = binarySearch(tmp);
-        f == NULL ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);
-    }
-
-    printf("\n");
+    for (int i = 1; i < lN; i++)
+        append(&headN, n[i]);
 
     //
-    stats();
+    printf("\n");
+    display(&headN);
+
+    //search
+    printf("\n----------------binarySearch ---------------------");
+    NODE *f;
+    DATA tmp;
+    int counter = 0;
+    for (int i = 0; i < 60; i++) {
+        tmp.info = i;
+
+        f = binarySearch(&headN, tmp);
+        !f ? counter : counter++;
+        !f ? printf("\nnot found= %d", i) : printf("\nfound on %p as %d", f, f->data.info);
+    }
+
+    assert(counter == lN);   //printf("\n%d records found", counter);
+
+    //
+    stats(&headN);
 
     return 0;
 }

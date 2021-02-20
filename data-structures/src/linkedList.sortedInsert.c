@@ -1,51 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "header/ArrayList.h"
 
-NODE *p = NULL;
 
 int main (int argc, char **argv) {
 
 
-    //creates sorted Array List
-    //not sorted array
-
-    DATA n[] = {5, 3, 10, 9, 8, 57, 60, 35, 1, 12, 2}; int l = 11;
-//    DATA n[] = {6, 5, 3, 2, 1}; int l = 5;
+    //insert as sorted
+    DATA n[] = {3, 59, 8, 9, 10, 7, 31, 37, 23, 25, 42, 44, 47, 24, 50, 55, 54, 53, 52, 1, 5};
+    int lN = sizeof(n) / sizeof(n[0]);
 
     //print original
     printf("------------original------------\n");
-    for (int i = 0; i < l; i++)
+    for (int i = 0; i < lN; i++)
         printf("%d  ", n[i].info);
-    printf("\n------------------------------\n");
+    printf("\n------------sorted------------------\n");
 
     //init
-    p = create(n[0]);
+    NODE *headN = create(n[0], true);
 
-    for (int i = 1; i < l; i++)
-       insertSorted(n[i]);
+    for (int i = 1; i < lN; i++)
+       insertSorted(&headN, n[i]);
+
+    //
+    display(&headN);
+
+//    /**
+//    NODE *cursor = getHead(&headN);
+//    while (cursor) {
+//        printf("%d ", cursor->data.info);
+//
+//        cursor = cursor->next;
+//    }
+//     */
 
 
     //
-    display();
+    stats(&headN);
 
-    /**
-    p = getFirst();
-    while (p) {
-        printf("%d ", p->data.info);
-
-        p = p->next;
-    }
-     */
-
-
-    //
-    stats();
-
-    printf("\ntotal of nodes=%d", size());
-    printf("\nisSorted=%d", isSorted());
-
+    assert(size(&headN) == lN);   // printf("\ntotal of nodes=%d", size(&headN));
+    assert(isSorted(&headN)); //printf("\nisSorted=%d", isSorted(&headN));
 
     return 0;
 }
