@@ -85,7 +85,7 @@ void replace(NODE **head, DATA s, DATA r);     //O(n) - replace s with r     tod
 void swap(NODE **head, DATA s, DATA r);        //O(n) - swap s with r, and vise versa... todo: impl.
 NODE * reverse(NODE **head);                   //O(n) - reverse todo: impl.
 
-int deleteAll(NODE **head, DATA s);            //O(n) - delete at 1st, middle, last, only  todo: impl.
+int delete(NODE **head, DATA s);               //O(n) - delete                             todo: impl.
 int clean();                                   //O(n) - deletes all nodes (free heap)      todo: impl.
 
 

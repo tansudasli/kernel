@@ -260,7 +260,7 @@ void insertSorted(NODE **head, DATA d) {
 }
 
 /**
- * Deletes all nodes<br>
+ * Deletes node<br>
  * If,<br>
  *    s is 1st node, delete 1st, adjust head<br>
  *    s is 1st and only node, delete and free()<br>
@@ -272,7 +272,7 @@ void insertSorted(NODE **head, DATA d) {
  * @param s : DATA to search and to delete
  * @return : if error occurs, return -1 or return 0
  */
-int deleteAll(NODE **head, DATA s) {
+int delete(NODE **head, DATA s) {
    //search vs binarySearch
 
    //delete
