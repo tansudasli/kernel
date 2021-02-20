@@ -36,14 +36,13 @@ struct node {
 
 //interfaces
 
-
 NODE * create(DATA d);                  //O(1) - creates 1st node, returns top
 
 void push(NODE **t, DATA d);            //O(1) - inserts as top node
 NODE * pop(NODE **t);                   //O(1) - updates top node, returns given old top
 NODE * peek(NODE **t);                  //O(1) - returns top node without pop
 
-void deleteAll(NODE **t);               //O(n) - todo: free all nodes
+void clean(NODE **t);                   //O(n) - deletes all nodes (free heap) todo: impl.
 
 bool isEmpty(NODE **t);
 
