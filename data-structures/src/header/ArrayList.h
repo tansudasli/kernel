@@ -69,7 +69,7 @@ NODE * getTail(NODE **head);                   //O(1) - returns last node
 NODE * getMiddle(NODE *b, NODE *e);            //O(logn) - returns the middle node
 
 NODE * search(NODE **head, DATA s);            //O(n) - search
-//NODE * search2(NODE **head, bool (*comparison) (int v1, int s));    //O(n) - search todo: impl.
+NODE * search2(NODE **head, bool (*comparison) (int v1, int s));    //O(n) - search todo: impl.
 
 NODE * binarySearch(NODE **head, DATA s);      //O(logn) - search by splitting into middles
 
@@ -77,16 +77,16 @@ void append(NODE **head, DATA d);              //O(1) - appends to the last
 void attach(NODE **head, DATA d);              //O(1) - replaces head with new node
 
 void insert(NODE **head, DATA s, DATA d, POSITION pos);      //O(n) - insert between 1st and last, append/attach where necessary
-//void insert2(NODE **head, NODE * (*search) (NODE **head, DATA s), DATA d, POSITION pos); //todo: gets search func. as function pointer :) why not
+void insert2(NODE **head, NODE * (*search) (NODE **head, DATA s), DATA d, POSITION pos); //todo: gets search func. as function pointer :) why not
 void insertSorted(NODE **head, DATA d);                      //O(n) - insert as descending sorted
-//void insertSorted2(NODE **head, DATA d, bool (*comparison) (int s, int d)); //todo: to enable ascending mode sorting etc..
+void insertSorted2(NODE **head, DATA d, bool (*comparison) (int s, int d)); //todo: to enable ascending mode sorting etc..
 
-//void replace(NODE **head, DATA s, DATA r);     //O(n) - replace s with r     todo: impl.
-//void swap(NODE **head, DATA s, DATA r);        //O(n) - swap s with r, and vise versa... todo: impl.
-//NODE * reverse(NODE **head);                   //O(n) - reverse todo: impl.
+void replace(NODE **head, DATA s, DATA r);     //O(n) - replace s with r     todo: impl.
+void swap(NODE **head, DATA s, DATA r);        //O(n) - swap s with r, and vise versa... todo: impl.
+NODE * reverse(NODE **head);                   //O(n) - reverse todo: impl.
 
-//int deleteAll(NODE **head, DATA s);            //O(n) - delete at 1st, middle, last, only  todo: impl.
-//int clean();                                   //O(n) - deletes all nodes (free heap)      todo: impl.
+int deleteAll(NODE **head, DATA s);            //O(n) - delete at 1st, middle, last, only  todo: impl.
+int clean();                                   //O(n) - deletes all nodes (free heap)      todo: impl.
 
 
 void display(NODE **head);                 //O(n) - prints all
