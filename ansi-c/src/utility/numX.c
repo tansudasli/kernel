@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
-#include <stdbool.h>
 
 int numDigits(long long v) {
 
@@ -25,22 +23,4 @@ long long concatInteger(long long a, long long b) {
     char *eptr;
 
     return strtoll(s1, &eptr, 10);
-}
-
-
-//gcc -o out/concat src/utility/concat.c  && out/concat  123456 7000
-int main(int argc, char **argv) {
-
-    assert(numDigits(10008) == 5);
-    assert(numDigits(133333335) == 9);
-    assert(numDigits(1004413) == 7);
-
-    assert(concatInteger(100, 300) == 100300);
-
-
-    printf("%lld\n", concatInteger(argc > 1 ? atoll(argv[1]) : 444,
-                                   argc > 1 ? atoll(argv[2]) : 555));
-
-
-    return 0;
 }
