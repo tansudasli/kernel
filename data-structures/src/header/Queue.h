@@ -3,7 +3,8 @@
  *
  * Basic logic behind queue.
  *
- *        front            addr2           addr3|rear
+ *         front                              rear
+ *                          addr2            addr3
  *     info|(addr2) ...  info|(addr3) ...  info|NULL
  *
  * @details Insert (enqueue) to end, Remove (dequeue) from start. Insert/Delete between nodes not allowed.
@@ -14,36 +15,25 @@
 
  */
 typedef struct node NODE;
-struct node {
+typedef struct data {
     int info;
+
+} DATA;
+struct node {
+    DATA data;
 
     NODE *link;
 };
 
-NODE *front, *rear;                    //1st and last node
-
 //interfaces
-static NODE * create();                //creates start node,
-static NODE * initialize(int);         //creates start node and adds to 1st node
 
-NODE * getFront();                //returns 1st node
-NODE * getRear();                 //returns last node
-bool isEmpty();
+NODE * create(DATA d);                        //creates 1st node, returns front
 
-NODE * enqueue(int);            //inserts at 1st node
-NODE * dequeue();               //removes last node
-NODE * peek();                  //returns 1st node without dequeue
+NODE * enqueue(NODE **front, DATA d);         //inserts to rear
+NODE * dequeue(NODE **front);                 //removes from front
+NODE * peek(NODE **front);                    //returns front node without dequeue
 
-void display();                 //prints
-int size();                     //node count
+void clean(NODE **t);                         //deletes all nodes (free heap) todo: impl.
 
-#ifndef ANSI_C_STACK_H
-#define ANSI_C_STACK_H
+bool isEmpty(NODE **t);
 
-#endif //ANSI_C_STACK_H
-
-
-#ifndef ANSI_C_QUEUE_H
-#define ANSI_C_QUEUE_H
-
-#endif //ANSI_C_QUEUE_H
