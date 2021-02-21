@@ -41,8 +41,8 @@
 typedef struct node NODE;
 typedef enum {BEFORE, AFTER} POSITION;
 
-typedef struct header {
-    NODE *tail;
+typedef struct header {  //to make O(1) for accessing last node, we need such struct.
+    NODE *tail;          //And, global variable is not appropriate if you need to create more than one stack at the same time
 
     int nodeCount;
     bool sorted;
