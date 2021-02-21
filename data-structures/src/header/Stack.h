@@ -38,12 +38,13 @@ struct node {
 
 NODE * create(DATA d);                  //O(1) - creates 1st node, returns top
 
-void push(NODE **t, DATA d);            //O(1) - inserts as top node
-NODE * pop(NODE **t);                   //O(1) - updates top node, returns given old top
-NODE * peek(NODE **t);                  //O(1) - returns top node without pop
+void push(NODE **top, DATA d);            //O(1) - inserts as top node
+NODE * pop(NODE **top);                   //O(1) - updates top node, returns given old top
+NODE * peek(NODE **top);                  //O(1) - returns top node without pop
 
-void clean(NODE **t);                   //O(n) - deletes all nodes (free heap) todo: impl.
+void clean(NODE **top);                   //O(n) - deletes all nodes (free heap) todo: impl.
 
-bool isEmpty(NODE **t);
+int size(NODE **top);                     //O(1) - node count todo: impl.
+bool isEmpty(NODE **top);
 
 

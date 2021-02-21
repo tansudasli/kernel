@@ -31,12 +31,12 @@ NODE * create(DATA d) {
   *  It pushes new node as the new top. And adjust old top.<br>
   *  Use create() before pushing first, then push().
   *
-  * @param t : Address of old top node is updated as new top. if it is NULL, not-created error occurs.
+  * @param top : Address of old top node is updated as new top. if it is NULL, not-created error occurs.
   * @param d : DATA new node
   */
-void push(NODE **t, DATA d) {
+void push(NODE **top, DATA d) {
 
-    if (!t) {
+    if (!top) {
         perror("not-created");
         return;
     }
@@ -48,44 +48,44 @@ void push(NODE **t, DATA d) {
     }
 
     //init rest
-    p->link = *t;
+    p->link = *top;
     p->data.info = d.info;
 
     //inject
-    *t = p;
+    *top = p;
 }
 
 /**
  * Gets top node (t), then updates next node as the new top, and returns old top node.
  *
- * @param t : Address of old top node provided by client that is updated as new top. if it is NULL, stack-overflow error occurs.
+ * @param top : Address of old top node provided by client that is updated as new top. if it is NULL, stack-overflow error occurs.
  * @return : old top node (which is also given as t)
  */
-NODE * pop(NODE **t) {
+NODE * pop(NODE **top) {
 
-    if (!t) {
+    if (!top) {
         perror("stack-overflow");
         return NULL;
     }
 
     // get top
-    NODE *p = *t;
+    NODE *p = *top;
 
     //inject
-    *t = p->link;
+    *top = p->link;
 
     return p;
 }
 
 /**
- * Gets top node (t), but does not do any update in stack. Good for checking, comparing etc..<br>
+ * Gets top node (top), but does not do any update in stack. Good for checking, comparing etc..<br>
  *
- * @param t: top node by client
- * @return : t itself.
+ * @param top: top node by client
+ * @return : top itself.
  */
-NODE * peek(NODE **t) {
+NODE * peek(NODE **top) {
 
-    return *t;
+    return *top;
 }
 
 /**
@@ -93,7 +93,7 @@ NODE * peek(NODE **t) {
  *
  * @return true, if empty or otherwise false.
  */
-bool isEmpty(NODE **t) {
+bool isEmpty(NODE **top) {
     
-   return !*t ? true : false;
+   return !*top ? true : false;
 }
