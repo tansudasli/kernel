@@ -46,6 +46,12 @@ add_executable(stack.reverse
         src/collection/Stack.c
         src/stack.reverse.c)
 
+
+add_executable(queue
+        src/header/Queue.h
+        src/collection/Queue.c
+        src/queue.c)
+
 add_executable(stockSpanProblem
         ../data-structures/src/stockSpanProblem.c)
 
