@@ -6,29 +6,29 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(src/header)
 
 add_executable(linkedList
-        src/header/ArrayList.h
-        src/collection/ArrayList.c
+        src/header/LinkedList.h
+        src/collection/LinkedList.c
         src/linkedList.c)
 
 add_executable(linkedList.Middle
-        src/header/ArrayList.h
-        src/collection/ArrayList.c
+        src/header/LinkedList.h
+        src/collection/LinkedList.c
         src/linkedList.middle.c)
 
 add_executable(linkedList.Search
-        src/header/ArrayList.h
-        src/collection/ArrayList.c
+        src/header/LinkedList.h
+        src/collection/LinkedList.c
         src/linkedList.search.c)
 
 add_executable(linkedList.BinarySearch
-        src/header/ArrayList.h
-        src/collection/ArrayList.c
+        src/header/LinkedList.h
+        src/collection/LinkedList.c
         src/linkedList.binarySearch.c)
 
 
 add_executable(linkedList.SortedInsert
-        src/header/ArrayList.h
-        src/collection/ArrayList.c
+        src/header/LinkedList.h
+        src/collection/LinkedList.c
         src/linkedList.sortedInsert.c)
 
 add_executable(stack

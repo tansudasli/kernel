@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "header/ArrayList.h"
+#include "header/LinkedList.h"
 
 
 int main (int argc, char **argv) {

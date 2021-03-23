@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "../header/ArrayList.h"
+#include "../header/LinkedList.h"
 #include "../header/Collection.h"
 
 

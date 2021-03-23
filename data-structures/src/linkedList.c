@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "header/ArrayList.h"
+#include "header/LinkedList.h"
 
 
 int main (int argc, char **argv) {
