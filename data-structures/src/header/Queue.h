@@ -3,6 +3,8 @@
 /**
  * Works as FIFO.
  *
+ * - PriorityQueue is where priority can be changed using Comparator functions
+ *
  * Basic logic behind queue. Implementing like a ArrayList is more efficient than implementing using 2-stacks!
  *
  *         front                              rear
@@ -34,6 +36,8 @@ struct node {
 };
 
 //interfaces
+
+//todo: implement as PriorityQueue where default comparison is natural insert-order
 
 NODE * create(DATA d);                      //O(1) - creates 1st node, returns front
 
