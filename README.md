@@ -1,4 +1,4 @@
-# kernel
+# kernel programming
 
 core kernel module development
 
